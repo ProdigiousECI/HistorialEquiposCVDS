@@ -1,0 +1,5 @@
+edu\eci\cvds\example\mainHistorialEquipos.class
+edu\eci\cvds\sample\services\ServiceHistorialEquipos.class
+edu\eci\cvds\sample\services\impl\ServiceHistorialEquiposImpl.class
+edu\eci\cvds\sample\factory\ServiceFactory.class
+edu\eci\cvds\sample\factory\ServiceFactory$1.class
