@@ -5,12 +5,38 @@
  */
 package edu.eci.cvds.sample.services.impl;
 
+import com.google.inject.Inject;
+import edu.eci.cvds.sample.entities.Elemento;
+import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
-
+import edu.eci.cvds.sampleprj.dao.ElementoDAO;
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
 /**
  *
  * @author javier
  */
 public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
     
+    @Inject
+    private ElementoDAO elementoDAO;
+    
+    @Override
+    public void registrarElemento(Elemento e) throws ExcepcionServiceHistorialEquipos
+    {
+        try{
+           elementoDAO.registrarElemento(e);
+       } catch (PersistenceException ex) {
+           throw new ExcepcionServiceHistorialEquipos("Error al registrar", ex);
+       }
+    }
+
+    @Override
+    public Elemento consultarElemento(int id) throws ExcepcionServiceHistorialEquipos 
+    {
+        try{
+            return elementoDAO.consultarElemento(id);
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar el item "+id, ex);
+        }
+    }
 }
