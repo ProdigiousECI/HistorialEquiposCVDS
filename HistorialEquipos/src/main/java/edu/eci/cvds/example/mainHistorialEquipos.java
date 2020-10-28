@@ -13,7 +13,7 @@ import edu.eci.cvds.sample.factory.ServiceFactory;
  */
 public class mainHistorialEquipos {
     public static void main(String[] args)
-    {    
+    {
         ServiceFactory.getInstance().getServiciosFactory();
     }
 }
