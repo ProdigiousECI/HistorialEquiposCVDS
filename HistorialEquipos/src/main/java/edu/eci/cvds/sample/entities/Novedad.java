@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package edu.eci.cvds.sample.entities;
 
 import java.io.Serializable;
@@ -61,4 +62,23 @@ public class Novedad implements Serializable{
 	
 
 
+=======
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package edu.eci.cvds.sample.entities;
+import java.util.Date;
+
+/**
+ *
+ * @author javie
+ */
+public class Novedad {
+    public Novedad (int id , Date fecha , String titulo, User responsable, String detalle, Equipo equipo, Elemento Elemento)
+    {
+        
+    }
+>>>>>>> 39689a414c4f5b223abccbfd7190a5a6283917b4
 }
