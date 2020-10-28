@@ -11,11 +11,18 @@ import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
+
+import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
+import edu.eci.cvds.sampleprj.dao.NovedadDAO;
+
 /**
  *
  * @author javier
  */
 public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
+	
+    @Inject
+    private NovedadDAO NovedadDAO;
     
     @Inject
     private ElementoDAO elementoDAO;
