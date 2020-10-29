@@ -5,14 +5,16 @@
  */
 package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
 
+
+import edu.eci.cvds.sample.entities.User;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
 /**
  *
  * @author Andres Davila 
  */
 
-import edu.eci.cvds.sample.entities.User;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface UsuarioMapper {
     /**

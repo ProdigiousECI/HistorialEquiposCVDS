@@ -9,8 +9,23 @@ import edu.eci.cvds.sample.entities.User;
 
 /**
  *
- * @author javier
+ * @author Andres Davila 
  */
 public interface UsersDAO {
-    public void registrarUsuario(User us) throws PersistenceException;
+    /**
+     * 
+     * @param correo String correo del Usuario
+     * @return Usuario correspondiente 
+     * @throws edu.eci.cvds.samples.persistence.PersistenceException 
+     */
+    public User consultarUsuario(String correo ) throws PersistenceException;
+    
+    /**
+     * 
+     * @return Lista de usuarios
+     * @throws PersistenceException 
+     */
+    public List<User> consultarUsuarios() throws PersistenceException;
+    
+    /**
 }
