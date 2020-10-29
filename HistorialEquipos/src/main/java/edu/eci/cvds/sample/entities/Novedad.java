@@ -10,7 +10,7 @@ public class Novedad implements Serializable{
 	private Date fecha;
 	private String titulo;
 	private String detalle;
-	
+	//fuquene es un manco hijueputa
 	
 	public Novedad() {
 		

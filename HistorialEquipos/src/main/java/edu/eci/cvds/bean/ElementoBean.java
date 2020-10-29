@@ -9,6 +9,6 @@ package edu.eci.cvds.bean;
  *
  * @author javie
  */
-public class ElementoBean extends {
+public class ElementoBean{
     
 }

@@ -1,6 +1,7 @@
 edu\eci\cvds\sampleprj\dao\PersistenceException.class
 edu\eci\cvds\sample\entities\Elemento.class
 edu\eci\cvds\sampleprj\dao\ElementoDAO.class
+edu\eci\cvds\bean\ElementoBean.class
 edu\eci\cvds\sample\entities\User.class
 edu\eci\cvds\sample\factory\ServiceFactory.class
 edu\eci\cvds\sampleprj\dao\mybatis\mappers\ElementoMapper.class

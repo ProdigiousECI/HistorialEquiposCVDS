@@ -10,7 +10,6 @@
     <properties resource="config.properties">
     </properties>
     <typeAliases>
-        <!--typeAlias type="edu.eci.cvds.samples.entities.Equipo" alias="Equipo"/-->
         <typeAlias type="edu.eci.cvds.sample.entities.Elemento" alias="Elemento"/>
     </typeAliases>	
 
@@ -29,7 +28,6 @@
     </environments>
         
     <mappers>
-        <!--mapper resource="mappers/EquipoMapper.xml"></mapper-->   
         <mapper resource="mappers/ElementoMapper.xml"></mapper>    
     </mappers> 
         
