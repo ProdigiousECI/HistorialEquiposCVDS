@@ -6,6 +6,7 @@
 package edu.eci.cvds.sampleprj.dao;
 
 import edu.eci.cvds.sample.entities.User;
+import java.util.List;
 
 /**
  *
@@ -16,7 +17,7 @@ public interface UsersDAO {
      * 
      * @param correo String correo del Usuario
      * @return Usuario correspondiente 
-     * @throws edu.eci.cvds.samples.persistence.PersistenceException 
+     * @throws edu.eci.cvds.sampleprj.dao.PersistenceException 
      */
     public User consultarUsuario(String correo ) throws PersistenceException;
     
@@ -27,5 +28,4 @@ public interface UsersDAO {
      */
     public List<User> consultarUsuarios() throws PersistenceException;
     
-    /**
 }
