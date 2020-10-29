@@ -13,25 +13,21 @@ import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
-import edu.eci.cvds.sampleprj.dao.NovedadDAO;
 
 /**
  *
  * @author javier
  */
 public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
-	
-    @Inject
-    private NovedadDAO NovedadDAO;
     
     @Inject
     private ElementoDAO elementoDAO;
     
     @Override
-    public void registrarElemento(Elemento e) throws ExcepcionServiceHistorialEquipos
+    public void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos
     {
         try{
-           elementoDAO.registrarElemento(e);
+           elementoDAO.registrarElemento(ele);
        } catch (PersistenceException ex) {
            throw new ExcepcionServiceHistorialEquipos("Error al registrar", ex);
        }
@@ -43,7 +39,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
         try{
             return elementoDAO.consultarElemento(id);
         }catch(PersistenceException ex){
-            throw new ExcepcionServiceHistorialEquipos("Error al consultar el item "+id, ex);
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar el elemento "+id, ex);
         }
     }
 }

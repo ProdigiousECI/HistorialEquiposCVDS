@@ -13,27 +13,32 @@ import java.io.Serializable;
  */
 public class Elemento implements Serializable{
 
-    private Equipo equipo;
+    //private Equipo equipo;
     private String tipo;
     private String nombre;
     private int id;
 
-    public Elemento(int id, String nombre, String tipo, Equipo equipo)
+    public Elemento()
+    {
+        
+    }
+    
+    public Elemento(int id, String nombre, String tipo) /*, Equipo equipo*/
     {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
-        this.equipo = equipo;
+        //this.equipo = equipo;
     }
     
-    public Equipo getEquipo() {
+    /*public Equipo getEquipo() {
         return equipo;
     }
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
-
+*/
     public String getTipo() {
         return tipo;
     }
@@ -60,6 +65,6 @@ public class Elemento implements Serializable{
     
     @Override
     public String toString() {
-        return "Elemento{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", equipo=" + equipo +'}';
+        return "Elemento{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + '}'; /*", equipo=" + equipo +*/
     }
 }

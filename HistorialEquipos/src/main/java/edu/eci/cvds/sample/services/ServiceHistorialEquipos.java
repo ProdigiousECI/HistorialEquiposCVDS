@@ -12,7 +12,7 @@ import edu.eci.cvds.sample.entities.Elemento;
  * @author javier
  */
 public interface ServiceHistorialEquipos {
-    public abstract void registrarElemento(Elemento e) throws ExcepcionServiceHistorialEquipos;
+    public abstract void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos;
     
     public abstract Elemento consultarElemento(int id) throws ExcepcionServiceHistorialEquipos;
 }

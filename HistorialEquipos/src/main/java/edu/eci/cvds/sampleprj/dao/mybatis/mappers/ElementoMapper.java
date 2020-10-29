@@ -13,6 +13,8 @@ import org.apache.ibatis.annotations.Param;
  * @author javie
  */
 public interface ElementoMapper {
-    public Elemento consultarElemento(@Param("idele")int id);
-    public void registrarElemento(@Param("ele")Elemento ele);
+    public Elemento consultarElemento(@Param("idele") int id);
+    
+    public void registrarElemento(@Param("ele") Elemento ele);
+
 }

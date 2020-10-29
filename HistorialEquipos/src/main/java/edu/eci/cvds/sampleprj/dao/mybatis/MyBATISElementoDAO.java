@@ -24,6 +24,7 @@ public class MyBATISElementoDAO implements ElementoDAO{
     @Override
     public void registrarElemento(Elemento ele) throws PersistenceException {
         try{
+  
             elementoMapper.registrarElemento(ele);
         }catch(org.apache.ibatis.exceptions.PersistenceException e){
              throw new PersistenceException("Error al registrar "+ ele.toString(),e);
@@ -35,7 +36,7 @@ public class MyBATISElementoDAO implements ElementoDAO{
         try{
             return elementoMapper.consultarElemento(id);
         }catch(org.apache.ibatis.exceptions.PersistenceException e){
-             throw new PersistenceException("Error al consultar los Clientes ",e);
+             throw new PersistenceException("Error al consultar el elemento", e);
         }
     }
     

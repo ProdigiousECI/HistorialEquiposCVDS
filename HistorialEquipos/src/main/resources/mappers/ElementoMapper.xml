@@ -14,7 +14,7 @@
             select
                 e.id,
                 e.nombre,
-                e.tipo,
+                e.tipo
                 FROM Elemento as e
                 where e.id=#{idele}
         </select>
