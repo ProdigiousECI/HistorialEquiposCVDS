@@ -8,20 +8,17 @@
 		<id property='id' column='id'/>
 		<result property='nombre' column='nombre'/>
 		<result property='tipo' column='tipo'/>  
-		<result property="equipo" column="equipo"></result>
-
+                <!--association property="equipo" javaType="Equipo" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association-->
 	</resultMap>
         <select parameterType="map" id="consultarElemento" resultMap="ElementoResult">
             select
                 e.id,
                 e.nombre,
                 e.tipo,
-                e.direccion,
-                e.equipo,
                 FROM Elemento as e
                 where e.id=#{idele}
         </select>
         <insert id="registrarElemento" parameterType="map">
-            insert into Elemento (id, nombre, tipo, direccion, equipo) values
-            (#{ele.id}, #{ele.nombre}, #{ele.tipo}, #{ele.direccion}, #{ele.equipo})
+            INSERT INTO Elemento values (#{ele.id}, #{ele.nombre}, #{ele.tipo}, 2) <!--#{ele.equipo.id}-->
         </insert>
+</mapper>
