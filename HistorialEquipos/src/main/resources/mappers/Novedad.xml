@@ -6,10 +6,37 @@
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper">
 
 
-	<resultMap type='Novedad' id='ClienteResult'>
+	<resultMap type='Novedad' id='NovedadResult'>
 		<id property='id' column='id'/>
 		<result property='fecha' column='fecha'/>
 		<result property='titulo' column='titulo'/>  
-		<result property="detalle" column="detalle"></result>
+		<result property="detalle" column="detalle"/>
 
 	</resultMap>
+	
+	<insert parameterType="map" id="registrarNovedad" >
+		
+		INSERT INTO novedad values(#{idn.id},NOW(),#{idn.titulo},1,#{idn.detalle},1,1)
+		
+	</insert>
+	
+	<select parameterType="map" id="consultarNovedad" resultMap="NovedadResult">
+		
+		
+		
+		SELECT
+    
+			id,
+			fecha,
+			titulo,
+			detalle
+
+		
+		FROM novedad
+		
+	</select>
+
+	
+	
+	
+</mapper>
