@@ -9,6 +9,23 @@ package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
  *
  * @author Andres Davila 
  */
-public class UsuarioMapper {
+
+import edu.eci.cvds.sample.entities.User;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface UsuarioMapper {
+    /**
+     * Consulta usuario dado
+     * @param correo String correo del Usuario
+     * @return Usuario correspondiente 
+     */
+    public User consultarUsuario(@Param("mail")String correo );
+    
+    /**
+     * Consulta todos los usuarios
+     * @return Lista de todos los usuarios 
+     */
+    public List<User> consultarUsuarios();
     
 }

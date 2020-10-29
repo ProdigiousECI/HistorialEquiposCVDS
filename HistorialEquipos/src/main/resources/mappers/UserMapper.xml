@@ -23,7 +23,7 @@
             
             
         FROM  AS u
-        WHERE u.correo=#{corr};
+        WHERE u.correo=#{mail};
     </select>
     <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
         SELECT
