@@ -13,6 +13,7 @@ import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
+import java.util.ArrayList;
 
 /**
  *
@@ -40,6 +41,15 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
             return elementoDAO.consultarElemento(id);
         }catch(PersistenceException ex){
             throw new ExcepcionServiceHistorialEquipos("Error al consultar el elemento "+id, ex);
+        }
+    }
+
+    @Override
+    public ArrayList<Elemento> consultarElementos() throws ExcepcionServiceHistorialEquipos {
+        try{
+            return elementoDAO.consultarElementos();
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos", ex);
         }
     }
 }

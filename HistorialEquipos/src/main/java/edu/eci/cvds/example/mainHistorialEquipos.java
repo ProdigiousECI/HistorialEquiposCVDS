@@ -21,7 +21,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
  * @author javier
  */
 
-
 public class mainHistorialEquipos {
         
     public static void main(String[] args) throws ParseException, ExcepcionServiceHistorialEquipos 
@@ -32,7 +31,7 @@ public class mainHistorialEquipos {
         
         ServiceHistorialEquipos ServicioHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
         
-        System.out.println(ServicioHE.consultarElemento(2));
+        System.out.println(ServicioHE.consultarElementos());
         
         //ServicioHE.registrarElemento(e);
     }
