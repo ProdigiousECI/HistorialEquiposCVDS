@@ -11,3 +11,4 @@
 		<result property='nombre' column='nombre'/>
 		<result property='iduser' column='iduser'> </result>
 	</resultMap>
+</mapper>
