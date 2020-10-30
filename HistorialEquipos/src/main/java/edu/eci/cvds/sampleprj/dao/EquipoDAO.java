@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
-
+package edu.eci.cvds.sampleprj.dao;
 import edu.eci.cvds.sample.entities.Equipo;
-import org.apache.ibatis.annotations.Param;
-
 /**
  *
  * @author Acer
  */
-public interface EquipoMapper {
-    public void registrarEquipo(@Param("equipo")Equipo equipo);
+public interface EquipoDAO {
+    public void registrarEquipo(Equipo equipo)throws PersistenceException;
     
 }
