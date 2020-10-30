@@ -2,6 +2,8 @@ package edu.eci.cvds.sampleprj.dao.mybatis;
 
 
 
+import java.util.ArrayList;
+
 import com.google.inject.Inject;
 
 import edu.eci.cvds.sample.entities.Novedad;
@@ -24,14 +26,23 @@ public class MyBATISNovedadDAO implements NovedadDAO{
 		
 	}
 	
+
 	@Override
-	public Novedad consultarNovedad() throws PersistenceException {
+	public ArrayList<Novedad> consultarNovedadporElemento(int i) throws PersistenceException {
 		try{
-			return novedadMapper.consultarNovedad();
+			return novedadMapper.consultarNovedadporElemento(i);
 		}catch(org.apache.ibatis.exceptions.PersistenceException e){
 		      throw new PersistenceException("Error al consultar Novedad ",  e);
 		  }
-		
+	}
+
+	@Override
+	public ArrayList<Novedad> consultarNovedadporEquipo(int i) throws PersistenceException {
+		try{
+			return novedadMapper.consultarNovedadporEquipo(i);
+		}catch(org.apache.ibatis.exceptions.PersistenceException e){
+		      throw new PersistenceException("Error al consultar Novedad ",  e);
+		  }
 	}
 	
 

@@ -14,7 +14,7 @@ and open the template in the editor.
         <title>Registrar Novedad</title>
     </h:head>
 	<center>
-		<p:outputLabel value="Registrar Novedad"/>
+		<p:outputLabel value="Registrar Novedad Equipo"/>
         <h:form id="formNovedad">
             <h:panelGrid columns="2">
                 <h:outputLabel value="titulo"/>
@@ -25,7 +25,7 @@ and open the template in the editor.
             </h:panelGrid>    
 				<p:commandButton update="formNovedad" class="Button" value="Registrar Novedad"/>			
         </h:form>
-		<p:dataTable var="novedad" value="#{NovedadElemento.novedades}">
+		<p:dataTable var="novedad" value="#{NovedadEquipo.novedades}">
 		<p:column headerText="Id">
 			<h:outputText value="#{novedad.id}" />
 		</p:column>

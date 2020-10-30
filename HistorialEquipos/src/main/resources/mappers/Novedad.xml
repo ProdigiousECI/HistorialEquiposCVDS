@@ -20,7 +20,7 @@
 		
 	</insert>
 	
-	<select parameterType="map" id="consultarNovedad" resultMap="NovedadResult">
+	<select parameterType="map" id="consultarNovedadporElemento" resultMap="NovedadResult">
 		
 		
 		
@@ -33,6 +33,27 @@
 
 		
 		FROM novedad
+		
+		WHERE idelemento=#{numero}
+		
+	</select>
+	
+	<select parameterType="map" id="consultarNovedadporEquipo" resultMap="NovedadResult">
+		
+		
+		
+		SELECT
+    
+			id,
+			fecha,
+			titulo,
+			detalle
+		
+
+		
+		FROM novedad
+		
+		WHERE idequipo=#{numero}
 		
 	</select>
 

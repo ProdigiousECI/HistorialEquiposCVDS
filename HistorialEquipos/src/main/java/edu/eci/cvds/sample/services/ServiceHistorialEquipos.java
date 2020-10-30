@@ -7,6 +7,8 @@ package edu.eci.cvds.sample.services;
 
 
 
+import java.util.ArrayList;
+
 import edu.eci.cvds.sample.entities.Novedad;
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 
@@ -17,6 +19,7 @@ import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 public interface ServiceHistorialEquipos {
 	
 	public abstract void registrarNovedad(Novedad n) throws ExcepcionServiceHistorialEquipos;
-	public abstract Novedad consultarNovedad() throws ExcepcionServiceHistorialEquipos;
+	public abstract ArrayList<Novedad> consultarNovedadporElemento(int i) throws ExcepcionServiceHistorialEquipos;
+	public abstract ArrayList<Novedad> consultarNovedadporEquipo(int i) throws ExcepcionServiceHistorialEquipos;
     
 }

@@ -6,6 +6,7 @@
 package edu.eci.cvds.sample.services.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import com.google.inject.Inject;
 
@@ -33,12 +34,21 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
 	       }
 	   }
 	@Override
-	   public Novedad consultarNovedad() throws ExcepcionServiceHistorialEquipos {
+	   public ArrayList<Novedad> consultarNovedadporElemento(int i) throws ExcepcionServiceHistorialEquipos {
 	       try {
-	           return novedadDAO.consultarNovedad();
+	           return novedadDAO.consultarNovedadporElemento(i);
 	       }catch (PersistenceException ex) {
 	          
-	    	   throw new ExcepcionServiceHistorialEquipos("Error al registrar novedad",ex);
+	    	   throw new ExcepcionServiceHistorialEquipos("Error al consultar novedad",ex);
+	       }
+	   }
+	@Override
+	   public ArrayList<Novedad> consultarNovedadporEquipo(int i) throws ExcepcionServiceHistorialEquipos {
+	       try {
+	           return novedadDAO.consultarNovedadporEquipo(i);
+	       }catch (PersistenceException ex) {
+	          
+	    	   throw new ExcepcionServiceHistorialEquipos("Error al consultar novedad",ex);
 	       }
 	   }
     
