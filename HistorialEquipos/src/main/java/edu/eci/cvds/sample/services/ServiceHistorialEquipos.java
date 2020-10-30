@@ -5,10 +5,26 @@
  */
 package edu.eci.cvds.sample.services;
 
+import edu.eci.cvds.sample.services.ExcepcionHistorialEquipos;
+import edu.eci.cvds.sample.entities.User;
+import java.util.List;
 /**
  *
- * @author javier
+ * @author Andres Davila 
  */
 public interface ServiceHistorialEquipos {
+    /**
+     * Retorna el usuario segun sus credenciales
+     * @param correo String  correo del usuario
+     * @return Usuario usuario 
+     * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
+     */
+    public abstract User consultarUsuario(String correo) throws ExcepcionHistorialEquipos;
     
+    /**
+     * 
+     * @return Lista de usuarios
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract List<User> consultarUsuarios() throws ExcepcionHistorialEquipos;
 }
