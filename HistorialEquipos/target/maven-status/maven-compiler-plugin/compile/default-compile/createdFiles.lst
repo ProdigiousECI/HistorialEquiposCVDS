@@ -11,5 +11,6 @@ edu\eci\cvds\sampleprj\dao\NovedadDAO.class
 edu\eci\cvds\sample\services\ExcepcionServiceHistorialEquipos.class
 edu\eci\cvds\sample\services\impl\ServiceHistorialEquiposImpl.class
 edu\eci\cvds\sampleprj\dao\UsersDAO.class
+edu\eci\cvds\bean\NovedadBean.class
 edu\eci\cvds\sample\entities\Novedad.class
 edu\eci\cvds\sampleprj\dao\mybatis\mappers\NovedadMapper.class
