@@ -22,8 +22,8 @@
             u.estado,
             
             
-        FROM  AS u
-        WHERE u.correo=#{mail};
+        FROM USUARIO AS u
+        WHERE u.correo=#{corr};
     </select>
     <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
         SELECT
@@ -34,7 +34,7 @@
             u.estado
             
             
-        FROM USUARIOS AS u;
+        FROM USUARIO AS u;
     </select>
 </mapper>
 

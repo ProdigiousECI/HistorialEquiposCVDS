@@ -22,7 +22,7 @@ public interface UsuarioMapper {
      * @param correo String correo del Usuario
      * @return Usuario correspondiente 
      */
-    public User consultarUsuario(@Param("mail")String correo );
+    public User consultarUsuario(@Param("corr")String correo );
     
     /**
      * Consulta todos los usuarios
