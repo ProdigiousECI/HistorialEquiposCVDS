@@ -21,5 +21,8 @@ public interface ServiceHistorialEquipos {
 	public abstract void registrarNovedad(Novedad n) throws ExcepcionServiceHistorialEquipos;
 	public abstract ArrayList<Novedad> consultarNovedadporElemento(int i) throws ExcepcionServiceHistorialEquipos;
 	public abstract ArrayList<Novedad> consultarNovedadporEquipo(int i) throws ExcepcionServiceHistorialEquipos;
+	public abstract ArrayList<Novedad> consultarNovedades() throws ExcepcionServiceHistorialEquipos;
+
+	
     
 }

@@ -17,4 +17,9 @@ public interface NovedadMapper {
 	ArrayList<Novedad> consultarNovedadporElemento(@Param("numero") int i);
 	ArrayList<Novedad> consultarNovedadporEquipo(@Param("numero") int i);
 
+
+
+	ArrayList<Novedad> consultarNovedades();
+
+
 }

@@ -12,10 +12,7 @@ public class Novedad implements Serializable{
 	private String titulo;
 	private String detalle;
 	
-	
-	public Novedad() {
-		
-	}
+
 	public Novedad(int id, Date fecha, String titulo,String detalle){
 		
 		this.id=id;
@@ -24,9 +21,9 @@ public class Novedad implements Serializable{
 		this.detalle=detalle;
 		
 	}
-	public Novedad(int id, String titulo,String detalle){
+	public Novedad(String titulo,String detalle){
 		
-		this.id=id;
+	
 		this.titulo=titulo;
 		this.detalle=detalle;
 		

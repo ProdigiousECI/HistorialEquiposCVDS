@@ -17,15 +17,17 @@ and open the template in the editor.
 		<p:outputLabel value="Registrar Novedad Equipo"/>
         <h:form id="formNovedad">
             <h:panelGrid columns="2">
+              
                 <h:outputLabel value="titulo"/>
-				<p:inputText id="titulo" type="long"/>
+				<p:inputText id="titulo" type="long" binding="#{titulo}"/>
 				<h:outputLabel value="detalle"/>
-				<p:inputText id="detalle" type="String"/>
+				<p:inputText id="detalle" type="String" binding="#{detalle}"/>
 				
             </h:panelGrid>    
-				<p:commandButton update="formNovedad" class="Button" value="Registrar Novedad"/>			
+				<p:commandButton update="tabla" class="Button" value="Registrar Novedad" actionListener="#{Novedad.registrarNovedad(titulo.value, detalle.value)}"/>
+				
         </h:form>
-		<p:dataTable var="novedad" value="#{NovedadEquipo.novedades}">
+		<p:dataTable id="tabla" var="novedad" value="#{Novedad.novedades}">
 		<p:column headerText="Id">
 			<h:outputText value="#{novedad.id}" />
 		</p:column>

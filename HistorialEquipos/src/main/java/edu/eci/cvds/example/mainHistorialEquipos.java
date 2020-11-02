@@ -22,9 +22,10 @@ public class mainHistorialEquipos {
         //ServiceFactory.getInstance().getServiciosFactory();
     	
     	
-    	//Novedad n=new Novedad(15, "Lost gaming", "los gamers");
-    	//ServiceFactory.getInstance().getServiciosFactory().registrarNovedad(n);
-    	System.out.println(ServiceFactory.getInstance().getServiciosFactory().consultarNovedadporEquipo(1));
+    	Novedad n=new Novedad( "prueba", "en la clase");
+    	ServiceFactory.getInstance().getServiciosFactory().registrarNovedad(n);
+    	//system.out.println(ServiceFactory.getInstance().getServiciosFactory().consultarNovedades());
+    	//System.out.println(ServiceFactory.getInstance().getServiciosFactory().consultarNovedades());
         
     }
 }

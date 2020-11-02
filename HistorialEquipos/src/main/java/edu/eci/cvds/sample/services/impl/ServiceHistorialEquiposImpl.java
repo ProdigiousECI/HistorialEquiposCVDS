@@ -28,7 +28,8 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
 	@Override
 	   public void registrarNovedad(Novedad n) throws ExcepcionServiceHistorialEquipos {
 	       try {
-	           novedadDAO.RegistrarNovedad(n);
+	    	   
+	    	   novedadDAO.RegistrarNovedad(n);
 	       }catch (PersistenceException ex) {
 	           throw new ExcepcionServiceHistorialEquipos("Error al registrar novedad",ex);
 	       }
@@ -42,6 +43,18 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
 	    	   throw new ExcepcionServiceHistorialEquipos("Error al consultar novedad",ex);
 	       }
 	   }
+	
+	public ArrayList<Novedad> consultarNovedades() throws ExcepcionServiceHistorialEquipos{
+		try {
+	           return novedadDAO.consultarNovedades();
+	       }catch (PersistenceException ex) {
+	          
+	    	   throw new ExcepcionServiceHistorialEquipos("Error al consultar novedad",ex);
+	       }
+	}
+	
+	
+	
 	@Override
 	   public ArrayList<Novedad> consultarNovedadporEquipo(int i) throws ExcepcionServiceHistorialEquipos {
 	       try {
@@ -51,5 +64,5 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
 	    	   throw new ExcepcionServiceHistorialEquipos("Error al consultar novedad",ex);
 	       }
 	   }
-    
+
 }

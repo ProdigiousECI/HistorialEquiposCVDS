@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.google.inject.Inject;
 
 import edu.eci.cvds.sample.entities.Novedad;
+import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sampleprj.dao.NovedadDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper;
@@ -44,6 +45,17 @@ public class MyBATISNovedadDAO implements NovedadDAO{
 		      throw new PersistenceException("Error al consultar Novedad ",  e);
 		  }
 	}
+
+
+	@Override
+	public ArrayList<Novedad> consultarNovedades() throws PersistenceException {
+		try{
+			return novedadMapper.consultarNovedades();
+		}catch(org.apache.ibatis.exceptions.PersistenceException e){
+		      throw new PersistenceException("Error al consultar Novedad ",  e);
+		  }
+	}
+
 	
 
 }
