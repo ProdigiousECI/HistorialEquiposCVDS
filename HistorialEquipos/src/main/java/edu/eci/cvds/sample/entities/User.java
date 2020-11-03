@@ -27,7 +27,10 @@ public class User implements Serializable{
         this.apellido = apellido;
         this.estado = estado;
      } 
-    public User(){}
+    public User()
+    {
+    
+    }
     public String getCorreo() {
         return correo;
     }
