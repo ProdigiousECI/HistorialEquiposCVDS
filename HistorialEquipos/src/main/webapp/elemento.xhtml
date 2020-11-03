@@ -12,8 +12,14 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Registrar Elemento</title>
+        <h:outputStylesheet name="style.css" library="css" />
     </h:head>
     <h:body>
+        <center>
+        <img src="resources/img/logo.png" width="300" height="100" align="center"/>
+        </center>
+        <br/>
+        <br/>
         <center>
         <p:outputLabel value="Registro Elementos"/>
         <h:form id="formElemento">
@@ -28,19 +34,22 @@ and open the template in the editor.
                 <p:inputText id="Equipo" type="long" binding="#{equi}"/>       
                 <p:commandButton update="formElemento" class="Button" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(id.value, name.value, tipo.value, equi.value)}"/>
             </h:panelGrid>
-            <p:dataTable value="#{Elemento.elementos}" var="el">
-                <p:column headerText="id">
-                    <p:outputLabel value="#{el.id}"/>
-                </p:column>
-                <p:column headerText="Nombre">
-                    <p:outputLabel value="#{el.nombre}"/>
-                </p:column>
-                <p:column headerText="Tipo">
-                    <p:outputLabel value="#{el.tipo}"/>
-                </p:column>
-                <p:column headerText="idEquipo">
-                    <p:outputLabel value="2"/>
-                </p:column>
+            <p:dataTable value="#{Elemento.elementos}" var="el" style="width:450px;" styleClass = "Table">
+                <center>
+                    <p:column headerText="id">
+                        <p:outputLabel value="#{el.id}"/>
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <p:outputLabel value="#{el.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Tipo">
+                        <p:outputLabel value="#{el.tipo}"/>
+                    </p:column>
+                    <p:column headerText="idEquipo">
+                        <p:outputLabel value="#{null}"/>
+                    </p:column>
+               </center>
+
             </p:dataTable>          
         </h:form>
         </center>

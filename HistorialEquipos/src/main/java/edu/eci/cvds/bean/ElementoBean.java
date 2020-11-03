@@ -44,7 +44,7 @@ public class ElementoBean{
         
     }
     
-    public void registrarCliente(long id, String nombre, String tipo, long idEquipo){
+    public void registrarElemento(long id, String nombre, String tipo, long idEquipo){
         try {
             serviceHE.registrarElemento(new Elemento((int)id,nombre,tipo));
             elementos = serviceHE.consultarElementos();

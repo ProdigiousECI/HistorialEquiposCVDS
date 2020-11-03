@@ -17,6 +17,7 @@ public class Elemento implements Serializable{
     private String tipo;
     private String nombre;
     private int id;
+    private Equipo equipo = null;
 
     public Elemento()
     {
