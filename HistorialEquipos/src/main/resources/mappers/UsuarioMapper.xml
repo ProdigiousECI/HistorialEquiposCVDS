@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.UsuarioMapper">
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper">
     <resultMap type='Usuario' id='UsuarioResult'>
         <id property='correo' column='correo'/>
         <result property='nombreUsuario' column='nombre_usuario'/> 
@@ -34,7 +34,7 @@
             u.estado
             
             
-        FROM USUARIO AS u;
+        FROM USUARIO AS u
     </select>
 </mapper>
 
