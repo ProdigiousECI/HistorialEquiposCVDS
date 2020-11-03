@@ -25,7 +25,7 @@ public class mainHistorialEquipos {
         
     public static void main(String[] args) throws ParseException, ExcepcionServiceHistorialEquipos 
     {
-        Elemento e = new Elemento(5,"OMEN","Teclado");
+        Elemento e = new Elemento("OMEN","Teclado");
         
         //ServiceFactory.getInstance().getServiceHistorialEquipos();
         

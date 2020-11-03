@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.entities.Elemento;
+//import edu.eci.cvds.sample.entities.Equipo;
 import edu.eci.cvds.sample.factory.ServiceFactory;
 import java.util.ArrayList;
 /**
@@ -21,8 +22,19 @@ import java.util.ArrayList;
 @ApplicationScoped
 public class ElementoBean{   
     
+    /*
+                    <!--p:selectOneMenu id="Tipo" binding="#{tipo}" style="width:125px">
+                    <p:selectOneMenu id="city" value="#{Elemento.equipos}" effect="fold" editable="true">
+                    <f:selectItem itemLabel="Select One" itemValue="" />
+                    <f:selectItems value="#{Elemento.nombre}" />
+                    </p:selectOneMenu>
+                </p:selectOneMenu-->
+    */
+    
+    
     private final ServiceHistorialEquipos serviceHE;
     public ArrayList<Elemento> elementos;
+    //public ArrayList<Equipo> equipos;
 
     public ArrayList<Elemento> getElementos() {
         return elementos;
@@ -44,9 +56,9 @@ public class ElementoBean{
         
     }
     
-    public void registrarElemento(long id, String nombre, String tipo, long idEquipo){
+    public void registrarElemento(String nombre, String tipo){
         try {
-            serviceHE.registrarElemento(new Elemento((int)id,nombre,tipo));
+            serviceHE.registrarElemento(new Elemento(nombre,tipo));
             elementos = serviceHE.consultarElementos();
 
         } catch (ExcepcionServiceHistorialEquipos ex) {

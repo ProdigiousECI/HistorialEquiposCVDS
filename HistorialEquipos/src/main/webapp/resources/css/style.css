@@ -6,12 +6,29 @@ body {
     font-size: 12pt;
     font-color: red;
 }
-.Table{
-	position: absolute;
-	right: 60px;
-	top: 50px;
-}
+
 h2 {
     background-color: red;
 }
+#formElemento button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

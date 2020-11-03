@@ -24,17 +24,23 @@ and open the template in the editor.
         <p:outputLabel value="Registro Elementos"/>
         <h:form id="formElemento">
             <h:panelGrid columns="2">
-                <h:outputLabel value="id"/>
-                <p:inputText id="id" type="long" binding="#{id}" />
                 <h:outputLabel value="Nombre"/>
                 <p:inputText id="Nombre" type="String" binding="#{name}"/>
-                <h:outputLabel value="Tipo"/>
-                <p:inputText id="Tipo" type="String" binding="#{tipo}"/>
-                <h:outputLabel value="Equipo"/>
-                <p:inputText id="Equipo" type="long" binding="#{equi}"/>       
-                <p:commandButton update="formElemento" class="Button" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(id.value, name.value, tipo.value, equi.value)}"/>
+                <h:outputLabel value="Tipo"/>        
+                <p:selectOneMenu id="Tipo" binding="#{tipo}" style="width:187px">
+                    <f:selectItem itemLabel="Torre" itemValue="Torre" />
+                    <f:selectItem itemLabel="Mouse" itemValue="Mouse" />
+                    <f:selectItem itemLabel="Teclado" itemValue="Teclado" />
+                    <f:selectItem itemLabel="Pantalla" itemValue="Pantalla" />
+                </p:selectOneMenu>
             </h:panelGrid>
-            <p:dataTable value="#{Elemento.elementos}" var="el" style="width:450px;" styleClass = "Table">
+            
+            <br>
+            <p:commandButton update="formElemento" class="Button" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(name.value, tipo.value )}"/>
+            </br>
+            <br/>
+            <p:dataTable value="#{Elemento.elementos}" var="el" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                     paginator="true" rows="10" style="width:450px;" >
                 <center>
                     <p:column headerText="id">
                         <p:outputLabel value="#{el.id}"/>
