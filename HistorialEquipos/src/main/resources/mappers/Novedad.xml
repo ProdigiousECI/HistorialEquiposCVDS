@@ -72,14 +72,16 @@
 		
 		SELECT
     
-			id,
-			fecha,
-			titulo,
-			detalle
+			n.id,
+			n.fecha,
+			e.nombre,
+			n.titulo,
+			n.detalle
 		
 
 		
-		FROM novedad
+		FROM novedad AS n
+		left join elemento as e on n.idelemento = e.id 
 		
 		ORDER BY id DESC
 		
