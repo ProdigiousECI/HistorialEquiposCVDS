@@ -11,7 +11,34 @@ public class Novedad implements Serializable{
 	private Date fecha;
 	private String titulo;
 	private String detalle;
+	private Equipo equipo;
+	private Elemento elemento;
+	private User user;
 	
+
+	public Equipo getEquipo() {
+		return equipo;
+	}
+
+	public void setEquipo(Equipo equipo) {
+		this.equipo = equipo;
+	}
+
+	public Elemento getElemento() {
+		return elemento;
+	}
+
+	public void setElemento(Elemento elemento) {
+		this.elemento = elemento;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Novedad(int id, Date fecha, String titulo,String detalle){
 		
@@ -21,6 +48,7 @@ public class Novedad implements Serializable{
 		this.detalle=detalle;
 		
 	}
+	
 	public Novedad(String titulo,String detalle){
 		
 	

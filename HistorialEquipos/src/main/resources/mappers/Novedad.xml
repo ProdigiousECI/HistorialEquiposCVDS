@@ -36,7 +36,7 @@
 		
 		WHERE idelemento=#{numero}
 		
-		ORDER BY fecha DESC
+		ORDER BY id DESC
 		
 		
 	</select>
@@ -58,7 +58,7 @@
 		
 		WHERE idequipo=#{numero}
 		
-		ORDER BY fecha DESC
+		ORDER BY id DESC
 		
 		
 	</select>
@@ -78,7 +78,7 @@
 		
 		FROM novedad
 		
-		ORDER BY fecha DESC
+		ORDER BY id DESC
 		
 		
 	</select>

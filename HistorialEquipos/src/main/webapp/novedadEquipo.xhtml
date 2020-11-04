@@ -18,16 +18,29 @@ and open the template in the editor.
         <h:form id="formNovedad">
             <h:panelGrid columns="2">
               
-                <h:outputLabel value="titulo"/>
-				<p:inputText id="titulo" type="long" binding="#{titulo}"/>
-				<h:outputLabel value="detalle"/>
-				<p:inputText id="detalle" type="String" binding="#{detalle}"/>
+                <h:outputLabel for="equipo" value="equipo"/>
+				<p:inputText id="equipo" value="#{NovedadEquipo.equipoId}"/>
+                <h:outputLabel for="titulo" value="titulo"/>
+				<p:inputText id="titulo" value="#{NovedadEquipo.titulo}"/>
+				<h:outputLabel for="detalle" value="detalle"/>
+				<p:inputText id="detalle" value="#{NovedadEquipo.detalle}"/>
 				
             </h:panelGrid>    
-				<p:commandButton update="tabla" class="Button" value="Registrar Novedad" actionListener="#{Novedad.registrarNovedad(titulo.value, detalle.value)}"/>
+				<p:commandButton update="tabla" value="Registrar Novedad" action="#{NovedadEquipo.registrarNovedad()}"/>
+				
+		<p:tabMenu activeIndex="#{param.i}">
+			<p:menuitem value="historial del dispositivo" outcome="registrarNovedad.xhtml?user=1&amp;elemento=#{NovedadEquipo.elementoId}&amp;equipo=1"
+				icon="pi pi-star">
+				<f:param name="i" value="0" />
+			</p:menuitem>
+			<p:menuitem value="mostrar todos los dispositivos" outcome="registrarNovedad.xhtml" icon="pi pi-star">
+				<f:param name="i" value="1" />
+			</p:menuitem>
+			
+		</p:tabMenu>
 				
         </h:form>
-		<p:dataTable id="tabla" var="novedad" value="#{Novedad.novedades}">
+		<p:dataTable id="tabla" var="novedad" value="#{NovedadEquipo.novedades}">
 		<p:column headerText="Id">
 			<h:outputText value="#{novedad.id}" />
 		</p:column>

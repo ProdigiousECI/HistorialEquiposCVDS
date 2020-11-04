@@ -19,7 +19,7 @@ import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 public class mainHistorialEquipos {
     public static void main(String[] args) throws ExcepcionServiceHistorialEquipos 
     {
-        //ServiceFactory.getInstance().getServiciosFactory();
+        ServiceFactory.getInstance().getServiciosFactory();
     	
     	
     	Novedad n=new Novedad( "prueba", "en la clase");
