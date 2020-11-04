@@ -18,7 +18,14 @@
                 FROM Elemento as e
                 where e.id=#{idele}
         </select>
+        <select parameterType="map" id="consultarElementos" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo
+                FROM Elemento as e
+        </select>
         <insert id="registrarElemento" parameterType="map">
-            INSERT INTO Elemento values (#{ele.id}, #{ele.nombre}, #{ele.tipo}, 2) <!--#{ele.equipo.id}-->
+            INSERT INTO Elemento values ((SELECT MAX(id) +1 FROM Elemento), #{ele.nombre}, #{ele.tipo}, null) <!---->
         </insert>
 </mapper>

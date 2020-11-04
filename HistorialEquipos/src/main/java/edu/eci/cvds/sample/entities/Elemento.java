@@ -17,15 +17,15 @@ public class Elemento implements Serializable{
     private String tipo;
     private String nombre;
     private int id;
+    private Equipo equipo = null;
 
     public Elemento()
     {
         
     }
     
-    public Elemento(int id, String nombre, String tipo) /*, Equipo equipo*/
+    public Elemento(String nombre, String tipo) /*, Equipo equipo*/
     {
-        this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
         //this.equipo = equipo;

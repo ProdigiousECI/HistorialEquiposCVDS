@@ -1,4 +1,11 @@
 /target/
+<<<<<<< HEAD
 .idea
 *.iml
 /target
+=======
+.#*
+*.log
+/nbproject/
+/HistorialEquipos/nbproject/
+>>>>>>> Develop

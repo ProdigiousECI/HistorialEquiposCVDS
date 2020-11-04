@@ -5,6 +5,7 @@ import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,6 +38,14 @@ public class MyBATISElementoDAO implements ElementoDAO{
             return elementoMapper.consultarElemento(id);
         }catch(org.apache.ibatis.exceptions.PersistenceException e){
              throw new PersistenceException("Error al consultar el elemento", e);
+        }
+    }
+    @Override
+    public ArrayList<Elemento> consultarElementos() throws PersistenceException {
+        try{
+            return elementoMapper.consultarElementos();
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+             throw new PersistenceException("Error al consultar elementos", e);
         }
     }
     

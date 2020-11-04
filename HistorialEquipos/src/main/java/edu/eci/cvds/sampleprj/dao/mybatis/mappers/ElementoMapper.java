@@ -6,6 +6,7 @@
 package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
 
 import edu.eci.cvds.sample.entities.Elemento;
+import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -14,7 +15,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ElementoMapper {
     public Elemento consultarElemento(@Param("idele") int id);
-    
+    public ArrayList<Elemento> consultarElementos();
     public void registrarElemento(@Param("ele") Elemento ele);
 
 }

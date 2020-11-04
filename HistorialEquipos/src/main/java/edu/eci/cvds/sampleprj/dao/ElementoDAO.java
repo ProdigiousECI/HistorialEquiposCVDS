@@ -6,6 +6,7 @@
 package edu.eci.cvds.sampleprj.dao;
 
 import edu.eci.cvds.sample.entities.Elemento;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,4 +15,5 @@ import edu.eci.cvds.sample.entities.Elemento;
 public interface ElementoDAO {
     public void registrarElemento(Elemento ele) throws PersistenceException;
     public Elemento consultarElemento(int id) throws PersistenceException;
+    public ArrayList<Elemento> consultarElementos() throws PersistenceException;
 }
