@@ -6,11 +6,20 @@
 package edu.eci.cvds.sample.services;
 
 import edu.eci.cvds.sample.entities.Equipo;
+import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
+import edu.eci.cvds.sample.entities.User;
+import java.util.List;
+
+
+import edu.eci.cvds.sample.entities.Elemento;
 import java.util.ArrayList;
+
+import edu.eci.cvds.sample.entities.Novedad;
+import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 
 /**
  *
- * @author javier
+ * @author Andres Davila 
  */
 public interface ServiceHistorialEquipos {
     public abstract void registrarEquipo(Equipo equip)throws ExcepcionServiceHistorialEquipos;
@@ -18,5 +27,32 @@ public interface ServiceHistorialEquipos {
     public abstract Equipo consultarEquipo(int id) throws ExcepcionServiceHistorialEquipos;
     
     public abstract ArrayList<Equipo> consultarEquipos() throws ExcepcionServiceHistorialEquipos;
+
+    /**
+     * Retorna el usuario segun sus credenciales
+     * @param correo String  correo del usuario
+     * @return Usuario usuario 
+     * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
+     */
+    public abstract User consultarUsuario(String correo) throws ExcepcionServiceHistorialEquipos;
     
+    /**
+     * 
+     * @return Lista de usuarios
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract List<User> consultarUsuarios() throws ExcepcionServiceHistorialEquipos;
+
+
+    public abstract void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos;
+    public abstract ArrayList<Elemento> consultarElementos() throws ExcepcionServiceHistorialEquipos;
+    public abstract Elemento consultarElemento(int id) throws ExcepcionServiceHistorialEquipos;
+
+	
+    public abstract void registrarNovedad(Novedad n) throws ExcepcionServiceHistorialEquipos;
+    public abstract ArrayList<Novedad> consultarNovedadporElemento(int i) throws ExcepcionServiceHistorialEquipos;
+    public abstract ArrayList<Novedad> consultarNovedadporEquipo(int i) throws ExcepcionServiceHistorialEquipos;
+    public abstract ArrayList<Novedad> consultarNovedades() throws ExcepcionServiceHistorialEquipos;
+
+	
 }

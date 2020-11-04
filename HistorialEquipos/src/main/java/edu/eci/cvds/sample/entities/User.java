@@ -9,16 +9,71 @@ import java.io.Serializable;
 
 /**
  *
- * @author javie
+ * @author Andres Davila
  */
 public class User implements Serializable{
 
-    private final String passwordd;
-    private final String nick;
+    private String correo;
+    private String nombreUsuario;
+    private String nombre;
+    private String apellido;
+    private boolean estado;
+   
     
-    public User(String nick, String passwordd)
+     public User (String correo, String nombreUsuario, String nombre, String apellido, boolean estado) {
+        this.correo = correo;
+        this.nombreUsuario = nombreUsuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.estado = estado;
+     } 
+    public User()
     {
-        this.nick = nick;
-        this.passwordd = passwordd;
+    
+    }
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
+    @Override
+    public String toString() {
+        return "Usuario{ " + "correo= " + correo + ", nombre Usuario= " + nombreUsuario + ", nombre= " + nombre + ", apellido= " + apellido + ", estado= " + estado + '}';
     }
 }

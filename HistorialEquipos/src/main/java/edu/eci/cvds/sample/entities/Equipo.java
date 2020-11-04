@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author javie
  */
 public class Equipo implements Serializable{
+
     private int id;
     private String nombre;
     private User iduser = null;
@@ -46,6 +47,4 @@ public class Equipo implements Serializable{
     public String toString() {
         return "Equipo{" + "id=" + id + ", nombre=" + nombre + '}'; /*", iduser=" + iduser +*/
     }
-    
-    
 }
