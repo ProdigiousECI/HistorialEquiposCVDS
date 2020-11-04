@@ -22,21 +22,15 @@ import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "NovedadElemento")
 @RequestScoped
-public class NovedadBeanElemento extends BasePageBean{
-	
-
-	
+public class NovedadBeanElemento{
 	
 	private static final long serialVersionUID = -1071897882966043904L;
 	
-	@Inject
 	private ServiceHistorialEquipos service;
-	
-	
+		
 	@ManagedProperty(value = "#{param.elemento}")
 	private Integer elementoId;
-	
-	
+		
 	@ManagedProperty(value = "#{param.i}")
 	private Integer i;
 	
@@ -49,7 +43,9 @@ public class NovedadBeanElemento extends BasePageBean{
 	
 	private ArrayList<Novedad> novedades;
 	
-	
+	public NovedadBeanElemento(){
+            service = ServiceFactory.getInstance().getServiceHistorialEquipos();
+        }
 	
 	public ServiceHistorialEquipos getService() {
 		return service;
@@ -96,16 +92,13 @@ public class NovedadBeanElemento extends BasePageBean{
 	}
 
 	public ArrayList<Novedad> getNovedades() throws ExcepcionServiceHistorialEquipos, IOException {
-		System.out.println("getnovedades");
-		System.out.println(elementoId + " " +i);
+
 		//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		//context.redirect(context.getRequestContextPath() + "registrarNovedad.xhtml?elemento=" + elementoId + "&i=" + i);
 		if(i==0) {
-			System.out.println("ANTES = getnovedadeS");
-			System.out.println(elementoId+" "+i);
+
 			novedades = service.consultarNovedadporElemento(elementoId);
-			System.out.println("DESPUES = getnovedadeS");
-			System.out.println(novedades.size());
+
 		}
 		
 		else if(i==1) {
