@@ -10,8 +10,7 @@
     <properties resource="config.properties">
     </properties>
     <typeAliases>
-        <!--typeAlias type="edu.eci.cvds.samples.entities.Equipo" alias="Equipo"/-->
-        <typeAlias type="edu.eci.cvds.samples.entities.User" alias="User"/>
+        <typeAlias type="edu.eci.cvds.sample.entities.User" alias="Usuario"/>
     </typeAliases>	
 
     <environments default="development">
@@ -24,14 +23,12 @@
                 <property name="username" value="${username}" />
                 <property name="password" value="${password}" />
 
-                <!--property name="url" value="jdbc:mysql://localhost:3306/video_rental"/!-->
             </dataSource>
         </environment>
     </environments>
         
     <mappers>
-        <!--mapper resource="mappers/EquipoMapper.xml"></mapper-->   
-        <mapper resource="mappers/UserMappper.xml"></mapper>    
+        <mapper resource="mappers/UsuarioMapper.xml"></mapper>    
     </mappers> 
         
         
