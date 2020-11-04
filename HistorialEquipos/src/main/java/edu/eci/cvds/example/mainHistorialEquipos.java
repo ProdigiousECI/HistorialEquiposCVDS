@@ -5,6 +5,7 @@
  */
 package edu.eci.cvds.example;
 
+
 import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.factory.ServiceFactory;
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
@@ -15,6 +16,13 @@ import java.text.ParseException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.sql.Date;
+
+import edu.eci.cvds.sample.entities.Novedad;
+import edu.eci.cvds.sample.factory.ServiceFactory;
+import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
+
+
 
 /**
  *
@@ -22,6 +30,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
  */
 
 public class mainHistorialEquipos {
+
         
     public static void main(String[] args) throws ParseException, ExcepcionServiceHistorialEquipos 
     {
@@ -34,5 +43,13 @@ public class mainHistorialEquipos {
         System.out.println(ServicioHE.consultarElementos());
         
         //ServicioHE.registrarElemento(e);
+
+          	
+    	
+    	Novedad n=new Novedad( "prueba", "en la clase");
+    	ServiceFactory.getInstance().getServiceHistorialEquipos().registrarNovedad(n);
+    	//ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedades());
+    	//ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedades());
     }
+
 }

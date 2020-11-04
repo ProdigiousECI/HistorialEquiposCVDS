@@ -5,15 +5,33 @@
  */
 package edu.eci.cvds.sample.services;
 
+
 import edu.eci.cvds.sample.entities.Elemento;
 import java.util.ArrayList;
+
+
+
+import java.util.ArrayList;
+
+import edu.eci.cvds.sample.entities.Novedad;
+import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
+
 
 /**
  *
  * @author javier
  */
 public interface ServiceHistorialEquipos {
+
     public abstract void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos;
     public abstract ArrayList<Elemento> consultarElementos() throws ExcepcionServiceHistorialEquipos;
     public abstract Elemento consultarElemento(int id) throws ExcepcionServiceHistorialEquipos;
+
+	
+	public abstract void registrarNovedad(Novedad n) throws ExcepcionServiceHistorialEquipos;
+	public abstract ArrayList<Novedad> consultarNovedadporElemento(int i) throws ExcepcionServiceHistorialEquipos;
+	public abstract ArrayList<Novedad> consultarNovedadporEquipo(int i) throws ExcepcionServiceHistorialEquipos;
+	public abstract ArrayList<Novedad> consultarNovedades() throws ExcepcionServiceHistorialEquipos;
+
+	
 }
