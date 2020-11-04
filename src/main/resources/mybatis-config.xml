@@ -10,14 +10,6 @@
     <properties resource="config.properties">
     </properties>
     <typeAliases>
-<<<<<<< HEAD
-        <!--typeAlias type="edu.eci.cvds.samples.entities.Equipo" alias="Equipo"/-->
-<<<<<<< HEAD
-        <typeAlias type="edu.eci.cvds.sample.entities.Elemento" alias="Elemento"/>
-=======
-        <typeAlias type="edu.eci.cvds.samples.entities.User" alias="User"/>
->>>>>>> d46e4ffa7fb823fa108eb8e613fd854d2314ee0d
-=======
 
         <typeAlias type="edu.eci.cvds.sample.entities.User" alias="Usuario"/>
 
@@ -27,7 +19,6 @@
         <!--typeAlias type="edu.eci.cvds.samples.entities.Equipo" alias="Equipo"/-->
         <typeAlias type="edu.eci.cvds.sample.entities.Novedad" alias="Novedad"/>
 
->>>>>>> Develop
     </typeAliases>	
 
     <environments default="development">
@@ -45,18 +36,9 @@
     </environments>
         
     <mappers>
-<<<<<<< HEAD
-        <!--mapper resource="mappers/EquipoMapper.xml"></mapper-->   
-        <!--mapper resource="mappers/ElementoMapper.xml"></mapper>    
-
-        <mapper resource="mappers/UserMappper.xml"></mapper-->    
-=======
-
         <mapper resource="mappers/UsuarioMapper.xml"></mapper>    
         <mapper resource="mappers/ElementoMapper.xml"></mapper>
         <mapper resource="mappers/Novedad.xml"></mapper>    
-
->>>>>>> Develop
     </mappers> 
         
         
