@@ -1,15 +1,29 @@
 edu\eci\cvds\sampleprj\dao\PersistenceException.class
 edu\eci\cvds\sample\entities\Elemento.class
+<<<<<<< HEAD
 edu\eci\cvds\sampleprj\dao\ElementoDAO.class
 edu\eci\cvds\sample\entities\User.class
 edu\eci\cvds\sample\factory\ServiceFactory.class
 edu\eci\cvds\sampleprj\dao\mybatis\mappers\ElementoMapper.class
+=======
+edu\eci\cvds\sampleprj\dao\mybatis\MyBATISNovedadDAO.class
+edu\eci\cvds\sample\entities\User.class
+edu\eci\cvds\sample\factory\ServiceFactory.class
+>>>>>>> d46e4ffa7fb823fa108eb8e613fd854d2314ee0d
 edu\eci\cvds\sample\factory\ServiceFactory$1.class
 edu\eci\cvds\example\mainHistorialEquipos.class
 edu\eci\cvds\sample\entities\Equipo.class
 edu\eci\cvds\sample\services\ServiceHistorialEquipos.class
+<<<<<<< HEAD
 edu\eci\cvds\sample\services\ExcepcionServiceHistorialEquipos.class
 edu\eci\cvds\sample\services\impl\ServiceHistorialEquiposImpl.class
 edu\eci\cvds\sampleprj\dao\UsersDAO.class
 edu\eci\cvds\sample\entities\Novedad.class
 edu\eci\cvds\sampleprj\dao\mybatis\MyBATISElementoDAO.class
+=======
+edu\eci\cvds\sampleprj\dao\NovedadDAO.class
+edu\eci\cvds\sample\services\impl\ServiceHistorialEquiposImpl.class
+edu\eci\cvds\sampleprj\dao\UsersDAO.class
+edu\eci\cvds\sample\entities\Novedad.class
+edu\eci\cvds\sampleprj\dao\mybatis\mappers\NovedadMapper.class
+>>>>>>> d46e4ffa7fb823fa108eb8e613fd854d2314ee0d

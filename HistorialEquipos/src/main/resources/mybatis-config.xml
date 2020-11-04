@@ -11,7 +11,11 @@
     </properties>
     <typeAliases>
         <!--typeAlias type="edu.eci.cvds.samples.entities.Equipo" alias="Equipo"/-->
+<<<<<<< HEAD
         <typeAlias type="edu.eci.cvds.sample.entities.Elemento" alias="Elemento"/>
+=======
+        <typeAlias type="edu.eci.cvds.samples.entities.User" alias="User"/>
+>>>>>>> d46e4ffa7fb823fa108eb8e613fd854d2314ee0d
     </typeAliases>	
 
     <environments default="development">
@@ -30,7 +34,9 @@
         
     <mappers>
         <!--mapper resource="mappers/EquipoMapper.xml"></mapper-->   
-        <mapper resource="mappers/ElementoMapper.xml"></mapper>    
+        <!--mapper resource="mappers/ElementoMapper.xml"></mapper>    
+
+        <mapper resource="mappers/UserMappper.xml"></mapper-->    
     </mappers> 
         
         

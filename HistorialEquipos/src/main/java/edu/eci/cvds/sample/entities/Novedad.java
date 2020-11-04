@@ -1,3 +1,4 @@
+
 package edu.eci.cvds.sample.entities;
 
 import java.io.Serializable;
@@ -10,7 +11,7 @@ public class Novedad implements Serializable{
 	private Date fecha;
 	private String titulo;
 	private String detalle;
-	
+	//fuquene es un manco hijueputa
 	
 	public Novedad() {
 		
@@ -55,4 +56,6 @@ public class Novedad implements Serializable{
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
+
 }
+	
