@@ -13,17 +13,14 @@
         
     </resultMap>
     <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult">
-        SELECT
-
+        select
             u.correo,
             u.nombre_usuario,
             u.nombre,
             u.apellido,
-            u.estado,
-            
-            
-        FROM USUARIO AS u
-        WHERE u.correo=#{corr};
+            u.estado
+            FROM usuario as u
+            where u.correo=#{corr}
     </select>
     <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
         SELECT
@@ -32,9 +29,7 @@
             u.nombre,
             u.apellido,
             u.estado
-            
-            
-        FROM USUARIO AS u
+            FROM usuario AS u
     </select>
 </mapper>
 

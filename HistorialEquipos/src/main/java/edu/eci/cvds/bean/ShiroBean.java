@@ -76,7 +76,7 @@ public class ShiroBean implements Serializable{
             UsernamePasswordToken token = new UsernamePasswordToken(userName,userPassword,true);
             currentUser.login(token);
             currentUser.getSession().setAttribute("Correo",userName);
-            FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/Entra.xhtml");
         } catch (UnknownAccountException e) {
             FacesContext.getCurrentInstance().addMessage("shiro", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no registrado", "Este usuario no se encuentra en la base de datos "));
         } catch (IncorrectCredentialsException e) {
@@ -89,7 +89,7 @@ public class ShiroBean implements Serializable{
     {
         SecurityUtils.getSubject().logout();
         try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/index.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/Index.xhtml");
         }catch (IOException ex) {
         }
     }
@@ -99,7 +99,7 @@ public class ShiroBean implements Serializable{
     public void isLogged(){
         if (SecurityUtils.getSubject().getSession().getAttribute("Correo") != null){
             try{
-                FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/Entra.xhtml");
             }catch (IOException e){
                 FacesContext.getCurrentInstance().addMessage("shiro", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al redireccionar","Ocurrio un error en el servidor"));
             }

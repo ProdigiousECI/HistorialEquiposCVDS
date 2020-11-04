@@ -6,6 +6,7 @@
 package edu.eci.cvds.example;
 
 import edu.eci.cvds.sample.factory.ServiceFactory;
+import edu.eci.cvds.sample.entities.User;
 import edu.eci.cvds.sample.services.ExcepcionHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 
@@ -19,7 +20,7 @@ public class mainHistorialEquipos {
     public static void main(String[] args) throws ExcepcionHistorialEquipos,ParseException
     {
          ServiceHistorialEquipos ServicioHE = ServiceFactory.getInstance().getServiciosFactory();
-         System.out.println(ServicioHE.consultarUsuarios());
+         //System.out.println(ServicioHE.consultarUsuario("oadavilaf18@gmail.com"));
          
         //System.out.println(ServiceFactory.getInstance().getServiciosFactory().consultarUsuarios());
         

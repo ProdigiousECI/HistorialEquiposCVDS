@@ -71,4 +71,9 @@ public class User implements Serializable{
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+    
+    @Override
+    public String toString() {
+        return "Usuario{ " + "correo= " + correo + ", nombre Usuario= " + nombreUsuario + ", nombre= " + nombre + ", apellido= " + apellido + ", estado= " + estado + '}';
+    }
 }

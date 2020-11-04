@@ -10,7 +10,7 @@
     <properties resource="config.properties">
     </properties>
     <typeAliases>
-        <typeAlias type="edu.eci.cvds.sample.entities.User" alias="User"/>
+        <typeAlias type="edu.eci.cvds.sample.entities.User" alias="Usuario"/>
     </typeAliases>	
 
     <environments default="development">
