@@ -20,11 +20,12 @@
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-                
+                <center>
                 <label for="username"> Correo </label>
                 <br><p:inputText type="text" id="correo_usuario" required="true" value="#{shBean.userName}" binding="#{corr}"></p:inputText></br>
-                <label for="password"> Contraseña </label>
+                <label for="password"> ContraseÃ±a </label>
                 <br><p:inputText type="password" id="clave_usuario" required="true" value="#{shBean.userPassword}" binding="#{clave}"></p:inputText></br>
+                </center>
                 <center>
                 <p:commandButton type="submit" update="formUsuario" value="Ingresar" action="#{shBean.loginUser()}"   styleClass="Button"/>
                 </center>

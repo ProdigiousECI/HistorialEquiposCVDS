@@ -11,15 +11,56 @@ public class Novedad implements Serializable{
 	private Date fecha;
 	private String titulo;
 	private String detalle;
-	//fuquene es un manco hijueputa
+	private Equipo equipo;
+	private Elemento elemento;
+	private User user;
+
+	
 	
 	public Novedad() {
-		
+	
 	}
-	public void Novedad(int id, Date fecha, String titulo,String detalle){
+		
+
+	
+	
+
+	public Equipo getEquipo() {
+		return equipo;
+	}
+
+	public void setEquipo(Equipo equipo) {
+		this.equipo = equipo;
+	}
+
+	public Elemento getElemento() {
+		return elemento;
+	}
+
+	public void setElemento(Elemento elemento) {
+		this.elemento = elemento;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Novedad(int id, Date fecha, String titulo,String detalle){
 		
 		this.id=id;
 		this.fecha=fecha;
+		this.titulo=titulo;
+		this.detalle=detalle;
+		
+	}
+	
+	public Novedad(String titulo,String detalle){
+		
+	
 		this.titulo=titulo;
 		this.detalle=detalle;
 		
@@ -57,9 +98,9 @@ public class Novedad implements Serializable{
 		this.detalle = detalle;
 	}
 
+	@Override
+	public String toString() {
+		return "Novedad [id=" + id + ", fecha=" + fecha + ", titulo=" + titulo + ", detalle=" + detalle + "]";
+	}
+	
 }
-	
-	
-
-
-

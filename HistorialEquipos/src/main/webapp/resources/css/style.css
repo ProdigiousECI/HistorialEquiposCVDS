@@ -1,3 +1,4 @@
+
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -8,10 +9,12 @@ and open the template in the editor.
     Author     : Javier lopez
 */
 
+
 body {
     margin: 0;
     padding: 0;
-    background: url("#{resource['img/br2.jpg']}") no-repeat center top;
+    background: url("#{resource['img/br3.jpg']}") no-repeat center top;
+
     background-size: cover;
     font-size: 12pt;
     font-color: red;
@@ -41,5 +44,30 @@ h2 {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+
+#formNovedad button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#descargar button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #32963E;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 

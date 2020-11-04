@@ -13,6 +13,12 @@ import edu.eci.cvds.sampleprj.dao.UsersDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDao;
 
 
+import edu.eci.cvds.sampleprj.dao.ElementoDAO;
+import edu.eci.cvds.sampleprj.dao.NovedadDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISElementoDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISNovedadDAO;
+
+
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -33,11 +39,14 @@ public class ServiceFactory {
                 setClassPathResource("mybatis-config.xml");
                 bind(ServiceHistorialEquipos.class).to(ServiceHistorialEquiposImpl.class);
                 bind(UsersDAO.class).to(MyBatisUsuarioDao.class);
+                bind(ElementoDAO.class).to(MyBATISElementoDAO.class);
+                bind(NovedadDAO.class).to(MyBATISNovedadDAO.class);
+
             }
         }
         );
     }
-    public ServiceHistorialEquipos getServiciosFactory(){
+    public ServiceHistorialEquipos getServiceHistorialEquipos(){
         return injector.getInstance(ServiceHistorialEquipos.class);
     }
     public static ServiceFactory getInstance(){

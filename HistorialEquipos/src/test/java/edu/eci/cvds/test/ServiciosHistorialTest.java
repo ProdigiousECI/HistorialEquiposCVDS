@@ -9,7 +9,7 @@ import com.google.inject.Inject;
 import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.factory.ServiceFactory;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
-import edu.eci.cvds.sample.services.ExcepcionHistorialEquipos;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class ServiciosHistorialTest {
 	
     public ServiciosHistorialTest() {
 
-        ServicioHE = ServiceFactory.getInstance().getServiciosFactory();
+        ServicioHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
         
         
     }
