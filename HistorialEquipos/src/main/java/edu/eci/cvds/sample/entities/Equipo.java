@@ -12,8 +12,40 @@ import java.io.Serializable;
  * @author javie
  */
 public class Equipo implements Serializable{
-    public Equipo (int id, String nombre, User user)
-    {
-        
+    private int id;
+    private String nombre;
+    private User iduser = null;
+    
+    public Equipo(){
     }
+    
+    public Equipo (int id, String nombre)
+    {
+        this.id = id;
+        this.nombre = nombre;
+        //this.iduser = iduser;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    } 
+
+    @Override
+    public String toString() {
+        return "Equipo{" + "id=" + id + ", nombre=" + nombre + '}'; /*", iduser=" + iduser +*/
+    }
+    
+    
 }

@@ -9,9 +9,8 @@ import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.impl.ServiceHistorialEquiposImpl;
-import edu.eci.cvds.sampleprj.dao.NovedadDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISNovedadDAO;
-
+import edu.eci.cvds.sampleprj.dao.EquipoDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISEquipoDAO;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -21,22 +20,22 @@ import org.mybatis.guice.datasource.helper.JdbcHelper;
  */
 public class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
-    
+
     private static Injector injector;
-    
+
     public ServiceFactory(){
         injector = createInjector(new XMLMyBatisModule() {
-            @Override
-            protected void initialize(){
-                install(JdbcHelper.PostgreSQL);
-                setClassPathResource("mybatis-config.xml");
-                bind(ServiceHistorialEquipos.class).to(ServiceHistorialEquiposImpl.class);
-                bind(NovedadDAO.class).to(MyBATISNovedadDAO.class);
-            }
-        }
+                  @Override
+                  protected void initialize(){
+                      install(JdbcHelper.PostgreSQL);
+                      setClassPathResource("mybatis-config.xml");
+                      bind(ServiceHistorialEquipos.class).to(ServiceHistorialEquiposImpl.class);
+                      bind(EquipoDAO.class).to(MyBATISEquipoDAO.class);
+                  }
+                                  }
         );
     }
-    public ServiceHistorialEquipos getServiciosFactory(){
+    public ServiceHistorialEquipos getServiceHistorialEquipos(){
         return injector.getInstance(ServiceHistorialEquipos.class);
     }
     public static ServiceFactory getInstance(){
