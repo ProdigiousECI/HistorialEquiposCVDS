@@ -6,6 +6,7 @@
 package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
 
 import edu.eci.cvds.sample.entities.Equipo;
+import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -13,6 +14,10 @@ import org.apache.ibatis.annotations.Param;
  * @author Acer
  */
 public interface EquipoMapper {
-    public void registrarEquipo(@Param("equipo")Equipo equipo);
+    public Equipo consultarEquipo(@Param("idequip")int id);
+    
+    public ArrayList<Equipo> consultarEquipos();
+    
+    public void registrarEquipo(@Param("equip")Equipo equip);
     
 }

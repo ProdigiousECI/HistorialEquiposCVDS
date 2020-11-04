@@ -14,16 +14,16 @@ import java.io.Serializable;
 public class Equipo implements Serializable{
     private int id;
     private String nombre;
-    private User iduser;
+    private User iduser = null;
     
     public Equipo(){
     }
     
-    public Equipo (int id, String nombre, User iduser)
+    public Equipo (int id, String nombre)
     {
         this.id = id;
         this.nombre = nombre;
-        this.iduser = iduser;
+        //this.iduser = iduser;
     }
 
     public int getId() {
@@ -40,16 +40,12 @@ public class Equipo implements Serializable{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
+    } 
 
-    public User getIduser() {
-        return iduser;
+    @Override
+    public String toString() {
+        return "Equipo{" + "id=" + id + ", nombre=" + nombre + '}'; /*", iduser=" + iduser +*/
     }
-
-    public void setIduser(User iduser) {
-        this.iduser = iduser;
-    }
-    
     
     
 }

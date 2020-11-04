@@ -3,12 +3,28 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper">
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper">
 
-
-	<resultMap type='EquipoMapper' id='ClienteResult'>
+	<resultMap type='Equipo' id='EquipoResult'>
 		<id property='id' column='id'/>
-		<result property='nombre' column='nombre'/>
-		<result property='iduser' column='iduser'> </result>
+		<result property='nombre' column='nombre'/> 
+                <!--association property="iduser" javaType="User" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association!-->
 	</resultMap>
+        
+        <select parameterType="map" id="consultarEquipo" resultMap="EquipoResult">
+            select
+                e.id,
+                e.nombre
+                FROM Equipo as e
+                where e.id=#{idequip}
+        </select>
+        <select  parameterType="map" id="consultarEquipos" resultMap="EquipoResult">
+            select
+                e.id,
+                e.nombre
+                FROM Equipo as e
+        </select>
+        <insert id="registrarEquipo" parameterType="map">
+            INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null) <!---->
+        </insert>
 </mapper>

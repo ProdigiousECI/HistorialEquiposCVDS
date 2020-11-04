@@ -5,11 +5,15 @@
  */
 package edu.eci.cvds.sampleprj.dao;
 import edu.eci.cvds.sample.entities.Equipo;
+import java.util.ArrayList;
 /**
  *
  * @author Acer
  */
 public interface EquipoDAO {
-    public void registrarEquipo(Equipo equipo)throws PersistenceException;
+    public void registrarEquipo(Equipo equip)throws PersistenceException;
     
+    public Equipo consultarEquipo(int id) throws PersistenceException;
+    
+    public ArrayList<Equipo> consultarEquipos() throws PersistenceException;
 }
