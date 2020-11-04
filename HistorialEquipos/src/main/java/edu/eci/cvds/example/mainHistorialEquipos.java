@@ -34,20 +34,21 @@ public class mainHistorialEquipos {
         
     public static void main(String[] args) throws ParseException, ExcepcionServiceHistorialEquipos 
     {
-        Elemento e = new Elemento("OMEN","Teclado");
+        //Elemento e = new Elemento("OMEN","Teclado");
         
         //ServiceFactory.getInstance().getServiceHistorialEquipos();
         
-        ServiceHistorialEquipos ServicioHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
+        //ServiceHistorialEquipos ServicioHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
         
-        System.out.println(ServicioHE.consultarElementos());
+        //System.out.println(ServicioHE.consultarElementos());
         
         //ServicioHE.registrarElemento(e);
 
           	
     	
-    	Novedad n=new Novedad( "prueba", "en la clase");
-    	ServiceFactory.getInstance().getServiceHistorialEquipos().registrarNovedad(n);
+    	//Novedad n=new Novedad( "prueba", "en la clase");
+    	//ServiceFactory.getInstance().getServiceHistorialEquipos().registrarNovedad(n);
+        System.out.println(ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedadporElemento(1));
     	//ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedades());
     	//ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedades());
     }

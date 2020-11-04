@@ -11,6 +11,7 @@
 		<result property='fecha' column='fecha'/>
 		<result property='titulo' column='titulo'/>  
 		<result property="detalle" column="detalle"/>
+		<association property="elemento" javaType='Elemento' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper.ElementoResult"></association> 
 
 	</resultMap>
 	
@@ -26,15 +27,17 @@
 		
 		SELECT
     
-			id,
-			fecha,
-			titulo,
-			detalle
+			n.id,
+			n.fecha,
+			e.nombre,
+			n.titulo,
+			n.detalle
 
 		
-		FROM novedad
+		FROM novedad AS n
+		left join elemento as e on n.idelemento = e.id 
 		
-		WHERE idelemento=#{numero}
+		WHERE n.idelemento=#{numero}
 		
 		ORDER BY id DESC
 		

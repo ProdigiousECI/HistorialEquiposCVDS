@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 
 import com.google.inject.Inject;
 
+import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.entities.Novedad;
 import edu.eci.cvds.sample.factory.ServiceFactory;
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
@@ -125,8 +126,10 @@ public class NovedadBeanElemento extends BasePageBean{
 		
         try {
         	
-        	System.out.println(elementoId);
-            service.registrarNovedad(new Novedad(titulo,detalle));
+        	Novedad n=new Novedad(titulo,detalle);
+        	Elemento e=service.consultarElemento(elementoId);
+        	n.setElemento(e);
+            service.registrarNovedad(n);
             
         } catch (ExcepcionServiceHistorialEquipos ex) {
             new ExcepcionServiceHistorialEquipos("No se pudo registrar novedad");

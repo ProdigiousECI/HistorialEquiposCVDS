@@ -12,11 +12,17 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Registrar Novedad</title>
+		<h:outputStylesheet name="style.css" library="css" />
 		
     </h:head>
-
+	
 	<center>
-
+        <img src="resources/img/logo.png" width="300" height="100" align="center"/>
+        </center>
+        <br/>
+        <br/>
+        <center>
+		
 	
 		<p:outputLabel value="Registrar Novedad"/>
         <h:form id="formNovedad"  >
@@ -36,40 +42,42 @@ and open the template in the editor.
 				<p:inputText id="detalle" value="#{NovedadElemento.detalle}"/>
 				
 			</h:panelGrid>
-
 			
+			<p:commandButton value="registrar Novedad" update="tablas" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
 			
 		</h:form>
 		
 
 		
-		<p:commandButton value="registrar Novedad" update="tablas" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
+		
 		<f:metadata>
 			<f:viewParam name="elemento" value="#{NovedadElemento.elementoId}" />
 			<f:viewParam name="i" value="#{NovedadElemento.i}" />
 		</f:metadata>
 		<h:form id="menu">
-
-			<p:tabMenu activeIndex="#{param.i}">
-				<p:menuitem value="historial del dispositivo" outcome="registrarNovedad.xhtml?elemento=#{NovedadElemento.elementoId}"
-					icon="pi pi-star">
+		
+			<p:tabMenu activeIndex="#{param.i}" style="width:450px;">
+				<p:menuitem value="historial de elementos" outcome="registrarNovedad.xhtml?elemento=#{NovedadElemento.elementoId}"
+					icon="pi pi-star" style="width:150px;font-size: 12px;" >
 					<f:param name="i" value="0" />
 				</p:menuitem>
-				<p:menuitem value="historial del dispositivo" outcome="registrarNovedad.xhtml?elemento=#{NovedadElemento.elementoId}"
-					icon="pi pi-star">
-					<f:param name="i" value="1" />
+				<p:menuitem value="historial de los dispositivos" outcome="registrarNovedad.xhtml?elemento=#{NovedadElemento.elementoId}"
+					icon="pi pi-star" style="width:150px;font-size: 10px;" >
+					<f:param name="i" value="1"/>
 				</p:menuitem>
 				
 			</p:tabMenu>
+			
 		</h:form>
+		
 					
-	
+		
 		<h:form id="tablas" >
 
 			<p:dataTable id="tabla" var="novedad"  value="#{NovedadElemento.novedades}"
 		
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-					 paginator="true" rows="10" style="margin-bottom:20px" >
+					 paginator="true" rows="10" style="width:450px;" >
 					 
 			<p:column headerText="Id">
 				<h:outputText value="#{novedad.id}" />
@@ -88,18 +96,14 @@ and open the template in the editor.
 			</p:dataTable>
 		</h:form>
 		
+	
 		
-		
-		
-		</center>
-		 <h:form>
+		 <h:form id="descargar">
 		<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
 			<p:dataExporter type="xls" target="tabla" fileName="historial" />
 		</p:commandButton>      
 		</h:form>
+		</center>
 		
 
-		
-        
-	
 </html>
