@@ -2,12 +2,14 @@ package edu.eci.cvds.bean;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -21,23 +23,17 @@ import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "NovedadElemento")
-@RequestScoped
-public class NovedadBeanElemento extends BasePageBean{
-	
-
-	
+@SessionScoped
+public class NovedadBeanElemento{
 	
 	private static final long serialVersionUID = -1071897882966043904L;
 	
-	@Inject
 	private ServiceHistorialEquipos service;
-	
-	
-	@ManagedProperty(value = "#{param.elemento}")
+		
+	//@ManagedProperty(value = "#{param.elemento}")
 	private Integer elementoId;
-	
-	
-	@ManagedProperty(value = "#{param.i}")
+		
+	//@ManagedProperty(value = "#{param.i}")
 	private Integer i;
 	
 	//@ManagedProperty(value = "#{param.responsable}")
@@ -49,7 +45,9 @@ public class NovedadBeanElemento extends BasePageBean{
 	
 	private ArrayList<Novedad> novedades;
 	
-	
+	public NovedadBeanElemento(){
+            service = ServiceFactory.getInstance().getServiceHistorialEquipos();
+        }
 	
 	public ServiceHistorialEquipos getService() {
 		return service;
@@ -96,16 +94,14 @@ public class NovedadBeanElemento extends BasePageBean{
 	}
 
 	public ArrayList<Novedad> getNovedades() throws ExcepcionServiceHistorialEquipos, IOException {
-		System.out.println("getnovedades");
-		System.out.println(elementoId + " " +i);
+		
 		//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		//context.redirect(context.getRequestContextPath() + "registrarNovedad.xhtml?elemento=" + elementoId + "&i=" + i);
+		
 		if(i==0) {
-			System.out.println("ANTES = getnovedadeS");
-			System.out.println(elementoId+" "+i);
+
 			novedades = service.consultarNovedadporElemento(elementoId);
-			System.out.println("DESPUES = getnovedadeS");
-			System.out.println(novedades.size());
+
 		}
 		
 		else if(i==1) {
@@ -123,6 +119,7 @@ public class NovedadBeanElemento extends BasePageBean{
 	}
 
 	public void registrarNovedad(){
+		
 		
         try {
         	

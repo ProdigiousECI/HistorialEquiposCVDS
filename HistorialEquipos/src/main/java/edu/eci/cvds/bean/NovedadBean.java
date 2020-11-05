@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 
-public class NovedadBean extends BasePageBean{
+public class NovedadBean{
 	
 	
 	

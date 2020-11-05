@@ -41,9 +41,9 @@ and open the template in the editor.
 				<h:outputLabel for="detalle" value="detalle"/>
 				<p:inputText id="detalle" value="#{NovedadElemento.detalle}"/>
 				
-			</h:panelGrid>
+		</h:panelGrid>
 			
-			<p:commandButton value="registrar Novedad" update="tablas" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
+			<p:commandButton value="registrar Novedad" update="tabla" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
 			
 		</h:form>
 		
@@ -72,11 +72,11 @@ and open the template in the editor.
 		
 					
 		
-		<h:form id="tablas" >
+		
 
 			<p:dataTable id="tabla" var="novedad"  value="#{NovedadElemento.novedades}"
 		
-			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 					 paginator="true" rows="10" style="width:450px;" >
 					 
 			<p:column headerText="Id">
@@ -94,7 +94,7 @@ and open the template in the editor.
 			
 			
 			</p:dataTable>
-		</h:form>
+		
 		
 	
 		

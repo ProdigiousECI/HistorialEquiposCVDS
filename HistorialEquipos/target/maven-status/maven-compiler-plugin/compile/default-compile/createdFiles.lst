@@ -22,4 +22,3 @@ edu\eci\cvds\sampleprj\dao\NovedadDAO.class
 edu\eci\cvds\sample\services\impl\ServiceHistorialEquiposImpl.class
 edu\eci\cvds\sampleprj\dao\UsersDAO.class
 edu\eci\cvds\sampleprj\dao\mybatis\MyBATISElementoDAO.class
-edu\eci\cvds\bean\BasePageBean.class
