@@ -6,8 +6,13 @@
 package edu.eci.cvds.bean;
 
 import com.google.inject.Inject;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+
+import org.primefaces.PrimeFaces;
+
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.entities.Elemento;
@@ -58,11 +63,21 @@ public class EquipoBean{
     
     public void registrarEquipo(int id, String nombre){
         try {
-            serviceHE.registrarEquipo(new Equipo(id,nombre));
-            equipos = serviceHE.consultarEquipos();
+        	nombre=nombre.trim();
+        	if(nombre.length()>0) {
+	            serviceHE.registrarEquipo(new Equipo(id,nombre));
+	            equipos = serviceHE.consultarEquipos();
+	            showMessage("El registro del equipo ha sido un exito");
+        	}else {
+        		showMessage("El registro del equipo ha fracasado");
+        	}
 
         } catch (ExcepcionServiceHistorialEquipos ex) {
             new ExcepcionServiceHistorialEquipos("No se pudo registrar equipo");
         }       
+    }
+    public void showMessage(String confirmacion) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     
+        PrimeFaces.current().dialog().showMessageDynamic(message);
     }
 }
