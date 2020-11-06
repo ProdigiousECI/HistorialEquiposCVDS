@@ -26,12 +26,7 @@ public class Equipo implements Serializable{
         this.id = id;
         this.nombre = nombre;
         //this.iduser = iduser;
-    private User user;
-    public Equipo (int id, String nombre, User user)
-    {
-        this.id = id;
-        this.nombre = nombre;
-        this.user = user; 
+    
     }
     
 
@@ -57,11 +52,11 @@ public class Equipo implements Serializable{
     }
 
     public User getUser() {
-        return user;
+        return iduser;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.iduser = iduser;
     }
     
  

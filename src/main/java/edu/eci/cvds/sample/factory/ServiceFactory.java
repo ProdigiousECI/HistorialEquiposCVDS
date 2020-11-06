@@ -18,6 +18,7 @@ import edu.eci.cvds.sampleprj.dao.EquipoDAO;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.NovedadDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISElementoDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISEquipoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISNovedadDAO;
 
 
