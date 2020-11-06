@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -27,8 +28,8 @@ import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "NovedadElemento")
 
-@SessionScoped
-
+//@SessionScoped
+@ViewScoped
 public class NovedadBeanElemento{
 	
 	private static final long serialVersionUID = -1071897882966043904L;
