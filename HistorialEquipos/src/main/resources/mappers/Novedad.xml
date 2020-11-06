@@ -17,7 +17,7 @@
 	
 	<insert parameterType="map" id="registrarNovedad" >
 		
-		INSERT INTO novedad values((SELECT MAX(id) +1 FROM novedad),NOW(),#{idn.titulo},1,#{idn.detalle},2,2)
+		INSERT INTO novedad values((SELECT MAX(id) +1 FROM novedad),NOW(),#{idn.titulo},1,#{idn.detalle},2,#{idn.elemento.id})
 		
 	</insert>
 	
@@ -39,7 +39,7 @@
 		
 		WHERE n.idelemento=#{numero}
 		
-		ORDER BY id DESC
+		ORDER BY n.id DESC
 		
 		
 	</select>
@@ -67,19 +67,13 @@
 	</select>
 	
 	<select parameterType="map" id="consultarNovedades" resultMap="NovedadResult">
-		
-		
-		
 		SELECT
-    
+			
 			n.id,
 			n.fecha,
 			e.nombre,
 			n.titulo,
-			n.detalle
-		
-
-		
+			n.detalle		
 		FROM novedad AS n
 		left join elemento as e on n.idelemento = e.id 
 		

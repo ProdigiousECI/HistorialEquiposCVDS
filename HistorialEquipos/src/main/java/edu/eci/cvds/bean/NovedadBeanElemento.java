@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -12,6 +13,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.PrimeFaces;
 
 import com.google.inject.Inject;
 
@@ -122,15 +125,28 @@ public class NovedadBeanElemento{
 		
 		
         try {
+        	titulo=titulo.trim();
+        	detalle=detalle.trim();
+        	if(titulo.length()>0 && detalle.length()>0) {
+        		Novedad n=new Novedad(titulo,detalle);
+            	Elemento e=service.consultarElemento(elementoId);
+            	n.setElemento(e);
+                service.registrarNovedad(n);
+                showMessage("Tu registro de la novedad ha sido exitoso");
+        	}else {
+        		showMessage("Tu registro de la novedad ha fallado");
+        	}
         	
-        	Novedad n=new Novedad(titulo,detalle);
-        	Elemento e=service.consultarElemento(elementoId);
-        	n.setElemento(e);
-            service.registrarNovedad(n);
-            
         } catch (ExcepcionServiceHistorialEquipos ex) {
-            new ExcepcionServiceHistorialEquipos("No se pudo registrar novedad");
+           
+            showMessage("Tu registro de la novedad no ha sido valido");
         } 
+    }
+	
+	public void showMessage(String confirmacion) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);
+         
+        PrimeFaces.current().dialog().showMessageDynamic(message);
     }
 	
 	

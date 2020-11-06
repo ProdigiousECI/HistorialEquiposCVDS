@@ -23,37 +23,34 @@ and open the template in the editor.
         <br/>
         <center>
 		
+		<f:metadata>
+			<f:viewParam name="elemento" value="#{NovedadElemento.elementoId}" />
+			<f:viewParam name="i" value="#{NovedadElemento.i}" />
+		</f:metadata>
 	
-		<p:outputLabel value="Registrar Novedad"/>
+		
         <h:form id="formNovedad"  >
 		
-		
+			<p:outputLabel class="letra" value="Registrar Novedad del elemento #{NovedadElemento.elementoId}"/>
+		<br></br>
+				
             <h:panelGrid columns="2">
-
+		
 				
-				<f:metadata>
-					<f:viewParam name="elemento" value="#{NovedadElemento.elementoId}" />
-					<f:viewParam name="i" value="#{NovedadElemento.i}" />
-				</f:metadata>
-				
-                <h:outputLabel for="titulo" value="titulo"/>
-				<p:inputText id="titulo" value="#{NovedadElemento.titulo}"/>
-				<h:outputLabel for="detalle" value="detalle"/>
+                <h:outputLabel for="titulo" class="letra" value="Titulo"/>
+				<p:inputText id="titulo"  value="#{NovedadElemento.titulo}"/>
+				<h:outputLabel for="detalle" class="letra" value="Detalle"/>
 				<p:inputText id="detalle" value="#{NovedadElemento.detalle}"/>
-				
+			
+					
 		</h:panelGrid>
 			
 			<p:commandButton value="registrar Novedad" update="tabla" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
 			
 		</h:form>
+		<br></br>
 		
 
-		
-		
-		<f:metadata>
-			<f:viewParam name="elemento" value="#{NovedadElemento.elementoId}" />
-			<f:viewParam name="i" value="#{NovedadElemento.i}" />
-		</f:metadata>
 		<h:form id="menu">
 		
 			<p:tabMenu activeIndex="#{param.i}" style="width:450px;">
@@ -82,6 +79,9 @@ and open the template in the editor.
 			<p:column headerText="Id">
 				<h:outputText value="#{novedad.id}" />
 			</p:column>
+			<!--<p:column headerText="nombre">
+				<h:outputText value="#{elemento.nombre}" />
+			</p:column>-->
 			<p:column headerText="fecha">
 				<h:outputText value="#{novedad.fecha}" />
 			</p:column>
@@ -104,6 +104,8 @@ and open the template in the editor.
 		</p:commandButton>      
 		</h:form>
 		</center>
+		
+		
 		
 
 </html>

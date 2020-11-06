@@ -38,7 +38,7 @@ public class mainHistorialEquipos {
         
         //ServiceFactory.getInstance().getServiceHistorialEquipos();
         
-        //ServiceHistorialEquipos ServicioHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
+        ServiceHistorialEquipos ServicioHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
         
         //System.out.println(ServicioHE.consultarElementos());
         
@@ -47,9 +47,13 @@ public class mainHistorialEquipos {
           	
     	
     	//Novedad n=new Novedad( "prueba", "en la clase");
+    	//Elemento e=ServicioHE.consultarElemento(6);
+    	//System.out.println(ServicioHE.consultarElemento(6));
+    	//n.setElemento(e);
     	//ServiceFactory.getInstance().getServiceHistorialEquipos().registrarNovedad(n);
-        //System.out.println(ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedadporElemento(1));
-        System.out.println(ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedades());
+    	
+        System.out.println(ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedadporElemento(3));
+        //System.out.println(ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedades());
     	//ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedades());
     	//ServiceFactory.getInstance().getServiceHistorialEquipos().consultarNovedades());
     }

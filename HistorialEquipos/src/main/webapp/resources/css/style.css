@@ -45,6 +45,18 @@ h2 {
   margin-right: auto;
 }
 
+#formNovedad .letra{
+  border: none;
+  outline: none;
+  height: 20px;
+  color: #000;
+  font-size: 20px;
+  border-radius: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+}
+
 #descargar button{
   border: none;
   outline: none;
