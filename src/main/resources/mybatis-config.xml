@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
     <!--<settings>
         <setting name="logImpl" value="LOG4J"/>        
     </settings>-->
@@ -12,12 +13,12 @@
     <typeAliases>
 
         <typeAlias type="edu.eci.cvds.sample.entities.User" alias="Usuario"/>
-
+        <typeAlias type="edu.eci.cvds.sample.entities.Equipo" alias="Equipo"/>
 
         <typeAlias type="edu.eci.cvds.sample.entities.Elemento" alias="Elemento"/>
 
-        <!--typeAlias type="edu.eci.cvds.samples.entities.Equipo" alias="Equipo"/-->
         <typeAlias type="edu.eci.cvds.sample.entities.Novedad" alias="Novedad"/>
+
 
     </typeAliases>	
 
@@ -26,20 +27,21 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}" />
-                <!--property name="url" value="jdbc:mysql://localhost:3306/video_rental"/!-->
                 <property name="url" value="${url}"/>
                 <property name="username" value="${username}" />
                 <property name="password" value="${password}" />
-
             </dataSource>
         </environment>
-    </environments>
+    </environments>     
+    
         
     <mappers>
+        <mapper resource="mappers/EquipoMapper.xml"></mapper>    
         <mapper resource="mappers/UsuarioMapper.xml"></mapper>    
         <mapper resource="mappers/ElementoMapper.xml"></mapper>
         <mapper resource="mappers/Novedad.xml"></mapper>    
     </mappers> 
+
         
         
 </configuration>

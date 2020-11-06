@@ -6,7 +6,12 @@
 package edu.eci.cvds.sample.services.impl;
 
 import java.sql.Date;
-import java.util.ArrayList;
+
+import edu.eci.cvds.sample.entities.Equipo;
+
+import java.util.List;
+
+import edu.eci.cvds.sampleprj.dao.EquipoDAO;
 
 import com.google.inject.Inject;
 
@@ -36,67 +41,80 @@ import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
  * @author javier
  */
 public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
+	
+        
+        @Inject
+        private EquipoDAO equipoDAO;
 
-    
-    @Inject
-    private UsersDAO UserDAO;
-    
-    @Inject
-    private ElementoDAO elementoDAO;
-    
-    @Inject
-    private NovedadDAO novedadDAO;
+        @Inject
+        private UsersDAO UserDAO;
 
-    @Override
-    public User consultarUsuario(String correo) throws ExcepcionServiceHistorialEquipos {
-        try
+        @Inject
+        private ElementoDAO elementoDAO;
+
+        @Inject
+            private NovedadDAO novedadDAO;
+  
+
+        @Override
+        public void registrarEquipo(Equipo equip) throws ExcepcionServiceHistorialEquipos {
+            try{
+                equipoDAO.registrarEquipo(equip);
+            }catch(PersistenceException ex){
+                throw new ExcepcionServiceHistorialEquipos("Error al registrar",ex);
+            }
+             //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public Equipo consultarEquipo(int id) throws ExcepcionServiceHistorialEquipos {
+            try{
+                return equipoDAO.consultarEquipo(id);
+            }catch(PersistenceException ex){
+                throw new ExcepcionServiceHistorialEquipos("Error al consultar",ex);
+            }
+            //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public ArrayList<Equipo> consultarEquipos() throws ExcepcionServiceHistorialEquipos {
+            try{
+                return equipoDAO.consultarEquipos();
+            }catch(PersistenceException ex){
+                throw new ExcepcionServiceHistorialEquipos("Error al consultar equipos",ex);
+            }
+            //To change body of generated methods, choose Tools | Templates.
+        }
+
+     
+        @Override
+        public void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos
         {
-            return UserDAO.consultarUsuario(correo);
-        }catch(PersistenceException ex){
-        throw new UnsupportedOperationException("No se pudo consultar el usuario "+correo,ex); //To change body of generated methods, choose Tools | Templates.
+            try{
+               elementoDAO.registrarElemento(ele);
+           } catch (PersistenceException ex) {
+               throw new ExcepcionServiceHistorialEquipos("Error al registrar", ex);
+           }
         }
-    }
 
-    @Override
-    public List<User> consultarUsuarios() throws ExcepcionServiceHistorialEquipos {
-        try
+        @Override
+        public Elemento consultarElemento(int id) throws ExcepcionServiceHistorialEquipos 
         {
-            return UserDAO.consultarUsuarios();
-        }catch(PersistenceException ex){
-        throw new UnsupportedOperationException("No se pudo consultar los usuarios ",ex); //To change body of generated methods, choose Tools | Templates.
+            try{
+                return elementoDAO.consultarElemento(id);
+            }catch(PersistenceException ex){
+                throw new ExcepcionServiceHistorialEquipos("Error al consultar el elemento "+id, ex);
+            }
         }
-    }
 
-   
-    
-    @Override
-    public void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos
-    {
-        try{
-           elementoDAO.registrarElemento(ele);
-       } catch (PersistenceException ex) {
-           throw new ExcepcionServiceHistorialEquipos("Error al registrar", ex);
-       }
-    }
-
-    @Override
-    public Elemento consultarElemento(int id) throws ExcepcionServiceHistorialEquipos 
-    {
-        try{
-            return elementoDAO.consultarElemento(id);
-        }catch(PersistenceException ex){
-            throw new ExcepcionServiceHistorialEquipos("Error al consultar el elemento "+id, ex);
+        @Override
+        public ArrayList<Elemento> consultarElementos() throws ExcepcionServiceHistorialEquipos {
+            try{
+                return elementoDAO.consultarElementos();
+            }catch(PersistenceException ex){
+                throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos", ex);
+            }
         }
-    }
-
-    @Override
-    public ArrayList<Elemento> consultarElementos() throws ExcepcionServiceHistorialEquipos {
-        try{
-            return elementoDAO.consultarElementos();
-        }catch(PersistenceException ex){
-            throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos", ex);
-        }
-    }
 	
 	
 	
@@ -118,7 +136,8 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
 	    	   throw new ExcepcionServiceHistorialEquipos("Error al consultar novedad",ex);
 	       }
 	   }
-	
+
+	@Override
 	public ArrayList<Novedad> consultarNovedades() throws ExcepcionServiceHistorialEquipos{
 		try {
 	           return novedadDAO.consultarNovedades();

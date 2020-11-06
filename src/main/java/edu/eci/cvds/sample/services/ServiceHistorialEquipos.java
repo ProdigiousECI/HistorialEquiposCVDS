@@ -6,6 +6,9 @@
 package edu.eci.cvds.sample.services;
 
 
+import edu.eci.cvds.sample.entities.Equipo;
+
+
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.entities.User;
 import java.util.List;
@@ -28,6 +31,13 @@ import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
  * @author Andres Davila 
  */
 public interface ServiceHistorialEquipos {
+
+    public abstract void registrarEquipo(Equipo equip)throws ExcepcionServiceHistorialEquipos;
+    
+    public abstract Equipo consultarEquipo(int id) throws ExcepcionServiceHistorialEquipos;
+    
+    public abstract ArrayList<Equipo> consultarEquipos() throws ExcepcionServiceHistorialEquipos;
+
 
     /**
      * Retorna el usuario segun sus credenciales

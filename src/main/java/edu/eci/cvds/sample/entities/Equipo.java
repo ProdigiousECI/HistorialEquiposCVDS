@@ -9,12 +9,23 @@ import java.io.Serializable;
 
 /**
  *
- * @author javie
+ * @author miguel
  */
 public class Equipo implements Serializable{
 
     private int id;
     private String nombre;
+
+    private User iduser = null;
+    
+    public Equipo(){
+    }
+    
+    public Equipo (int id, String nombre)
+    {
+        this.id = id;
+        this.nombre = nombre;
+        //this.iduser = iduser;
     private User user;
     public Equipo (int id, String nombre, User user)
     {
@@ -22,10 +33,7 @@ public class Equipo implements Serializable{
         this.nombre = nombre;
         this.user = user; 
     }
-    public Equipo ()
-    {
-        
-    }
+    
 
     public int getId() {
         return id;
@@ -41,6 +49,11 @@ public class Equipo implements Serializable{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    } 
+
+    @Override
+    public String toString() {
+        return "Equipo{" + "id=" + id + ", nombre=" + nombre + '}'; /*", iduser=" + iduser +*/
     }
 
     public User getUser() {
@@ -51,8 +64,5 @@ public class Equipo implements Serializable{
         this.user = user;
     }
     
-    @Override
-    public String toString() {
-        return "Equipo{" + "id=" + id + ", nombre=" + nombre + ", user=" + user +'}';
-    }
+ 
 }

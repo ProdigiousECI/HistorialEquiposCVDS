@@ -22,6 +22,7 @@ import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "NovedadElemento")
 @RequestScoped
+
 public class NovedadBeanElemento{
 	
 	private static final long serialVersionUID = -1071897882966043904L;
@@ -43,6 +44,7 @@ public class NovedadBeanElemento{
 	
 	private ArrayList<Novedad> novedades;
 	
+
 	public NovedadBeanElemento(){
             service = ServiceFactory.getInstance().getServiceHistorialEquipos();
         }
@@ -92,6 +94,7 @@ public class NovedadBeanElemento{
 	}
 
 	public ArrayList<Novedad> getNovedades() throws ExcepcionServiceHistorialEquipos, IOException {
+
 
 		//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		//context.redirect(context.getRequestContextPath() + "registrarNovedad.xhtml?elemento=" + elementoId + "&i=" + i);
