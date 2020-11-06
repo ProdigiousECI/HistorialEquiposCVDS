@@ -16,7 +16,9 @@ import java.util.ArrayList;
 
 
 
-public class NovedadBean extends BasePageBean{
+
+
+public class NovedadBean{
 	
 	
 	
@@ -36,10 +38,6 @@ public class NovedadBean extends BasePageBean{
 	protected String detalle;
 	
 	protected ArrayList<Novedad> novedades;
-	
-	
-	
-	
 
 
 

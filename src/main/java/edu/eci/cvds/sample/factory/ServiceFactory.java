@@ -9,29 +9,31 @@ import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.impl.ServiceHistorialEquiposImpl;
-import edu.eci.cvds.sampleprj.dao.EquipoDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISEquipoDAO;
+
 import edu.eci.cvds.sampleprj.dao.UsersDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDao;
 
+import edu.eci.cvds.sampleprj.dao.EquipoDAO;
 
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.NovedadDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISElementoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISNovedadDAO;
 
+
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
 /**
  *
- * @author javie
+ * @author javier
  */
 public class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
 
+    
     private static Injector injector;
-
+    
     public ServiceFactory(){
         injector = createInjector(new XMLMyBatisModule() {
             @Override
@@ -54,4 +56,5 @@ public class ServiceFactory {
     public static ServiceFactory getInstance(){
         return instance;
     }
+
 }

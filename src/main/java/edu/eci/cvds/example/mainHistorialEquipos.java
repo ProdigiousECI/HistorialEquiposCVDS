@@ -5,13 +5,11 @@
  */
 package edu.eci.cvds.example;
 
-import edu.eci.cvds.sample.entities.Equipo;
-import edu.eci.cvds.sample.entities.User;
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper;
-import java.sql.SQLException;
-import java.text.ParseException;
+
 
 import edu.eci.cvds.sample.entities.Elemento;
+import edu.eci.cvds.sample.factory.ServiceFactory;
+import edu.eci.cvds.sample.entities.User;
 
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import java.text.ParseException;
@@ -29,20 +27,16 @@ import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 
 
 
+
+
 /**
  *
  * @author javier
  */
 
-public class mainHistorialEquipos {
-    public static void main(String[] args)throws ParseException, ExcepcionServiceHistorialEquipos
+  
+    public static void main(String[] args) throws ParseException, ExcepcionServiceHistorialEquipos 
     {
-        //User u = new User("miguel","qwert");
-        //Equipo e = new Equipo(10,"PC1");
-        //ServiceFactory.getInstance().getServiceHistorialEquipos();
-        ServiceHistorialEquipos ServicioHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
-        System.out.println(ServicioHE.consultarEquipos());
-
         //Elemento e = new Elemento("OMEN","Teclado");
         
         //ServiceFactory.getInstance().getServiceHistorialEquipos();
@@ -52,6 +46,9 @@ public class mainHistorialEquipos {
         //System.out.println(ServicioHE.consultarElementos());
         
         //ServicioHE.registrarElemento(e);
+
+
+        ServiceHistorialEquipos ServicioHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
 
          //System.out.println(ServicioHE.consultarUsuario("oadavilaf18@gmail.com"));
          

@@ -25,16 +25,25 @@
             <artifactId>postgresql</artifactId>
             <version>42.0.0</version>
         </dependency>
+
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.4.6</version>
-        </dependency>	
+        </dependency>
+		
+
         <!-- 		TODO Required? -->
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
+        </dependency>
+
+        <dependency>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+          <version>1.2</version>
         </dependency>
 
         <!-- Guice Dependencies -->
@@ -84,6 +93,7 @@
             <version>6.2</version>
         </dependency>
 
+
         <!-- Test dependencies -->
         <dependency>
             <groupId>junit</groupId>
@@ -103,25 +113,25 @@
             <version>1.2.17</version>
             <type>zip</type>
         </dependency>      
+    
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
             <version>1.5.3</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
             <version>1.5.3</version>
         </dependency>
-        
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi</artifactId>
                 <version>4.1.2</version>
         </dependency>
-        
+
   </dependencies>
   <build>
         <plugins>
@@ -232,7 +242,35 @@
                     <path>/</path>
                 </configuration>
             </plugin>
+          
+             <!-- Plugin configuration for Heroku compatibility. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.github.jsimone</groupId>
+                                    <artifactId>webapp-runner</artifactId>
+                                    <version>8.0.30.2</version>
+                                    <destFileName>webapp-runner.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
         </plugins>
+        
         <finalName>HistorialEquipos</finalName>
   </build>
 </project>

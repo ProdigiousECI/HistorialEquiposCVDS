@@ -44,7 +44,8 @@ and open the template in the editor.
 			</h:panelGrid>
 			
 			<p:commandButton value="registrar Novedad" update="tablas" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
-			
+
+
 		</h:form>
 		
 
@@ -101,7 +102,8 @@ and open the template in the editor.
 		 <h:form id="descargar">
 		<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
 			<p:dataExporter type="xls" target="tabla" fileName="historial" />
-		</p:commandButton>      
+
+		</p:commandButton>
 		</h:form>
 		</center>
 		

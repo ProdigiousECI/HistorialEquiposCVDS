@@ -7,17 +7,26 @@ package edu.eci.cvds.sample.services.impl;
 
 import java.sql.Date;
 
-import com.google.inject.Inject;
 import edu.eci.cvds.sample.entities.Equipo;
+
+import java.util.List;
+
+import edu.eci.cvds.sampleprj.dao.EquipoDAO;
+
+import com.google.inject.Inject;
 
 import edu.eci.cvds.sample.entities.User;
 
+import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import java.util.List;
 import edu.eci.cvds.sampleprj.dao.UsersDAO;
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
 
 import edu.eci.cvds.sample.entities.Elemento;
-import edu.eci.cvds.sampleprj.dao.EquipoDAO;
+import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
+import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
 
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 
@@ -45,6 +54,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
 
         @Inject
             private NovedadDAO novedadDAO;
+  
 
         @Override
         public void registrarEquipo(Equipo equip) throws ExcepcionServiceHistorialEquipos {
@@ -76,28 +86,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
             //To change body of generated methods, choose Tools | Templates.
         }
 
-        @Override
-        public User consultarUsuario(String correo) throws ExcepcionServiceHistorialEquipos {
-            try
-            {
-                return UserDAO.consultarUsuario(correo);
-            }catch(PersistenceException ex){
-            throw new UnsupportedOperationException("No se pudo consultar el usuario "+correo,ex); //To change body of generated methods, choose Tools | Templates.
-            }
-        }
-
-        @Override
-        public List<User> consultarUsuarios() throws ExcepcionServiceHistorialEquipos {
-            try
-            {
-                return UserDAO.consultarUsuarios();
-            }catch(PersistenceException ex){
-            throw new UnsupportedOperationException("No se pudo consultar los usuarios ",ex); //To change body of generated methods, choose Tools | Templates.
-            }
-        }
-
-
-
+     
         @Override
         public void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos
         {
@@ -126,7 +115,9 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
                 throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos", ex);
             }
         }
-
+	
+	
+	
 	@Override
 	   public void registrarNovedad(Novedad n) throws ExcepcionServiceHistorialEquipos {
 	       try {
@@ -145,6 +136,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos{
 	    	   throw new ExcepcionServiceHistorialEquipos("Error al consultar novedad",ex);
 	       }
 	   }
+
 	@Override
 	public ArrayList<Novedad> consultarNovedades() throws ExcepcionServiceHistorialEquipos{
 		try {

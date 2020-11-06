@@ -9,7 +9,8 @@ package edu.eci.cvds.sampleprj.dao;
 /**
  *
 
- * @author Miguel  
+ * @author Andres Davila 
+
  */
 public class PersistenceException extends Exception {
 

@@ -15,9 +15,16 @@ public class Novedad implements Serializable{
 	private Elemento elemento;
 	private User user;
 
+	
+	
 	public Novedad() {
 	
 	}
+		
+
+	
+	
+
 
 	public Equipo getEquipo() {
 		return equipo;
@@ -97,4 +104,5 @@ public class Novedad implements Serializable{
 		return "Novedad [id=" + id + ", fecha=" + fecha + ", titulo=" + titulo + ", detalle=" + detalle + "]";
 	}
 	
+
 }
