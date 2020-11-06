@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Registrar Novedad</title>
+		<h:outputStylesheet name="style.css" library="css" />
+		
+    </h:head>
+	
+	<center>
+        <img src="resources/img/logo.png" width="300" height="100" align="center"/>
+        </center>
+        <br/>
+        <br/>
+        <center>
+		
+		<f:metadata>
+			<f:viewParam name="elemento" value="#{NovedadElemento.elementoId}" />
+			<f:viewParam name="i" value="#{NovedadElemento.i}" />
+		</f:metadata>
+	
+		
+        <h:form id="formNovedad"  >
+		
+			<p:outputLabel class="letra" value="Registrar Novedad del elemento #{NovedadElemento.elementoId}"/>
+		<br></br>
+				
+            <h:panelGrid columns="2">
+		
+				
+                <h:outputLabel for="titulo" class="letra" value="Titulo"/>
+				<p:inputText id="titulo"  value="#{NovedadElemento.titulo}"/>
+				<h:outputLabel for="detalle" class="letra" value="Detalle"/>
+				<p:inputText id="detalle" value="#{NovedadElemento.detalle}"/>
+			
+
+					
+		</h:panelGrid>
+			
+			<p:commandButton value="registrar Novedad" update="tabla" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
+			
+
+		</h:form>
+		<br></br>
+		
+
+		<h:form id="menu">
+		
+			<p:tabMenu activeIndex="#{param.i}" style="width:450px;">
+				<p:menuitem value="historial de elementos" outcome="registrarNovedad.xhtml?elemento=#{NovedadElemento.elementoId}"
+					icon="pi pi-star" style="width:150px;font-size: 12px;" >
+					<f:param name="i" value="0" />
+				</p:menuitem>
+				<p:menuitem value="historial de los dispositivos" outcome="registrarNovedad.xhtml?elemento=#{NovedadElemento.elementoId}"
+					icon="pi pi-star" style="width:150px;font-size: 10px;" >
+					<f:param name="i" value="1"/>
+				</p:menuitem>
+				
+			</p:tabMenu>
+			
+		</h:form>
+		
+					
+		
+		
+
+			<p:dataTable id="tabla" var="novedad"  value="#{NovedadElemento.novedades}"
+		
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					 paginator="true" rows="10" style="width:450px;" >
+					 
+			<p:column headerText="Id">
+				<h:outputText value="#{novedad.id}" />
+			</p:column>
+			<!--<p:column headerText="nombre">
+				<h:outputText value="#{elemento.nombre}" />
+			</p:column>-->
+			<p:column headerText="fecha">
+				<h:outputText value="#{novedad.fecha}" />
+			</p:column>
+			<p:column headerText="Titulo">
+				<h:outputText value="#{novedad.titulo}" />
+			</p:column>
+			<p:column headerText="Detalle">
+				<h:outputText value="#{novedad.detalle}" />
+			</p:column>
+			
+			
+			</p:dataTable>
+		
+		
+	
+		
+		 <h:form id="descargar">
+		<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+			<p:dataExporter type="xls" target="tabla" fileName="historial" />
+
+		</p:commandButton>
+		</h:form>
+		</center>
+		
+		
+		
+
+</html>
