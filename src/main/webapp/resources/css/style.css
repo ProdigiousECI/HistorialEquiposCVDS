@@ -35,6 +35,13 @@ h2 {
   margin-right: auto;
 }
 
+.button .boton1{
+  background: url('../img/equipo.jpg') center;
+  border: none;
+  cursor: pointer;
+  padding: 15px 15px;
+}
+
 .button {
   background-color: #4CAF50; /* Green */
   border: none;
