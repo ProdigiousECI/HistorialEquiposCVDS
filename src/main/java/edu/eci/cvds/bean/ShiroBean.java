@@ -76,7 +76,7 @@ public class ShiroBean implements Serializable{
             UsernamePasswordToken token = new UsernamePasswordToken(userName,userPassword,true);
             currentUser.login(token);
             currentUser.getSession().setAttribute("Correo",userName);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/elemento.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/menu.xhtml");
         } catch (UnknownAccountException e) {
             FacesContext.getCurrentInstance().addMessage("shiro", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no registrado", "Este usuario no se encuentra en la base de datos "));
         } catch (IncorrectCredentialsException e) {
