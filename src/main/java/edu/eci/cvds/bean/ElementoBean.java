@@ -47,6 +47,11 @@ public class ElementoBean{
     public ArrayList<Elemento> getElementos() throws ExcepcionServiceHistorialEquipos {
         return serviceHE.consultarElementos(filtro);
     }
+    
+    public Elemento obtenerElemento(int n) throws ExcepcionServiceHistorialEquipos {
+        return serviceHE.consultarElemento(n);
+    }
+    
     public void ordenarElementosporFiltro(int i) throws ExcepcionServiceHistorialEquipos {
     	filtro=i;
     	elementos=serviceHE.consultarElementos(filtro);

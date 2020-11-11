@@ -36,24 +36,28 @@ and open the template in the editor.
             </h:panelGrid>
             
             <br>
-            <p:commandButton update="formElemento" class="Button" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(name.value, tipo.value )}"/>
+            <p:commandButton update="tabla" class="Button" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(name.value, tipo.value )}"/>
             </br>
             <br/>
 			
-			
-            <p:dataTable value="#{Elemento.elementos}" var="el" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+			</h:form>
+            <p:dataTable id="tabla" value="#{Elemento.elementos}" var="el" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" >
                 <center>
 					<f:facet name="{Exporters}">
 							 <br></br>
-							<p:commandButton update="formElemento" value="id" actionListener="#{Elemento.ordenarElementosporFiltro(1)}"/>
-							<p:commandButton update="formElemento" value="nombre" actionListener="#{Elemento.ordenarElementosporFiltro(2)}"/>
-							<p:commandButton update="formElemento" value="tipo" actionListener="#{Elemento.ordenarElementosporFiltro(3)}"/>
-							<p:commandButton update="formElemento" value="activo" actionListener="#{Elemento.ordenarElementosporFiltro(4)}"/>
-							<p:commandButton update="formElemento" value="dado por baja" actionListener="#{Elemento.ordenarElementosporFiltro(5)}"/>
-							<p:commandButton update="formElemento" value="equipo asociado" actionListener="#{Elemento.ordenarElementosporFiltro(6)}"/>
+							<p:commandButton update="tabla" value="id" actionListener="#{Elemento.ordenarElementosporFiltro(1)}"/>
+							<p:commandButton update="tabla" value="nombre" actionListener="#{Elemento.ordenarElementosporFiltro(2)}"/>
+							<p:commandButton update="tabla" value="tipo" actionListener="#{Elemento.ordenarElementosporFiltro(3)}"/>
+							<p:commandButton update="tabla" value="activo" actionListener="#{Elemento.ordenarElementosporFiltro(4)}"/>
+							<p:commandButton update="tabla" value="dado por baja" actionListener="#{Elemento.ordenarElementosporFiltro(5)}"/>
+							<p:commandButton update="tabla" value="equipo asociado" actionListener="#{Elemento.ordenarElementosporFiltro(6)}"/>
 			
 					</f:facet>
+					<!--<p:column headerText="" style="width:20px;">
+						<p:selectBooleanCheckbox value="#{novedad.eliminar}"/>
+					</p:column>-->
+					
                     <p:column headerText="id">
                         <p:outputLabel value="#{el.id}"/>
                     </p:column>
@@ -67,12 +71,18 @@ and open the template in the editor.
                         <p:outputLabel value="#{null}"/>
                     </p:column>
 					<p:column headerText="Historial de Novedades">
-						<p:link class="link" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver novedades"></p:link>
+						<p:link class="link" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
 					</p:column>
                </center>
 
-            </p:dataTable>    
-</h:form>			
+            </p:dataTable>  
+						
+		<h:form id="descargar">
+		<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+			<p:dataExporter type="xls" target="tabla" fileName="historialElementos" />
+
+		</p:commandButton>
+		</h:form>
         
         </center>
     </h:body>

@@ -8,13 +8,17 @@
 		<id property='id' column='id'/>
 		<result property='nombre' column='nombre'/>
 		<result property='tipo' column='tipo'/>  
+		<result property='activo' column='activo'/>  
+		<result property='baja' column='baja'/>  
                 <!--association property="equipo" javaType="Equipo" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association-->
 	</resultMap>
         <select parameterType="map" id="consultarElemento" resultMap="ElementoResult">
             select
                 e.id,
                 e.nombre,
-                e.tipo
+                e.tipo,
+                e.activo,
+                e.baja
                 FROM Elemento as e
                 where e.id=#{idele}
         </select>
@@ -22,7 +26,9 @@
             select
                 e.id,
                 e.nombre,
-                e.tipo
+                e.tipo,
+                e.activo,
+                e.baja
                 FROM Elemento as e
                 <if test="ordenar == 1"> ORDER BY e.id ASC </if>
 				<if test="ordenar == 2"> ORDER BY e.nombre ASC </if>
