@@ -1,37 +1,50 @@
-<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-     
     <h:head>
-<title>Novedades</title>
-<style type="text/css">
-    .ui-widget {
-        font-size: 90%;
-    }
-</style>
+        <title>Menu</title>
+        <h:outputStylesheet name="style.css" library="css" />
     </h:head>
-     
     <h:body>
-<i id="customheader" class="pi pi-home" style="display:none"></i>
- 
-	<p:dataTable var="nov" value="#{Novedades.novedades}">
-		<p:column headerText="Id">
-			<h:outputText value="#{nov.id}" />
-		</p:column>
- 
-		<p:column headerText="Year">
-			<h:outputText value="#{nov.fecha}" />
-		</p:column>
- 
-		<p:column headerText="Brand">
-			<h:outputText value="#{nov.titulo}" />
-		</p:column>
- 
-		<p:column headerText="Color">
-			<h:outputText value="#{nov.detalle}" />
-		</p:column>
-		</p:dataTable>
+        <center>
+        <img src="resources/img/logo.png" width="300" height="100" align="center"/>
+        </center>
+        <br/>
+        <br/>
+        <center>
+		<p:dataTable id="tabla" var="novedad"  value="#{Novedades.novedades}"
+		
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					 paginator="true" rows="10" style="width:450px;" >
+			
+			<!--<p:column headerText="nombre">
+				<h:outputText value="#{elemento.nombre}" />
+			</p:column>-->
+			<p:column headerText="fecha">
+				<h:outputText value="#{novedad.fecha}" />
+			</p:column>
+			<p:column headerText="Titulo">
+				<h:outputText value="#{novedad.titulo}" />
+			</p:column>
+			<p:column headerText="Detalle">
+				<h:outputText value="#{novedad.detalle}" />
+			</p:column>
+			
+			
+			</p:dataTable>
+		
+		
+	
+		
+		 <h:form id="descargar">
+		<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+			<p:dataExporter type="xls" target="tabla" fileName="novedades" />
+
+		</p:commandButton>
+		</h:form>
+      
+        </center>
     </h:body>
-     
 </html>

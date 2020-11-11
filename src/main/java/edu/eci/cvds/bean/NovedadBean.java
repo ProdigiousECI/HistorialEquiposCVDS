@@ -99,7 +99,7 @@ public class NovedadBean implements Serializable{
 	}
 	
 	public ArrayList<Novedad> getNovedades() throws ExcepcionServiceHistorialEquipos, IOException{
-		System.out.println("enNovedades==========");
+		
 		return service.consultarNovedades();
 
 	}
