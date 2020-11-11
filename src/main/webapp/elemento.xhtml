@@ -39,9 +39,21 @@ and open the template in the editor.
             <p:commandButton update="formElemento" class="Button" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(name.value, tipo.value )}"/>
             </br>
             <br/>
+			
+			
             <p:dataTable value="#{Elemento.elementos}" var="el" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                     paginator="true" rows="10" style="width:450px;" >
+                     paginator="true" rows="10" >
                 <center>
+					<f:facet name="{Exporters}">
+							 <br></br>
+							<p:commandButton update="formElemento" value="id" actionListener="#{Elemento.ordenarElementosporFiltro(1)}"/>
+							<p:commandButton update="formElemento" value="nombre" actionListener="#{Elemento.ordenarElementosporFiltro(2)}"/>
+							<p:commandButton update="formElemento" value="tipo" actionListener="#{Elemento.ordenarElementosporFiltro(3)}"/>
+							<p:commandButton update="formElemento" value="activo" actionListener="#{Elemento.ordenarElementosporFiltro(4)}"/>
+							<p:commandButton update="formElemento" value="dado por baja" actionListener="#{Elemento.ordenarElementosporFiltro(5)}"/>
+							<p:commandButton update="formElemento" value="equipo asociado" actionListener="#{Elemento.ordenarElementosporFiltro(6)}"/>
+			
+					</f:facet>
                     <p:column headerText="id">
                         <p:outputLabel value="#{el.id}"/>
                     </p:column>
@@ -59,8 +71,9 @@ and open the template in the editor.
 					</p:column>
                </center>
 
-            </p:dataTable>          
-        </h:form>
+            </p:dataTable>    
+</h:form>			
+        
         </center>
     </h:body>
 </html>

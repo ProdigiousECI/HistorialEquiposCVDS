@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import org.primefaces.PrimeFaces;
 
@@ -25,6 +26,7 @@ import java.util.ArrayList;
  */
 @ManagedBean(name = "Elemento")
 @ApplicationScoped
+//@ViewScoped
 public class ElementoBean{   
     
     /*
@@ -38,12 +40,18 @@ public class ElementoBean{
     
     
     private final ServiceHistorialEquipos serviceHE;
+    private int filtro;
     public ArrayList<Elemento> elementos;
     //public ArrayList<Equipo> equipos;
 
-    public ArrayList<Elemento> getElementos() {
-        return elementos;
+    public ArrayList<Elemento> getElementos() throws ExcepcionServiceHistorialEquipos {
+        return serviceHE.consultarElementos(filtro);
     }
+    public void ordenarElementosporFiltro(int i) throws ExcepcionServiceHistorialEquipos {
+    	filtro=i;
+    	elementos=serviceHE.consultarElementos(filtro);
+    }
+
 
     public void setElementos(ArrayList<Elemento> elementos) {
         this.elementos = elementos;
@@ -52,7 +60,8 @@ public class ElementoBean{
     public ElementoBean(){
         serviceHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
         try{
-            elementos = serviceHE.consultarElementos();          
+        	filtro=1;
+            elementos = serviceHE.consultarElementos(1);          
         }catch(ExcepcionServiceHistorialEquipos e){
         }
     }
@@ -66,7 +75,7 @@ public class ElementoBean{
         	nombre=nombre.trim();
         	if(nombre.length()>0) {
 	            serviceHE.registrarElemento(new Elemento(nombre,tipo));
-	            elementos = serviceHE.consultarElementos();
+	            
 	            showMessage("El registro del elemento ha sido un exito");
         	}else {
         		showMessage("El registro del elemento ha fracasado");
@@ -76,6 +85,7 @@ public class ElementoBean{
             new ExcepcionServiceHistorialEquipos("No se pudo registrar cliente");
         }       
     }
+    
     public void showMessage(String confirmacion) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     
         PrimeFaces.current().dialog().showMessageDynamic(message);

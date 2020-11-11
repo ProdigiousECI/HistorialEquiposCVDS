@@ -15,5 +15,5 @@ import java.util.ArrayList;
 public interface ElementoDAO {
     public void registrarElemento(Elemento ele) throws PersistenceException;
     public Elemento consultarElemento(int id) throws PersistenceException;
-    public ArrayList<Elemento> consultarElementos() throws PersistenceException;
+    public ArrayList<Elemento> consultarElementos(int e) throws PersistenceException;
 }

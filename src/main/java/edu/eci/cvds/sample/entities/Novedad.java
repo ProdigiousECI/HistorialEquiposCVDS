@@ -14,9 +14,28 @@ public class Novedad implements Serializable{
 	private Equipo equipo;
 	private Elemento elemento;
 	private User user;
+	private boolean eliminar;
 
 	
 	
+	public boolean isEliminar() {
+		return eliminar;
+	}
+
+
+
+
+
+
+	public void setEliminar(boolean eliminar) {
+		this.eliminar = eliminar;
+	}
+
+
+
+
+
+
 	public Novedad() {
 	
 	}

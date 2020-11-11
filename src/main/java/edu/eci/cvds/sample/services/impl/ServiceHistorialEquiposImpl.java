@@ -103,9 +103,9 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
     }
 
     @Override
-    public ArrayList<Elemento> consultarElementos() throws ExcepcionServiceHistorialEquipos {
+    public ArrayList<Elemento> consultarElementos(int e) throws ExcepcionServiceHistorialEquipos {
         try {
-            return elementoDAO.consultarElementos();
+            return elementoDAO.consultarElementos(e);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos", ex);
         }

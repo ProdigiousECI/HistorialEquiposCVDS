@@ -24,8 +24,17 @@
                 e.nombre,
                 e.tipo
                 FROM Elemento as e
+                <if test="ordenar == 1"> ORDER BY e.id ASC </if>
+				<if test="ordenar == 2"> ORDER BY e.nombre ASC </if>
+				<if test="ordenar == 3"> ORDER BY e.tipo ASC </if>
+				<if test="ordenar == 4"> ORDER BY e.activo DESC </if>
+				<if test="ordenar == 5"> ORDER BY e.baja DESC </if>
+				<if test="ordenar == 6"> ORDER BY e.idEquipo ASC </if>
+		
+				
+				
         </select>
         <insert id="registrarElemento" parameterType="map">
-            INSERT INTO Elemento values ((SELECT MAX(id) +1 FROM Elemento), #{ele.nombre}, #{ele.tipo}, null) <!---->
+            INSERT INTO Elemento values ((SELECT MAX(id) +1 FROM Elemento), #{ele.nombre}, #{ele.tipo}, 'si','no',null) <!---->
         </insert>
 </mapper>

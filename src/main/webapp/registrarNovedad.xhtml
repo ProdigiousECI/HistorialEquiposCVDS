@@ -77,10 +77,10 @@ and open the template in the editor.
 		
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 					 paginator="true" rows="10" style="width:450px;" >
-					 
-			<p:column headerText="Id">
-				<h:outputText value="#{novedad.id}" />
+			<p:column headerText="" style="width:20px;">
+				<p:selectBooleanCheckbox value="#{novedad.eliminar}"/>
 			</p:column>
+
 			<!--<p:column headerText="nombre">
 				<h:outputText value="#{elemento.nombre}" />
 			</p:column>-->

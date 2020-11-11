@@ -2,6 +2,7 @@ package edu.eci.cvds.bean;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -30,77 +31,23 @@ import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 
 //@SessionScoped
 @ViewScoped
-public class NovedadBeanElemento{
+public class NovedadBeanElemento extends NovedadBean{
 	
 	private static final long serialVersionUID = -1071897882966043904L;
 	
-	private ServiceHistorialEquipos service;
+	
 		
-
-	//@ManagedProperty(value = "#{param.elemento}")
 	private Integer elementoId;
+	private HashMap<Novedad,Integer> eliminar;
+	
 		
-	//@ManagedProperty(value = "#{param.i}")
-
-	private Integer i;
-	
-	//@ManagedProperty(value = "#{param.responsable}")
-	private Integer responsableId;
-	
-	private String titulo;
-	
-	private String detalle;
-	
-	private ArrayList<Novedad> novedades;
-	
 	public NovedadBeanElemento(){
-            service = ServiceFactory.getInstance().getServiceHistorialEquipos();
-        }
+        service = ServiceFactory.getInstance().getServiceHistorialEquipos();
+       
+    }
 	
-	public ServiceHistorialEquipos getService() {
-		return service;
-	}
-
-	public void setService(ServiceHistorialEquipos service) {
-		this.service = service;
-	}
-
-	public Integer getI() {
-		return i;
-	}
-
-	public void setI(Integer i) {
-		this.i = i;
-	}
-
-	public Integer getResponsableId() {
-		return responsableId;
-	}
-
-	public void setResponsableId(Integer responsableId) {
-		this.responsableId = responsableId;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getDetalle() {
-		return detalle;
-	}
-
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
-	}
-
-	public void setNovedades(ArrayList<Novedad> novedades) {
-		this.novedades = novedades;
-	}
-
+	
+	@Override
 	public ArrayList<Novedad> getNovedades() throws ExcepcionServiceHistorialEquipos, IOException {
 
 		//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -115,20 +62,30 @@ public class NovedadBeanElemento{
 		else if(i==1) {
 			novedades=service.consultarNovedades();
 		}
+		for(Novedad n:novedades) {
+			n.setEliminar(false);
+		}
 		return novedades;
 	}
 	
 	public Integer getElementoId() {
 		return elementoId;
 	}
+	///public void setEliminar(boolean) {
+		//return 
+	//}
 
 	public void setElementoId(Integer elementoId) {
 		this.elementoId = elementoId;
 	}
-
+	
+	public void eliminar() {
+		for(Novedad n:novedades) {
+			System.out.println(n);
+		}
+	}
 	public void registrarNovedad(){
-		
-		
+			
         try {
         	titulo=titulo.trim();
         	detalle=detalle.trim();
@@ -148,12 +105,7 @@ public class NovedadBeanElemento{
         } 
     }
 	
-	public void showMessage(String confirmacion) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);
-         
-        PrimeFaces.current().dialog().showMessageDynamic(message);
-    }
-	
+
 	
 
 	

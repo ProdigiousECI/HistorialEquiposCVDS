@@ -27,26 +27,15 @@ import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 @ManagedBean(name = "NovedadEquipo")
 //@SessionScoped
 @ViewScoped
-public class NovedadBeanEquipo{
+public class NovedadBeanEquipo extends NovedadBean{
 	
 	private static final long serialVersionUID = -1071897882966043904L;
 	
 	private ServiceHistorialEquipos service;
 		
-	//@ManagedProperty(value = "#{param.elemento}")
 	private Integer equipoId;
 		
-	//@ManagedProperty(value = "#{param.i}")
-	private Integer i;
-	
-	//@ManagedProperty(value = "#{param.responsable}")
-	private Integer responsableId;
-	
-	private String titulo;
-	
-	private String detalle;
-	
-	private ArrayList<Novedad> novedades;
+
 	
 	public NovedadBeanEquipo(){
             service = ServiceFactory.getInstance().getServiceHistorialEquipos();
@@ -60,46 +49,14 @@ public class NovedadBeanEquipo{
 		this.service = service;
 	}
 
-	public Integer getI() {
-		return i;
-	}
-
-	public void setI(Integer i) {
-		this.i = i;
-	}
-
-	public Integer getResponsableId() {
-		return responsableId;
-	}
-
-	public void setResponsableId(Integer responsableId) {
-		this.responsableId = responsableId;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getDetalle() {
-		return detalle;
-	}
-
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
-	}
 
 	public void setNovedades(ArrayList<Novedad> novedades) {
 		this.novedades = novedades;
 	}
 
+	@Override
 	public ArrayList<Novedad> getNovedades() throws ExcepcionServiceHistorialEquipos, IOException {
 		
-		//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-		//context.redirect(context.getRequestContextPath() + "registrarNovedad.xhtml?elemento=" + elementoId + "&i=" + i);
 		
 		if(i==0) {
 
@@ -142,11 +99,7 @@ public class NovedadBeanEquipo{
         } 
     }
 	
-	public void showMessage(String confirmacion) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);
-         
-        PrimeFaces.current().dialog().showMessageDynamic(message);
-    }
+	
 	
 	
 
