@@ -56,7 +56,7 @@ public interface ServiceHistorialEquipos {
 
 
     public abstract void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos;
-    public abstract ArrayList<Elemento> consultarElementos() throws ExcepcionServiceHistorialEquipos;
+    public abstract ArrayList<Elemento> consultarElementos(int e) throws ExcepcionServiceHistorialEquipos;
     public abstract Elemento consultarElemento(int id) throws ExcepcionServiceHistorialEquipos;
 
 	

@@ -28,10 +28,42 @@ and open the template in the editor.
 			<f:viewParam name="i" value="#{NovedadElemento.i}" />
 		</f:metadata>
 	
+		<h:form id="formNElemento"  >
+		
+			
+		
+			<p:carousel value="#{Elemento.obtenerElemento(1)}" style="width:40%" numVisible="1" headerText="Elemento" var="elemento" itemStyle="text-align:center" >
+					<p:panelGrid columns="2" style="width:100%;margin:5px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+					
+						<h:outputText value="Id:" />
+						<h:outputText value="#{elemento.id}" />
+						
+						<h:outputText value="nombre:" />
+						<h:outputText value="#{elemento.nombre}" />
+						
+						<h:outputText value="tipo:" />
+						<h:outputText value="#{elemento.tipo}" />
+						
+						<h:outputText value="disponible:" />
+						<h:outputText value="#{elemento.activo}" />
+						
+						<h:outputText value="dado por baja:" />
+						<h:outputText value="#{elemento.baja}" />
+						
+						<h:outputText value="equipo relacionado:" />
+						<h:outputText value="1" />
+		
+					</p:panelGrid>
+			</p:carousel>
+				
+           
+				
+
+		</h:form>
 		
         <h:form id="formNovedad"  >
 		
-			<p:outputLabel class="letra" value="Registrar Novedad del elemento #{NovedadElemento.elementoId}"/>
+			<p:outputLabel class="letra" value="Registrar Novedad del elemento"/>
 		<br></br>
 				
             <h:panelGrid columns="2">
@@ -77,10 +109,7 @@ and open the template in the editor.
 		
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 					 paginator="true" rows="10" style="width:450px;" >
-					 
-			<p:column headerText="Id">
-				<h:outputText value="#{novedad.id}" />
-			</p:column>
+			
 			<!--<p:column headerText="nombre">
 				<h:outputText value="#{elemento.nombre}" />
 			</p:column>-->

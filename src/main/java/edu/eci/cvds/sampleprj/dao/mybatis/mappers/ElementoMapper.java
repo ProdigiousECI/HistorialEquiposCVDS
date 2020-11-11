@@ -15,7 +15,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ElementoMapper {
     public Elemento consultarElemento(@Param("idele") int id);
-    public ArrayList<Elemento> consultarElementos();
+    public ArrayList<Elemento> consultarElementos(@Param("ordenar") int e);
     public void registrarElemento(@Param("ele") Elemento ele);
 
 }

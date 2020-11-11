@@ -16,10 +16,28 @@ public class Elemento implements Serializable{
     //private Equipo equipo;
     private String tipo;
     private String nombre;
+    private String activo;
+    private String baja;
     private int id;
     private Equipo equipo = null;
 
-    public Elemento()
+    public String getActivo() {
+		return activo;
+	}
+
+	public void setActivo(String activo) {
+		this.activo = activo;
+	}
+
+	public String getBaja() {
+		return baja;
+	}
+
+	public void setBaja(String baja) {
+		this.baja = baja;
+	}
+
+	public Elemento()
     {
         
     }
@@ -65,6 +83,6 @@ public class Elemento implements Serializable{
     
     @Override
     public String toString() {
-        return "Elemento{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + '}'; /*", equipo=" + equipo +*/
+        return "Elemento{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", activo=" + activo + ", baja=" + baja + '}'; /*", equipo=" + equipo +*/
     }
 }
