@@ -9,106 +9,90 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Registrar Novedad</title>
 		<h:outputStylesheet name="style.css" library="css" />
-		
+
     </h:head>
-	
-	<center>
-        <img src="resources/img/logo.png" width="300" height="100" align="center"/>
-        </center>
-        <br/>
-        <br/>
-        <center>
-		
 		<f:metadata>
 			<f:viewParam name="elemento" value="#{NovedadElemento.elementoId}" />
 			<f:viewParam name="i" value="#{NovedadElemento.i}" />
 		</f:metadata>
+		
+		<h:graphicImage name="#{FacesContext.getCurrentInstance().getExternalContext()}/img/logo4.png" class="imagenElemento"/>
+		<center>
+			
+			
+		
+				
+			
+					<p:carousel value="#{NovedadElemento.obtenerElemento()}" style="width:25%;"
+					numVisible="1" headerText="Elemento" var="elemento"  >
+						<p:panelGrid columns="2" style="width:100%;border=none;">		
+							<h:outputText value="Id" />
+							<h:outputText value="#{elemento.id}" />
+									
+							<h:outputText value="nombre" />
+							<h:outputText value="#{elemento.nombre}" />
+										
+							<h:outputText value="tipo" />
+							<h:outputText value="#{elemento.tipo}" />
+										
+							<h:outputText value="disponible" />
+							<h:outputText value="#{elemento.activo}" />
+										
+							<h:outputText value="dado por baja" />
+							<h:outputText value="#{elemento.baja}" />
+										
+							<h:outputText value="equipo relacionado" />
+							<h:outputText value="1" />
+						
+						</p:panelGrid>
+					</p:carousel>
+			
+			
+				
+			<!--p:imageSwitch effect="fade" id="fadeEffect" style="width:50%;margin-left:25%;">
+				<ui:repeat value="#{NovedadElemento.images}" var="image" id="equiposSwitcherImages">
+					<h:graphicImage name="#{FacesContext.getCurrentInstance().getExternalContext()}/img/#{image}" id="images" style="width=200px;height: 255px;"/>
+				</ui:repeat>
+			</p:imageSwitch-->
+			
+			
 	
-		<h:form id="formNElemento"  >
+	
 		
-			
-		
-			<p:carousel value="#{Elemento.obtenerElemento(1)}" style="width:40%" numVisible="1" headerText="Elemento" var="elemento" itemStyle="text-align:center" >
-					<p:panelGrid columns="2" style="width:100%;margin:5px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
-					
-						<h:outputText value="Id:" />
-						<h:outputText value="#{elemento.id}" />
+			<h:form id="formNovedad" style="width:50%">
+						<br/><br/>
+						<p:outputLabel class="letra" value="Registrar Novedad del elemento"/>
 						
-						<h:outputText value="nombre:" />
-						<h:outputText value="#{elemento.nombre}" />
+								
+						<h:panelGrid columns="2">
 						
-						<h:outputText value="tipo:" />
-						<h:outputText value="#{elemento.tipo}" />
+								
+							<h:outputLabel for="titulo" class="letra" value="Titulo"/>
+							<p:inputText id="titulo" style="width:200px;" value="#{NovedadElemento.titulo}"/>
+							<h:outputLabel for="detalle" class="letra" value="Detalle"/>
+							<p:inputText id="detalle" style="width:200px;" value="#{NovedadElemento.detalle}"/>
+							
+
+									
+						</h:panelGrid>
 						
-						<h:outputText value="disponible:" />
-						<h:outputText value="#{elemento.activo}" />
-						
-						<h:outputText value="dado por baja:" />
-						<h:outputText value="#{elemento.baja}" />
-						
-						<h:outputText value="equipo relacionado:" />
-						<h:outputText value="1" />
-		
-					</p:panelGrid>
-			</p:carousel>
-				
-           
-				
+						<p:commandButton value="registrar Novedad" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
+							
 
-		</h:form>
+			</h:form>
+		</center>
 		
-        <h:form id="formNovedad"  >
+		<br/><br/>
 		
-			<p:outputLabel class="letra" value="Registrar Novedad del elemento"/>
-		<br></br>
-				
-            <h:panelGrid columns="2">
-		
-				
-                <h:outputLabel for="titulo" class="letra" value="Titulo"/>
-				<p:inputText id="titulo"  value="#{NovedadElemento.titulo}"/>
-				<h:outputLabel for="detalle" class="letra" value="Detalle"/>
-				<p:inputText id="detalle" value="#{NovedadElemento.detalle}"/>
-			
-
-					
-		</h:panelGrid>
-			
-			<p:commandButton value="registrar Novedad" update="tabla" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
-			
-
-		</h:form>
-		<br></br>
-		
-
-		<h:form id="menu">
-		
-			<p:tabMenu activeIndex="#{param.i}" style="width:450px;">
-				<p:menuitem value="historial de elementos" outcome="registrarNovedad.xhtml?elemento=#{NovedadElemento.elementoId}"
-					icon="pi pi-star" style="width:150px;font-size: 12px;" >
-					<f:param name="i" value="0" />
-				</p:menuitem>
-				<p:menuitem value="historial de los dispositivos" outcome="registrarNovedad.xhtml?elemento=#{NovedadElemento.elementoId}"
-					icon="pi pi-star" style="width:150px;font-size: 10px;" >
-					<f:param name="i" value="1"/>
-				</p:menuitem>
-				
-			</p:tabMenu>
-			
-		</h:form>
-		
-					
-		
-		
-
-			<p:dataTable id="tabla" var="novedad"  value="#{NovedadElemento.novedades}"
+		<p:dataTable id="tabla" var="novedad"  value="#{NovedadElemento.novedades}"
 		
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-					 paginator="true" rows="10" style="width:450px;" >
+					 paginator="true" rows="10" >
 			
 			<!--<p:column headerText="nombre">
 				<h:outputText value="#{elemento.nombre}" />
@@ -135,9 +119,6 @@ and open the template in the editor.
 
 		</p:commandButton>
 		</h:form>
-		</center>
-		
-		
-		
+				
 
 </html>

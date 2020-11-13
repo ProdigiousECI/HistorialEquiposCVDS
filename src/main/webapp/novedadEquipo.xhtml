@@ -17,7 +17,7 @@ and open the template in the editor.
     </h:head>
 	
 	<center>
-        <img src="resources/img/logo.png" width="300" height="100" align="center"/>
+        <img src="resources/img/logo1.png" width="300" height="100" align="center"/>
         </center>
         <br/>
         <br/>
@@ -96,7 +96,7 @@ and open the template in the editor.
 	
 		
 		 <h:form id="descargar">
-		<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+		<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" >
 			<p:dataExporter type="xls" target="tabla" fileName="historial" />
 		</p:commandButton>      
 		</h:form>
