@@ -106,7 +106,7 @@ public class NovedadBean implements Serializable{
 	}
 	
 	public ArrayList<Novedad> getNovedades() throws ExcepcionServiceHistorialEquipos, IOException{
-	
+		
 		return service.consultarNovedades();
 
 	}

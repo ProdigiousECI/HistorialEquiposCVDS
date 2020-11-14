@@ -16,19 +16,20 @@ and open the template in the editor.
 		<h:outputStylesheet name="style.css" library="css" />
 
     </h:head>
+		<p:button class="volver" outcome="elemento.xhtml" value=""/>
 		<f:metadata>
 			<f:viewParam name="elemento" value="#{NovedadElemento.elementoId}" />
 			<f:viewParam name="i" value="#{NovedadElemento.i}" />
 		</f:metadata>
 		
-		<h:graphicImage name="#{FacesContext.getCurrentInstance().getExternalContext()}/img/logo4.png" class="imagenElemento"/>
+	
 		<center>
 			
 			
 		
 				
 			
-					<p:carousel value="#{NovedadElemento.obtenerElemento()}" style="width:25%;"
+					<p:carousel value="#{NovedadElemento.obtenerElemento()}" style="width:31%;"
 					numVisible="1" headerText="Elemento" var="elemento"  >
 						<p:panelGrid columns="2" style="width:100%;border=none;">		
 							<h:outputText value="Id" />
@@ -54,19 +55,15 @@ and open the template in the editor.
 			
 			
 				
-			<!--p:imageSwitch effect="fade" id="fadeEffect" style="width:50%;margin-left:25%;">
-				<ui:repeat value="#{NovedadElemento.images}" var="image" id="equiposSwitcherImages">
-					<h:graphicImage name="#{FacesContext.getCurrentInstance().getExternalContext()}/img/#{image}" id="images" style="width=200px;height: 255px;"/>
-				</ui:repeat>
-			</p:imageSwitch-->
+			
 			
 			
 	
 	
 		
 			<h:form id="formNovedad" style="width:50%">
-						<br/><br/>
-						<p:outputLabel class="letra" value="Registrar Novedad del elemento"/>
+						<br/>
+						<p:outputLabel class="letra" value="Registrar Novedad del Elemento #{NovedadElemento.elementoId}"/>
 						
 								
 						<h:panelGrid columns="2">
@@ -81,13 +78,13 @@ and open the template in the editor.
 									
 						</h:panelGrid>
 						
-						<p:commandButton value="registrar Novedad" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
+						<p:commandButton value="registrar Novedad" update="tabla" class="Button"  actionListener="#{NovedadElemento.registrarNovedad}"/>
 							
 
 			</h:form>
 		</center>
 		
-		<br/><br/>
+		<br/>
 		
 		<p:dataTable id="tabla" var="novedad"  value="#{NovedadElemento.novedades}"
 		
