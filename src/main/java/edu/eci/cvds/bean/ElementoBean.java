@@ -77,8 +77,9 @@ public class ElementoBean{
         images.add("prodigious.png");
         images.add("logo2.png");
         images.add("cpu3.png");
-        images.add("raton.jpg");
-        images.add("pantalla.jpg");
+        images.add("raton.png");
+        images.add("pantalla.png");
+
         
         try{
         	filtro=1;
