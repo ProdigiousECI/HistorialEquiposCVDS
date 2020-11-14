@@ -15,11 +15,11 @@ and open the template in the editor.
         <h:outputStylesheet name="style.css" library="css" />
     </h:head>
     <h:body>
-        <center>
-        <img src="resources/img/logo.JPG" align="center"/>
-        </center>
-        <br/>
-        <br/>
+		
+      
+        <img src="resources/img/logo4.png" class="imagenElemento"/>
+		<p:button class="volver" outcome="menu.xhtml" value=""/>
+        
         <center>
         <p:outputLabel value="Registro Equipos"/>
         <h:form id="formEquipo">
@@ -28,10 +28,9 @@ and open the template in the editor.
                 <p:inputText id="Nombre" type="String" binding="#{nombre}"/>
             </h:panelGrid>
             
-            <br>
-            <p:commandButton update="formEquipo" class="Button" value="Registrar Equipo" actionListener="#{Equipo.registrarEquipo(id.value, nombre.value )}"/>
-            </br>
             <br/>
+            <p:commandButton update="formEquipo" class="Button" value="Registrar Equipo" actionListener="#{Equipo.registrarEquipo(id.value, nombre.value )}"/>
+
             <p:dataTable value="#{Equipo.equipos}" var="equip" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="width:450px;" >
                 <center>

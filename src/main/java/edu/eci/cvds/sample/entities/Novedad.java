@@ -120,7 +120,7 @@ public class Novedad implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Novedad [id=" + id + ", fecha=" + fecha + ", elemento=" + elemento +", titulo=" + titulo + ", detalle=" + detalle + "]";
+		return "Novedad [id=" + id + ", fecha=" + fecha + ", equipo=" + equipo +", elemento=" + elemento +", titulo=" + titulo + ", detalle=" + detalle + "]";
 	}
 	
 
