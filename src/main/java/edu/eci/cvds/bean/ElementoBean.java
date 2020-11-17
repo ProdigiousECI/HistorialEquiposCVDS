@@ -42,6 +42,8 @@ public class ElementoBean{
     
     private final ServiceHistorialEquipos serviceHE;
     private int filtro;
+    @Inject
+    private NovedadBeanElemento novedadElemento;
     public ArrayList<Elemento> elementos;
     public ArrayList<Elemento> noDadosDeBaja;
     //public ArrayList<Equipo> equipos;
@@ -60,12 +62,37 @@ public class ElementoBean{
     }
 
     public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {
-        int input = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja el elemento "+id+"?");
-        if(input==0)
+        Elemento e=obtenerElemento(id);
+        if("no".equals(e.getBaja()))
         {
-            serviceHE.darBajaElemento(id); 
-            showMessage("El elemento "+id+" ha sido dado de baja");
-        }       
+            int input = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja el elemento "+id+"?");
+            if(input==0)
+            {
+                serviceHE.darBajaElemento(id); 
+                showMessage("Elemento "+ e.getNombre()+ " con id " +id+" ha sido dado de baja");
+                novedadElemento.setElementoId(id);
+                novedadElemento.registrarNovedad(e.getNombre()+" dado de Baja", "Se ha dado de baja el elemento con id "+e.getId());
+            }   
+        }else
+        {
+            showMessage("Elemento " + e.getNombre()+ " con id " +id+" ya se encuentra dado de baja");
+        }
+    }
+
+    public int getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(int filtro) {
+        this.filtro = filtro;
+    }
+
+    public ArrayList<Elemento> getNoDadosDeBaja() {
+        return noDadosDeBaja;
+    }
+
+    public void setNoDadosDeBaja(ArrayList<Elemento> noDadosDeBaja) {
+        this.noDadosDeBaja = noDadosDeBaja;
     }
 
     public void bajaNoElemento() throws ExcepcionServiceHistorialEquipos 

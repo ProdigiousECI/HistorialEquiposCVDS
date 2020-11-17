@@ -67,12 +67,12 @@ and open the template in the editor.
                     <p:column headerText="Tipo">
                         <p:outputLabel value="#{el.tipo}"/>
                     </p:column>
-                    <p:column headerText="idEquipo">
-                        <p:outputLabel value="#{null}"/>
+                    <p:column headerText="Historial de Novedades">
+                        <p:link class="link" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
                     </p:column>
-					<p:column headerText="Historial de Novedades">
-						<p:link class="link" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
-					</p:column>
+                    <p:column headerText="Dar de Baja">
+                        <p:commandLink update="tabla" class="Button" value="Dar de Baja" actionListener="#{Elemento.darBajaElemento(el.id)}"/>
+                    </p:column>
                </center>
 
             </p:dataTable>  
