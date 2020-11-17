@@ -20,6 +20,7 @@ import edu.eci.cvds.sample.entities.Elemento;
 //import edu.eci.cvds.sample.entities.Equipo;
 import edu.eci.cvds.sample.factory.ServiceFactory;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author javier
@@ -42,6 +43,7 @@ public class ElementoBean{
     private final ServiceHistorialEquipos serviceHE;
     private int filtro;
     public ArrayList<Elemento> elementos;
+    public ArrayList<Elemento> noDadosDeBaja;
     //public ArrayList<Equipo> equipos;
 
     public ArrayList<Elemento> getElementos() throws ExcepcionServiceHistorialEquipos {
@@ -57,7 +59,20 @@ public class ElementoBean{
     	elementos=serviceHE.consultarElementos(filtro);
     }
 
+    public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {
+        int input = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja el elemento "+id+"?");
+        if(input==0)
+        {
+            serviceHE.darBajaElemento(id); 
+            showMessage("El elemento "+id+" ha sido dado de baja");
+        }       
+    }
 
+    public void bajaNoElemento() throws ExcepcionServiceHistorialEquipos 
+    {
+        noDadosDeBaja=serviceHE.bajaNoElemento();
+    }
+    
     public void setElementos(ArrayList<Elemento> elementos) {
         this.elementos = elementos;
     }

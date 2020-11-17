@@ -16,4 +16,6 @@ public interface ElementoDAO {
     public void registrarElemento(Elemento ele) throws PersistenceException;
     public Elemento consultarElemento(int id) throws PersistenceException;
     public ArrayList<Elemento> consultarElementos(int e) throws PersistenceException;
+    public void darBajaElemento(int id) throws PersistenceException;
+    public ArrayList<Elemento> bajaNoElemento() throws PersistenceException;
 }

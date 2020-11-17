@@ -169,4 +169,21 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         }
     }
 
+    @Override
+    public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {
+        try {
+            elementoDAO.darBajaElemento(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiceHistorialEquipos("Error al dar de baja", ex);
+        }
+    }
+
+    @Override
+    public ArrayList<Elemento> bajaNoElemento() throws ExcepcionServiceHistorialEquipos {
+        try {
+            return elementoDAO.bajaNoElemento();
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("Errores al consultar baja no ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
 }

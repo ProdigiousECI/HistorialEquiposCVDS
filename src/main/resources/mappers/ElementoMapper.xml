@@ -22,6 +22,16 @@
                 FROM Elemento as e
                 where e.id=#{idele}
         </select>
+        <select parameterType="map" id="bajaNoElemento" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo,
+                e.activo,
+                e.baja
+                FROM Elemento as e
+                where e.baja='no'
+        </select>
         <select parameterType="map" id="consultarElementos" resultMap="ElementoResult">
             select
                 e.id,
@@ -43,4 +53,7 @@
         <insert id="registrarElemento" parameterType="map">
             INSERT INTO Elemento values ((SELECT MAX(id) +1 FROM Elemento), #{ele.nombre}, #{ele.tipo}, 'si','no',null) <!---->
         </insert>
+        <update id="darBajaElemento" parameterType="map">
+            UPDATE Elemento SET baja='si' WHERE id=#{idele}
+        </update>
 </mapper>

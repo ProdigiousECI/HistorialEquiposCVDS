@@ -48,5 +48,23 @@ public class MyBATISElementoDAO implements ElementoDAO{
              throw new PersistenceException("Error al consultar elementos", e);
         }
     }
+
+    @Override
+    public void darBajaElemento(int id) throws PersistenceException {
+        try{
+            elementoMapper.darBajaElemento(id);
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+             throw new PersistenceException("Error al consultar el elemento", e);
+        }    
+    }
+
+    @Override
+    public ArrayList<Elemento> bajaNoElemento() throws PersistenceException {
+        try{
+            return elementoMapper.bajaNoElemento();
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+             throw new PersistenceException("Error al consultar el elemento", e);
+        } 
+    }
     
 }

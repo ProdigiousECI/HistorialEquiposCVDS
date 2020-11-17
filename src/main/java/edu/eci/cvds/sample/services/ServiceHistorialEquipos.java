@@ -38,7 +38,9 @@ public interface ServiceHistorialEquipos {
     
     public abstract ArrayList<Equipo> consultarEquipos() throws ExcepcionServiceHistorialEquipos;
 
-
+    public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos;
+    
+    public ArrayList<Elemento> bajaNoElemento() throws ExcepcionServiceHistorialEquipos;
     /**
      * Retorna el usuario segun sus credenciales
      * @param correo String  correo del usuario
