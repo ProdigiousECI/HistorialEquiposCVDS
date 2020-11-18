@@ -15,12 +15,14 @@ and open the template in the editor.
         <h:outputStylesheet name="style.css" library="css" />
     </h:head>
     <h:body>
+
+		
+      
+        <img src="resources/img/logo4.png" class="imagenElemento"/>
+		<p:button class="volver" outcome="menu.xhtml" value=""/>
+        
         <center>
-        <img src="resources/img/logo.png" width="300" height="100" align="center"/>
-        </center>
-        <br/>
-        <br/>
-        <center>                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
         <p:outputLabel value="Registro Equipos"/>
         <h:form id="formEquipo" >
             <h:panelGrid columns="1">
@@ -56,10 +58,12 @@ and open the template in the editor.
                 
             </h:panelGrid>
             
+
             <br>
             <p:commandButton update="formEquipo" class="Button" value="Registrar Equipo" actionListener="#{Equipo.registrarEquipo(id.value, nombre.value,torre.value, pantalla.value, mouse.value, teclado.value)}"/>
             </br>
-            <br/>
+            
+
             <p:dataTable value="#{Equipo.equipos}" var="equip" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="width:450px;" >
                 <center>
@@ -73,6 +77,11 @@ and open the template in the editor.
                     <p:column headerText="Historial de Novedades">
                             <p:link class="link" outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades"></p:link>
                     </p:column>
+
+                    <p:column headerText="Historial de Novedades">
+                      <p:link  outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades" style="color: #999;"></p:link>
+                    </p:column>
+
 					
                </center>
 

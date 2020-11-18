@@ -14,12 +14,13 @@ import edu.eci.cvds.sampleprj.dao.UsersDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDao;
 
 import edu.eci.cvds.sampleprj.dao.EquipoDAO;
-
+import edu.eci.cvds.sampleprj.dao.LaboratorioDAO;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.NovedadDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISElementoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISEquipoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISNovedadDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISLaboratorioDAO;
 
 
 import org.mybatis.guice.XMLMyBatisModule;
@@ -46,7 +47,7 @@ public class ServiceFactory {
                 bind(EquipoDAO.class).to(MyBATISEquipoDAO.class);
                 bind(ElementoDAO.class).to(MyBATISElementoDAO.class);
                 bind(NovedadDAO.class).to(MyBATISNovedadDAO.class);
-
+                bind(LaboratorioDAO.class).to(MyBATISLaboratorioDAO.class);
             }
         }
         );

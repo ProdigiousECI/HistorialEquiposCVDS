@@ -18,6 +18,8 @@
         <typeAlias type="edu.eci.cvds.sample.entities.Elemento" alias="Elemento"/>
 
         <typeAlias type="edu.eci.cvds.sample.entities.Novedad" alias="Novedad"/>
+        
+        <typeAlias type="edu.eci.cvds.sample.entities.Laboratorio" alias="Laboratorio"/>
 
 
     </typeAliases>	
@@ -39,7 +41,8 @@
         <mapper resource="mappers/EquipoMapper.xml"></mapper>    
         <mapper resource="mappers/UsuarioMapper.xml"></mapper>    
         <mapper resource="mappers/ElementoMapper.xml"></mapper>
-        <mapper resource="mappers/Novedad.xml"></mapper>    
+        <mapper resource="mappers/Novedad.xml"></mapper>
+        <mapper resource="mappers/LaboratorioMapper.xml"></mapper>      
     </mappers> 
 
         

@@ -99,7 +99,9 @@ public class ShiroBean implements Serializable{
     public void isLogged(){
         if (SecurityUtils.getSubject().getSession().getAttribute("Correo") != null){
             try{
+            	
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/elemento.xhtml");
+
             }catch (IOException e){
                 FacesContext.getCurrentInstance().addMessage("shiro", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al redireccionar","Ocurrio un error en el servidor"));
             }
