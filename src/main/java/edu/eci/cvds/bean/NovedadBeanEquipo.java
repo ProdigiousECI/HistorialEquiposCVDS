@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.PrimeFaces;
 
+import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.entities.Equipo;
 import edu.eci.cvds.sample.entities.Novedad;
 import edu.eci.cvds.sample.factory.ServiceFactory;
@@ -52,6 +53,10 @@ public class NovedadBeanEquipo extends NovedadBean{
 
 	public void setNovedades(ArrayList<Novedad> novedades) {
 		this.novedades = novedades;
+	}
+	
+	public Equipo obtenerEquipo() throws ExcepcionServiceHistorialEquipos {
+		return service.consultarEquipo(equipoId);
 	}
 
 	@Override

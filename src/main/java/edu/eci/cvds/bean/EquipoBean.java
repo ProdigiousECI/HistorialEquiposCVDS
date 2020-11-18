@@ -43,8 +43,19 @@ public class EquipoBean{
     private final ServiceHistorialEquipos serviceHE;
     public ArrayList<Equipo> equipos;
     public Integer laboratorioId;
+    private ArrayList<String> images=new ArrayList<String>();
     public ArrayList<Equipo> equiposLab;
-    public ArrayList<Equipo> getEquipos() {
+    
+    public ArrayList<String> getImages() {
+		return images;
+	}
+
+	public void setImages(ArrayList<String> images) {
+		this.images = images;
+	}
+
+	public ArrayList<Equipo> getEquipos() {
+		System.out.println(equipos);
         return equipos;
     }
 
@@ -55,7 +66,12 @@ public class EquipoBean{
     public EquipoBean(){
         serviceHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
         try{
-            equipos = serviceHE.consultarEquipos();          
+            equipos = serviceHE.consultarEquipos();  
+            images.add("eci1.jpg");
+            images.add("boton1.JPG");
+            images.add("equipo.jpg");
+            images.add("eci2.jpg");
+            images.add("prodigious.png");
         }catch(ExcepcionServiceHistorialEquipos e){
         }
     }

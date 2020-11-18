@@ -17,22 +17,34 @@ and open the template in the editor.
     </h:head>
 	<p:button class="volver" outcome="equipo.xhtml" value=""/>
 	
-	<center>
-        <img src="resources/img/logo1.png" width="300" height="100" align="center"/>
-        </center>
-        <br/>
-        <center>
-		
+
+        <br/><br/>
 		<f:metadata>
 			<f:viewParam name="equipo" value="#{NovedadEquipo.equipoId}" />
 			<f:viewParam name="i" value="#{NovedadEquipo.i}" />
 		</f:metadata>
-	
+        <center>
+		
+		
+		<p:carousel value="#{NovedadEquipo.obtenerEquipo()}" style="width:31%;"
+					numVisible="1" headerText="Equipo" var="equipo"  >
+						<p:panelGrid columns="2" style="width:100%;border=none;">		
+							<h:outputText value="Id" />
+							<h:outputText value="#{equipo.id}" />
+									
+							<h:outputText value="nombre" />
+							<h:outputText value="#{equipo.nombre}" />
+							
+						
+									
+						
+						</p:panelGrid>
+					</p:carousel>
 		
         <h:form id="formNovedad"  >
 		
 			<p:outputLabel class="letra" value="Registrar Novedad del equipo #{NovedadEquipo.equipoId}"/>
-		<br></br>
+		<br></br><br/>
 				
             <h:panelGrid columns="2">
 		
@@ -50,21 +62,7 @@ and open the template in the editor.
 		</h:form>
 		<br></br>
 
-		<h:form id="menu">
-		
-			<p:tabMenu activeIndex="#{param.i}" style="width:450px;">
-				<p:menuitem value="historial de elementos" outcome="novedadEquipo.xhtml?equipo=#{NovedadEquipo.equipoId}"
-					icon="pi pi-star" style="width:150px;font-size: 12px;" >
-					<f:param name="i" value="0" />
-				</p:menuitem>
-				<p:menuitem value="historial de los dispositivos" outcome="novedadEquipo.xhtml?equipo=#{NovedadEquipo.equipoId}"
-					icon="pi pi-star" style="width:150px;font-size: 10px;" >
-					<f:param name="i" value="1"/>
-				</p:menuitem>
-				
-			</p:tabMenu>
-			
-		</h:form>
+
 		
 					
 		
@@ -73,11 +71,8 @@ and open the template in the editor.
 			<p:dataTable id="tabla" var="novedad"  value="#{NovedadEquipo.novedades}"
 		
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-					 paginator="true" rows="10" style="width:450px;" >
-					 
-			<p:column headerText="Id">
-				<h:outputText value="#{novedad.id}" />
-			</p:column>
+					 paginator="true" rows="10"  >
+	
 			<p:column headerText="fecha">
 				<h:outputText value="#{novedad.fecha}" />
 			</p:column>

@@ -7,7 +7,8 @@
 
 	<resultMap type='Equipo' id='EquipoResult'>
 		<id property='id' column='id'/>
-		<result property='nombre' column='nombre'/> 
+		<result property='nombre' column='nombre'/>
+		<result property='idlaboratorio' column='idlaboratorio'/> 
                 <!--association property="iduser" javaType="User" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association!-->
 	</resultMap>
         
@@ -21,7 +22,8 @@
         <select  parameterType="map" id="consultarEquipos" resultMap="EquipoResult">
             select
                 e.id,
-                e.nombre
+                e.nombre,
+                e.idlaboratorio
                 FROM Equipo as e
         </select>
         
