@@ -34,10 +34,10 @@ and open the template in the editor.
                 <p:inputText id="Nombre"  type="String" binding="#{name}"/>
                 <h:outputLabel class="letra" value="Tipo"/>        
                 <p:selectOneMenu id="Tipo" binding="#{tipo}" style="width:187px">
-                    <f:selectItem itemLabel="Torre" itemValue="Torre" />
-                    <f:selectItem itemLabel="Mouse" itemValue="Mouse" />
-                    <f:selectItem itemLabel="Teclado" itemValue="Teclado" />
-                    <f:selectItem itemLabel="Pantalla" itemValue="Pantalla" />
+                    <f:selectItem itemLabel="Torre" itemValue="Torre"/>
+                    <f:selectItem itemLabel="Mouse" itemValue="Mouse"/>
+                    <f:selectItem itemLabel="Teclado" itemValue="Teclado"/>
+                    <f:selectItem itemLabel="Pantalla" itemValue="Pantalla"/>
                 </p:selectOneMenu>
             </h:panelGrid>
 		
@@ -74,12 +74,16 @@ and open the template in the editor.
                     <p:column headerText="Tipo">
                         <p:outputLabel value="#{el.tipo}"/>
                     </p:column>
-                    <p:column headerText="idEquipo">
-                        <p:outputLabel value="#{null}"/>
+                    <p:column headerText="Historial de Novedades">
+                        <p:link class="link" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
+                    </p:column>
+                    <p:column headerText="Dar de Baja">
+                        <p:commandLink update="tabla" class="Button" value="Dar de Baja" actionListener="#{Elemento.darBajaElemento(el.id)}"/>
                     </p:column>
 					<p:column headerText="Historial de Novedades">
 						<p:link style="color: #011DEB;" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
 					</p:column>
+
                </center>
 
             </p:dataTable>  
@@ -87,9 +91,9 @@ and open the template in the editor.
 		<h:form id="descargar">
 			<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
 				<p:dataExporter type="xls" target="tabla" fileName="historialElementos" />
-
 			</p:commandButton>
 		</h:form>
  
+
     </h:body>
 </html>

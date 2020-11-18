@@ -51,7 +51,7 @@ public class NovedadBeanElemento extends NovedadBean{
         images.add("cpu5.jpg");
 
        
-    }
+        }
 	
 	
 	
@@ -108,34 +108,43 @@ public class NovedadBeanElemento extends NovedadBean{
 			System.out.println(n);
 		}
 	}
+        public void registrarNovedad(String titulo,String detalle){
+			
+            try {
+                    if(titulo.length()>0 && detalle.length()>0) {
+                            Novedad n=new Novedad(titulo,detalle);
+                    Elemento e=service.consultarElemento(elementoId);
+                    n.setElemento(e);
+                    service.registrarNovedad(n);
+                    showMessage("Tu registro de la novedad ha sido exitoso");
+                    }else {
+                            showMessage("Tu registro de la novedad ha fallado");
+                    }
+
+            } catch (ExcepcionServiceHistorialEquipos ex) {
+
+                showMessage("Tu registro de la novedad no ha sido valido");
+            } 
+        }
+        
 	public void registrarNovedad(){
 			
-        try {
-        	titulo=titulo.trim();
-        	detalle=detalle.trim();
-        	if(titulo.length()>0 && detalle.length()>0) {
-        		Novedad n=new Novedad(titulo,detalle);
-            	Elemento e=service.consultarElemento(elementoId);
-            	n.setElemento(e);
-                service.registrarNovedad(n);
-                //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "PrimeFaces Rocks."));
-                showMessage("Tu registro de la novedad ha sido exitoso");
-        	}else {
-        		showMessage("Tu registro de la novedad ha fallado");
-        	}
-        	
-        } catch (ExcepcionServiceHistorialEquipos ex) {
-           
-            showMessage("Tu registro de la novedad no ha sido valido");
-        } 
+            try {
+                    titulo=titulo.trim();
+                    detalle=detalle.trim();
+                    if(titulo.length()>0 && detalle.length()>0) {
+                            Novedad n=new Novedad(titulo,detalle);
+                    Elemento e=service.consultarElemento(elementoId);
+                    n.setElemento(e);
+                    service.registrarNovedad(n);
+                    showMessage("Tu registro de la novedad ha sido exitoso");
+                    }else {
+                            showMessage("Tu registro de la novedad ha fallado");
+                    }
+
+            } catch (ExcepcionServiceHistorialEquipos ex) {
+
+                showMessage("Tu registro de la novedad no ha sido valido");
+            } 
+        }
     }
-	
-
-	
-
-	
-
-	
-	
-
-}

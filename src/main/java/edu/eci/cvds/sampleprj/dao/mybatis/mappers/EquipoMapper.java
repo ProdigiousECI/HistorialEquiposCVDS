@@ -20,4 +20,6 @@ public interface EquipoMapper {
     
     public void registrarEquipo(@Param("equip")Equipo equip);
     
+    public ArrayList<Equipo> consultarEquiposPorLaboratorio(@Param("idlab")Integer laboratorioId);
+    
 }

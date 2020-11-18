@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Registrar Equipo</title>
+		<h:outputStylesheet name="style.css" library="css" />
+		
+    </h:head>
+	<p:button class="volver" outcome="laboratorio.xhtml" value=""/>
+	
+	<center>
+        <img src="resources/img/logo1.png" width="300" height="100" align="center"/>
+        </center>
+        <br/>
+        <center>
+		
+		<f:metadata>
+			<f:viewParam name="laboratorio" value="#{Equipo.laboratorioId}" />
+		</f:metadata>
+
+		<br></br>
+	
+                <p:dataTable id="tabla" var="equipo"  value="#{Equipo.getEquiposPorLaboratorio()}"
+		
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					 paginator="true" rows="10" style="width:450px;" >
+					 
+			<p:column headerText="Id">
+				<h:outputText value="#{equipo.id}" />
+			</p:column>
+			<p:column headerText="Nombre">
+				<h:outputText value="#{equipo.nombre}" />
+			</p:column>
+	
+			
+			
+			
+			</p:dataTable>
+		
+		
+	
+		
+		 
+		</center>
+		
+		
+		
+
+</html>

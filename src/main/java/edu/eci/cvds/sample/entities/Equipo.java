@@ -15,13 +15,25 @@ public class Equipo implements Serializable{
 
     private int id;
     private String nombre;
+    private int idlaboratorio;
 
     private User iduser = null;
     
     public Equipo(){
     }
     
-    public Equipo (int id, String nombre)
+    
+    public int getIdlaboratorio() {
+		return idlaboratorio;
+	}
+
+
+	public void setIdlaboratorio(int idlaboratorio) {
+		this.idlaboratorio = idlaboratorio;
+	}
+
+
+	public Equipo (int id, String nombre)
     {
         this.id = id;
         this.nombre = nombre;
@@ -48,7 +60,7 @@ public class Equipo implements Serializable{
 
     @Override
     public String toString() {
-        return "Equipo{" + "id=" + id + ", nombre=" + nombre + '}'; /*", iduser=" + iduser +*/
+        return "Equipo{" + "id=" + id + ", nombre=" + nombre + ", idlaboratorio=" + idlaboratorio + '}'; /*", iduser=" + iduser +*/
     }
 
     public User getUser() {

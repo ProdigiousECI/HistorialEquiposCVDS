@@ -12,6 +12,8 @@
 		<result property='baja' column='baja'/>  
                 <!--association property="equipo" javaType="Equipo" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association-->
 	</resultMap>
+        
+        
         <select parameterType="map" id="consultarElemento" resultMap="ElementoResult">
             select
                 e.id,
@@ -21,6 +23,16 @@
                 e.baja
                 FROM Elemento as e
                 where e.id=#{idele}
+        </select>
+        <select parameterType="map" id="bajaNoElemento" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo,
+                e.activo,
+                e.baja
+                FROM Elemento as e
+                where e.baja='no'
         </select>
         <select parameterType="map" id="consultarElementos" resultMap="ElementoResult">
             select
@@ -35,12 +47,67 @@
 				<if test="ordenar == 3"> ORDER BY e.tipo ASC </if>
 				<if test="ordenar == 4"> ORDER BY e.activo DESC </if>
 				<if test="ordenar == 5"> ORDER BY e.baja DESC </if>
-				<if test="ordenar == 6"> ORDER BY e.idEquipo ASC </if>
-		
-				
-				
+				<if test="ordenar == 6"> ORDER BY e.idEquipo ASC </if>			
         </select>
+        
+        <select parameterType="map" id="consultarElementosTorre" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo,
+                e.activo,
+                e.baja
+                FROM Elemento as e
+                WHERE e.tipo LIKE 'Torre'
+        </select>
+        
+        <select parameterType="map" id="consultarElementosPantalla" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo,
+                e.activo,
+                e.baja
+                FROM Elemento as e
+                WHERE e.tipo LIKE 'Pantalla'
+        </select>
+        
+        <select parameterType="map" id="consultarElementosMouse" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo,
+                e.activo,
+                e.baja
+                FROM Elemento as e
+                WHERE e.tipo LIKE 'Mouse'
+        </select>
+        
+        <select parameterType="map" id="consultarElementosTeclado" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo,
+                e.activo,
+                e.baja
+                FROM Elemento as e
+                WHERE e.tipo LIKE 'Teclado'
+        </select>
+        
         <insert id="registrarElemento" parameterType="map">
             INSERT INTO Elemento values ((SELECT MAX(id) +1 FROM Elemento), #{ele.nombre}, #{ele.tipo}, 'si','no',null) <!---->
         </insert>
+
+        
+        <update id="actualizarDisponibilidadElementos" parameterType="map">
+            UPDATE Elemento
+            SET activo='si'
+            WHERE activo=null
+        </update>    
+        
+
+        <update id="darBajaElemento" parameterType="map">
+            UPDATE Elemento SET baja='si' WHERE id=#{idele}
+        </update>
+
 </mapper>
