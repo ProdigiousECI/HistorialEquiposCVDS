@@ -17,7 +17,7 @@ import java.util.List;
 import edu.eci.cvds.sample.entities.Elemento;
 import java.util.ArrayList;
 
-
+import edu.eci.cvds.sample.entities.Laboratorio;
 
 import java.util.ArrayList;
 
@@ -64,6 +64,12 @@ public interface ServiceHistorialEquipos {
     public abstract ArrayList<Novedad> consultarNovedadporElemento(int i) throws ExcepcionServiceHistorialEquipos;
     public abstract ArrayList<Novedad> consultarNovedadporEquipo(int i) throws ExcepcionServiceHistorialEquipos;
     public abstract ArrayList<Novedad> consultarNovedades() throws ExcepcionServiceHistorialEquipos;
+    
+    
+    
+    public abstract void registrarLaboratorio(Laboratorio lab)throws ExcepcionServiceHistorialEquipos;
+    public abstract ArrayList<Laboratorio> consultarLaboratorios(int e) throws ExcepcionServiceHistorialEquipos;
+    public abstract Laboratorio consultarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos;
 
 	
 }

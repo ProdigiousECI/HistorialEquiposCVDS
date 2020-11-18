@@ -23,11 +23,12 @@ import edu.eci.cvds.sampleprj.dao.UsersDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 
 import edu.eci.cvds.sample.entities.Elemento;
+import edu.eci.cvds.sample.entities.Laboratorio;
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
-
+import edu.eci.cvds.sampleprj.dao.LaboratorioDAO;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 
 import java.util.ArrayList;
@@ -53,6 +54,9 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
 
     @Inject
     private NovedadDAO novedadDAO;
+    
+    @Inject
+    private LaboratorioDAO laboratorioDAO;
 
     @Override
     public void registrarEquipo(Equipo equip) throws ExcepcionServiceHistorialEquipos {
@@ -166,6 +170,33 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             return UserDAO.consultarUsuarios();
         } catch (PersistenceException ex) {
             throw new UnsupportedOperationException("No se pudo consultar los usuarios ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+
+    @Override
+    public void registrarLaboratorio(Laboratorio lab) throws ExcepcionServiceHistorialEquipos {
+        try {
+            laboratorioDAO.registrarLaboratorio(lab);
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("No se pudo registrar laboratorio ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+
+    @Override
+    public ArrayList<Laboratorio> consultarLaboratorios(int e) throws ExcepcionServiceHistorialEquipos {
+        try {
+            return laboratorioDAO.consultarLaboratorios(e);
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("No se pudo consultar los laboratorios ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+
+    @Override
+    public Laboratorio consultarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos {
+        try {
+            return laboratorioDAO.consultarLaboratorio(id);
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("No se pudo consultar el laboratorio", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
 
