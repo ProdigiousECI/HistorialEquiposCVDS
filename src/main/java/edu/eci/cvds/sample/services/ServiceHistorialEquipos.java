@@ -38,9 +38,13 @@ public interface ServiceHistorialEquipos {
     
     public abstract ArrayList<Equipo> consultarEquipos() throws ExcepcionServiceHistorialEquipos;
 
+
+    public abstract void actualizarDisponibilidadElementos(String torre,String pantalla,String mouse,String teclado)throws ExcepcionServiceHistorialEquipos;
+
     public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos;
     
     public ArrayList<Elemento> bajaNoElemento() throws ExcepcionServiceHistorialEquipos;
+
     /**
      * Retorna el usuario segun sus credenciales
      * @param correo String  correo del usuario
@@ -60,7 +64,10 @@ public interface ServiceHistorialEquipos {
     public abstract void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos;
     public abstract ArrayList<Elemento> consultarElementos(int e) throws ExcepcionServiceHistorialEquipos;
     public abstract Elemento consultarElemento(int id) throws ExcepcionServiceHistorialEquipos;
-
+    public abstract ArrayList<Elemento> consultarElementosTorre()throws ExcepcionServiceHistorialEquipos;
+    public abstract List<Elemento> consultarElementosPantalla()throws ExcepcionServiceHistorialEquipos;
+    public abstract List<Elemento> consultarElementosMouse()throws ExcepcionServiceHistorialEquipos;
+    public abstract List<Elemento> consultarElementosTeclado()throws ExcepcionServiceHistorialEquipos;
 	
     public abstract void registrarNovedad(Novedad n) throws ExcepcionServiceHistorialEquipos;
     public abstract ArrayList<Novedad> consultarNovedadporElemento(int i) throws ExcepcionServiceHistorialEquipos;

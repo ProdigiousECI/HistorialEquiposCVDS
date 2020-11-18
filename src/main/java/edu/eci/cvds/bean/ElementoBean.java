@@ -20,7 +20,12 @@ import edu.eci.cvds.sample.entities.Elemento;
 //import edu.eci.cvds.sample.entities.Equipo;
 import edu.eci.cvds.sample.factory.ServiceFactory;
 import java.util.ArrayList;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author javier
@@ -52,9 +57,22 @@ public class ElementoBean{
     //public ArrayList<Equipo> equipos;
 
     public ArrayList<Elemento> getElementos() throws ExcepcionServiceHistorialEquipos {
+        
         return serviceHE.consultarElementos(filtro);
     }
-    
+    public List<String> getElementosTorre()throws ExcepcionServiceHistorialEquipos{
+        System.out.println(serviceHE.consultarElementosTorre());
+        return serviceHE.consultarElementosTorre().stream().map(elemento -> elemento.getNombre()).collect(Collectors.toList());
+    }
+    public List<String> getElementosPantalla()throws ExcepcionServiceHistorialEquipos{
+        return serviceHE.consultarElementosPantalla().stream().map(elemento -> elemento.getNombre()).collect(Collectors.toList());
+    }
+    public List<String> getElementosMouse()throws ExcepcionServiceHistorialEquipos{
+        return serviceHE.consultarElementosMouse().stream().map(elemento -> elemento.getNombre()).collect(Collectors.toList());
+    }
+    public List<String> getElementosTeclado()throws ExcepcionServiceHistorialEquipos{
+        return serviceHE.consultarElementosTeclado().stream().map(elemento -> elemento.getNombre()).collect(Collectors.toList());
+    }
     public Elemento obtenerElemento(int n) throws ExcepcionServiceHistorialEquipos {
         return serviceHE.consultarElemento(n);
     }
@@ -151,6 +169,8 @@ public class ElementoBean{
             new ExcepcionServiceHistorialEquipos("No se pudo registrar cliente");
         }       
     }
+
+    
     
     public void showMessage(String confirmacion) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     
