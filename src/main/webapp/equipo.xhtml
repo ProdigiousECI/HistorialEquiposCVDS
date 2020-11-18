@@ -62,7 +62,7 @@ and open the template in the editor.
             <br>
             <p:commandButton update="formEquipo" class="Button" value="Registrar Equipo" actionListener="#{Equipo.registrarEquipo(id.value, nombre.value,torre.value, pantalla.value, mouse.value, teclado.value)}"/>
             </br>
-            
+            <br/>
 
             <p:dataTable value="#{Equipo.equipos}" var="equip" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="width:450px;" >
@@ -74,9 +74,7 @@ and open the template in the editor.
                         <p:outputLabel value="#{equip.nombre}"/>
                     </p:column>
                     
-                    <p:column headerText="Historial de Novedades">
-                            <p:link class="link" outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades"></p:link>
-                    </p:column>
+                    
 
                     <p:column headerText="Historial de Novedades">
                       <p:link  outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades" style="color: #999;"></p:link>

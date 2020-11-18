@@ -42,6 +42,9 @@ and open the template in the editor.
                     <p:column headerText="Departamento">
                         <p:outputLabel value="#{lab.departamento}"/>
                     </p:column>
+                    <p:column headerText="Equipos Asociados">
+                        <p:link  outcome="equiposLaboratorio?laboratorio=#{lab.idlaboratorio}" value="Ver equipos" style="color: #999;"></p:link>
+                    </p:column>
                     <!--<p:column headerText="IdUser">
                         <p:outputLabel value="null"/>
                     </p:column>-->

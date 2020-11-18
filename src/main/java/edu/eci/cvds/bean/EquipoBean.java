@@ -18,6 +18,7 @@ import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.entities.Equipo;
 import edu.eci.cvds.sample.entities.User;
+import javax.faces.bean.ViewScoped;
 import edu.eci.cvds.sample.factory.ServiceFactory;
 import java.util.ArrayList;
 /**
@@ -25,7 +26,8 @@ import java.util.ArrayList;
  * @author javier
  */
 @ManagedBean(name = "Equipo")
-@ApplicationScoped
+/*@ApplicationScoped*/
+@ViewScoped
 public class EquipoBean{   
     
     /*
@@ -40,7 +42,8 @@ public class EquipoBean{
     
     private final ServiceHistorialEquipos serviceHE;
     public ArrayList<Equipo> equipos;
-
+    public Integer laboratorioId;
+    public ArrayList<Equipo> equiposLab;
     public ArrayList<Equipo> getEquipos() {
         return equipos;
     }
@@ -78,8 +81,31 @@ public class EquipoBean{
             new ExcepcionServiceHistorialEquipos("No se pudo registrar equipo");
         }       
     }
+    public ArrayList<Equipo> getEquiposPorLaboratorio() throws ExcepcionServiceHistorialEquipos{
+            System.out.println(laboratorioId);
+            System.out.println(serviceHE.consultarEquiposPorLaboratorio(laboratorioId));
+            return serviceHE.consultarEquiposPorLaboratorio(laboratorioId);
+        
+    }
     public void showMessage(String confirmacion) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     
         PrimeFaces.current().dialog().showMessageDynamic(message);
     }
+
+    public Integer getLaboratorioId() {
+        return laboratorioId;
+    }
+
+    public void setLaboratorioId(Integer laboratorioId) {
+        this.laboratorioId = laboratorioId;
+    }
+
+    public ArrayList<Equipo> getEquiposLab() {
+        return equiposLab;
+    }
+
+    public void setEquiposLab(ArrayList<Equipo> equiposLab) {
+        this.equiposLab = equiposLab;
+    }
+    
 }

@@ -50,5 +50,15 @@ public class MyBATISEquipoDAO implements EquipoDAO{
         }
         //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public ArrayList<Equipo> consultarEquiposPorLaboratorio(Integer laboratorioId) throws PersistenceException {
+        try{
+            return equipoMapper.consultarEquiposPorLaboratorio(laboratorioId);
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar equipos por laboratorio",e);
+        }
+    }
+    
     
 }

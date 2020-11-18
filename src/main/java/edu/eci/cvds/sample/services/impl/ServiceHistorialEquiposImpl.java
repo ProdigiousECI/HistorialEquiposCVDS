@@ -88,6 +88,14 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
     }
 
     @Override
+    public ArrayList<Equipo> consultarEquiposPorLaboratorio(Integer laboratorioId) throws ExcepcionServiceHistorialEquipos {
+        try {
+            return equipoDAO.consultarEquiposPorLaboratorio(laboratorioId);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar equipos por laboratorio", ex);
+        }    }
+
+    @Override
     public void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos {
         try {
             elementoDAO.registrarElemento(ele);
@@ -259,5 +267,6 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         }
     }
 
+    
 
 }

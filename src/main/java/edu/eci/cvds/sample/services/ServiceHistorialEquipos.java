@@ -38,7 +38,7 @@ public interface ServiceHistorialEquipos {
     
     public abstract ArrayList<Equipo> consultarEquipos() throws ExcepcionServiceHistorialEquipos;
 
-
+    public abstract ArrayList<Equipo> consultarEquiposPorLaboratorio(Integer laboratorioId)throws ExcepcionServiceHistorialEquipos;
     public abstract void actualizarDisponibilidadElementos(String torre,String pantalla,String mouse,String teclado)throws ExcepcionServiceHistorialEquipos;
 
     public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos;

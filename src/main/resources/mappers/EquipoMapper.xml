@@ -24,8 +24,20 @@
                 e.nombre
                 FROM Equipo as e
         </select>
+        
+        <select  parameterType="map" id="consultarEquiposPorLaboratorio" resultMap="EquipoResult">
+            select
+                e.id,
+                e.nombre,
+                e.idlaboratorio
+            FROM Equipo as e
+            WHERE e.idlaboratorio=#{idlab}
+            
+            
+        </select>
+        
         <insert id="registrarEquipo" parameterType="map">
-            INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null) <!---->
+            INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null,null) <!---->
             
         </insert>
 </mapper>

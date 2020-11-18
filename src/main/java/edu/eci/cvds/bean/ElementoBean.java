@@ -61,7 +61,7 @@ public class ElementoBean{
         return serviceHE.consultarElementos(filtro);
     }
     public List<String> getElementosTorre()throws ExcepcionServiceHistorialEquipos{
-        System.out.println(serviceHE.consultarElementosTorre());
+        //System.out.println(serviceHE.consultarElementosTorre());
         return serviceHE.consultarElementosTorre().stream().map(elemento -> elemento.getNombre()).collect(Collectors.toList());
     }
     public List<String> getElementosPantalla()throws ExcepcionServiceHistorialEquipos{
