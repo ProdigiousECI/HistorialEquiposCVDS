@@ -174,6 +174,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
     }
 
     @Override
+
     public void registrarLaboratorio(Laboratorio lab) throws ExcepcionServiceHistorialEquipos {
         try {
             laboratorioDAO.registrarLaboratorio(lab);
@@ -181,8 +182,18 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new UnsupportedOperationException("No se pudo registrar laboratorio ", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
+    @Override
+    public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {
+        try {
+            elementoDAO.darBajaElemento(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiceHistorialEquipos("Error al dar de baja", ex);
+
+        }
+    }
 
     @Override
+
     public ArrayList<Laboratorio> consultarLaboratorios(int e) throws ExcepcionServiceHistorialEquipos {
         try {
             return laboratorioDAO.consultarLaboratorios(e);
@@ -197,6 +208,15 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             return laboratorioDAO.consultarLaboratorio(id);
         } catch (PersistenceException ex) {
             throw new UnsupportedOperationException("No se pudo consultar el laboratorio", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+
+
+    public ArrayList<Elemento> bajaNoElemento() throws ExcepcionServiceHistorialEquipos {
+        try {
+            return elementoDAO.bajaNoElemento();
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("Errores al consultar baja no ", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
 

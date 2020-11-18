@@ -11,8 +11,8 @@
 		<result property='fecha' column='fecha'/>
 		<result property='titulo' column='titulo'/>  
 		<result property="detalle" column="detalle"/>
-		<association property="elemento" javaType='Elemento' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper.ElementoResult"></association>
-		<association property="equipo" javaType='Equipo' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association> 
+		<association property="elemento" javaType='Elemento' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper.ElementoResult" columnPrefix='elemento_'></association>
+		<association property="equipo" javaType='Equipo' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult" columnPrefix='equipo_'></association> 
 
 	</resultMap>
 	
@@ -30,7 +30,7 @@
     
 			n.id,
 			n.fecha,
-			e.nombre,
+			e.nombre as elemento_nombre,
 			n.titulo,
 			n.detalle
 
@@ -51,16 +51,18 @@
 		
 		SELECT
     
-			id,
-			fecha,
-			titulo,
-			detalle
+			n.id,
+			n.fecha,
+			eq.nombre as equipo_nombre,
+			n.titulo,
+			n.detalle
 		
 
 		
-		FROM novedad
+		FROM novedad as n
+		left join equipo as eq on n.idequipo = eq.id
 		
-		WHERE idequipo=#{numero}
+		WHERE n.idequipo=#{numero}
 		
 		ORDER BY id DESC
 		
@@ -72,11 +74,13 @@
 			
 			n.id,
 			n.fecha,
-			e.nombre,
+			e.nombre as elemento_nombre,
+			eq.nombre as equipo_nombre,
 			n.titulo,
 			n.detalle		
 		FROM novedad AS n
-		left join elemento as e on n.idelemento = e.id 
+		left join elemento as e on n.idelemento = e.id
+		left join equipo as eq on n.idequipo = eq.id 
 		
 		ORDER BY id DESC
 		
