@@ -98,8 +98,7 @@ public class EquipoBean{
         }       
     }
     public ArrayList<Equipo> getEquiposPorLaboratorio() throws ExcepcionServiceHistorialEquipos{
-            System.out.println(laboratorioId);
-            System.out.println(serviceHE.consultarEquiposPorLaboratorio(laboratorioId));
+            
             return serviceHE.consultarEquiposPorLaboratorio(laboratorioId);
         
     }
