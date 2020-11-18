@@ -30,6 +30,7 @@ import java.util.Map;
 @ManagedBean(name = "Novedades")
 //@RequestScoped
 @ViewScoped
+//@ApplicationScoped
 public class NovedadBean implements Serializable{
 	
 	
@@ -37,6 +38,8 @@ public class NovedadBean implements Serializable{
 	private static final long serialVersionUID = -1071897882966043904L;
 	
 	protected ServiceHistorialEquipos service;
+	
+	private ArrayList<String> images=new ArrayList<String>();
 	
 	protected Integer i;
 	
@@ -50,6 +53,8 @@ public class NovedadBean implements Serializable{
 	
 	public NovedadBean(){
         service = ServiceFactory.getInstance().getServiceHistorialEquipos();
+        images.add("elemento.jpg");
+        images.add("equipo.jpg");
     }
 	
 	
@@ -60,7 +65,9 @@ public class NovedadBean implements Serializable{
 	public void setService(ServiceHistorialEquipos service) {
 		this.service = service;
 	}
-	
+	public ArrayList<String> getImages() {
+        return images;
+    }
 
 	public Integer getI() {
 		return i;

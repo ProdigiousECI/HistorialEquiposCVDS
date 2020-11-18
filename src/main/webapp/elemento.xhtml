@@ -9,24 +9,30 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Registrar Elemento</title>
         <h:outputStylesheet name="style.css" library="css" />
     </h:head>
     <h:body>
-        <center>
-        <img src="resources/img/logo.png" width="300" height="100" align="center"/>
-        </center>
-        <br/>
-        <br/>
-        <center>
-        <p:outputLabel value="Registro Elementos"/>
-        <h:form id="formElemento">
+		<p:button class="volver" outcome="menu.xhtml" value=""/>
+       <br/>
+	   <p:imageSwitch effect="fade" id="fadeEffect" style="float: right;height:170px;width: 170px;border: none;margin-right: 20%;">
+				<ui:repeat value="#{Elemento.images}" var="image" id="equiposSwitcherImages">
+					<img src="resources/img/#{image}" id="images" style="float: right;height:150px;width: 150px;border: none;background-size: 100% 100%;background:#DEDEDE;"/>
+				</ui:repeat>
+		</p:imageSwitch>
+        
+	
+		
+        <h:form id="formElemento" style="margin-left: 30%;">
+			<p:outputLabel value="Registro Elementos" style="color: #000;font-size: 30px;border-radius: 30px;margin-right: auto;font-weight: 700;" />
+			<br/><br/>
             <h:panelGrid columns="2">
-                <h:outputLabel value="Nombre"/>
-                <p:inputText id="Nombre" type="String" binding="#{name}"/>
-                <h:outputLabel value="Tipo"/>        
+                <h:outputLabel class="letra" value="Nombre"/>
+                <p:inputText id="Nombre"  type="String" binding="#{name}"/>
+                <h:outputLabel class="letra" value="Tipo"/>        
                 <p:selectOneMenu id="Tipo" binding="#{tipo}" style="width:187px">
                     <f:selectItem itemLabel="Torre" itemValue="Torre" />
                     <f:selectItem itemLabel="Mouse" itemValue="Mouse" />
@@ -34,13 +40,14 @@ and open the template in the editor.
                     <f:selectItem itemLabel="Pantalla" itemValue="Pantalla" />
                 </p:selectOneMenu>
             </h:panelGrid>
+		
+            <p:commandButton update="tabla" class="boton_elemento" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(name.value, tipo.value )}"/>
             
-            <br>
-            <p:commandButton update="tabla" class="Button" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(name.value, tipo.value )}"/>
-            </br>
-            <br/>
+            </h:form>
+	
 			
-			</h:form>
+			
+			<br></br>
             <p:dataTable id="tabla" value="#{Elemento.elementos}" var="el" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" >
                 <center>
@@ -73,17 +80,20 @@ and open the template in the editor.
                     <p:column headerText="Dar de Baja">
                         <p:commandLink update="tabla" class="Button" value="Dar de Baja" actionListener="#{Elemento.darBajaElemento(el.id)}"/>
                     </p:column>
+					<p:column headerText="Historial de Novedades">
+						<p:link style="color: #011DEB;" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
+					</p:column>
+
                </center>
 
             </p:dataTable>  
 						
 		<h:form id="descargar">
-		<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
-			<p:dataExporter type="xls" target="tabla" fileName="historialElementos" />
+			<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+				<p:dataExporter type="xls" target="tabla" fileName="historialElementos" />
+			</p:commandButton>
+		</h:form>
+ 
 
-		</p:commandButton>
-                </h:form>
-        
-        </center>
     </h:body>
 </html>

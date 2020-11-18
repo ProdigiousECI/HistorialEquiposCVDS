@@ -35,18 +35,42 @@ public class NovedadBeanElemento extends NovedadBean{
 	
 	private static final long serialVersionUID = -1071897882966043904L;
 	
-	
+	private ArrayList<String> images=new ArrayList<String>();
 		
 	private Integer elementoId;
-	private HashMap<Novedad,Integer> eliminar;
+
 	
 		
 	public NovedadBeanElemento(){
         service = ServiceFactory.getInstance().getServiceHistorialEquipos();
+        images=new ArrayList<String>();
+        images.add("cpu1.png");
+        images.add("cpu2.png");
+        images.add("cpu3.png");
+        images.add("cpu4.png");
+        images.add("cpu5.jpg");
+
        
         }
 	
 	
+	
+	
+	public ArrayList<String> getImages() {
+		return images;
+	}
+
+
+	public void setImages(ArrayList<String> images) {
+		this.images = images;
+	}
+	
+	public Elemento obtenerElemento() throws ExcepcionServiceHistorialEquipos {
+		return service.consultarElemento(elementoId);
+	}
+
+
+
 	@Override
 	public ArrayList<Novedad> getNovedades() throws ExcepcionServiceHistorialEquipos, IOException {
 

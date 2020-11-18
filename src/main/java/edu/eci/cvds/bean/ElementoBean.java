@@ -45,7 +45,10 @@ public class ElementoBean{
     @Inject
     private NovedadBeanElemento novedadElemento;
     public ArrayList<Elemento> elementos;
+
     public ArrayList<Elemento> noDadosDeBaja;
+
+    private ArrayList<String> images=new ArrayList<String>();
     //public ArrayList<Equipo> equipos;
 
     public ArrayList<Elemento> getElementos() throws ExcepcionServiceHistorialEquipos {
@@ -56,7 +59,16 @@ public class ElementoBean{
         return serviceHE.consultarElemento(n);
     }
     
-    public void ordenarElementosporFiltro(int i) throws ExcepcionServiceHistorialEquipos {
+    
+    public ArrayList<String> getImages() {
+		return images;
+	}
+
+	public void setImages(ArrayList<String> images) {
+		this.images = images;
+	}
+
+	public void ordenarElementosporFiltro(int i) throws ExcepcionServiceHistorialEquipos {
     	filtro=i;
     	elementos=serviceHE.consultarElementos(filtro);
     }
@@ -106,6 +118,13 @@ public class ElementoBean{
     
     public ElementoBean(){
         serviceHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
+        images.add("prodigious.png");
+        images.add("logo2.png");
+        images.add("cpu3.png");
+        images.add("raton.png");
+        images.add("pantalla.png");
+
+        
         try{
         	filtro=1;
             elementos = serviceHE.consultarElementos(1);          
