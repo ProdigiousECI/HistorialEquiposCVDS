@@ -26,5 +26,6 @@
         </select>
         <insert id="registrarEquipo" parameterType="map">
             INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null) <!---->
+            
         </insert>
 </mapper>

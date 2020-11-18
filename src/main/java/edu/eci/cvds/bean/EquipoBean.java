@@ -12,7 +12,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 import org.primefaces.PrimeFaces;
-
+import java.lang.String;
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.entities.Elemento;
@@ -61,11 +61,13 @@ public class EquipoBean{
         
     }
     
-    public void registrarEquipo(int id, String nombre){
+    public void registrarEquipo(int id, String nombre, String torre, String pantalla, String mouse, String teclado){
+        System.out.println(torre);
         try {
         	nombre=nombre.trim();
         	if(nombre.length()>0) {
 	            serviceHE.registrarEquipo(new Equipo(id,nombre));
+                    serviceHE.actualizarDisponibilidadElementos(torre,pantalla,mouse,teclado);
 	            equipos = serviceHE.consultarEquipos();
 	            showMessage("El registro del equipo ha sido un exito");
         	}else {

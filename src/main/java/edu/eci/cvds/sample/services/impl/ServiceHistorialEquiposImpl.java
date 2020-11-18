@@ -61,9 +61,8 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         } catch (PersistenceException ex) {
             throw new ExcepcionServiceHistorialEquipos("Error al registrar", ex);
         }
-        //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public Equipo consultarEquipo(int id) throws ExcepcionServiceHistorialEquipos {
         try {
@@ -110,7 +109,38 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos", ex);
         }
     }
-
+    @Override
+    public ArrayList<Elemento> consultarElementosTorre() throws ExcepcionServiceHistorialEquipos{
+        try{
+            return elementoDAO.consultarElementosTorre();
+        }catch (PersistenceException ex){
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos por torre", ex);
+        }
+    }
+    @Override
+    public List<Elemento> consultarElementosPantalla() throws ExcepcionServiceHistorialEquipos{
+        try{
+            return elementoDAO.consultarElementosPantalla();
+        }catch (PersistenceException ex){
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos por pantalla", ex);
+        }
+    }
+    @Override
+    public List<Elemento> consultarElementosMouse() throws ExcepcionServiceHistorialEquipos{
+        try{
+            return elementoDAO.consultarElementosMouse();
+        }catch (PersistenceException ex){
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos por mouse", ex);
+        }
+    }
+    @Override
+    public List<Elemento> consultarElementosTeclado() throws ExcepcionServiceHistorialEquipos{
+        try{
+            return elementoDAO.consultarElementosTeclado();
+        }catch (PersistenceException ex){
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos por teclado", ex);
+        }
+    }
     @Override
     public void registrarNovedad(Novedad n) throws ExcepcionServiceHistorialEquipos {
         try {
@@ -169,4 +199,12 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         }
     }
 
+    @Override
+    public void actualizarDisponibilidadElementos(String torre, String pantalla, String mouse, String teclado) throws ExcepcionServiceHistorialEquipos {
+        try{
+            elementoDAO.actualizarDisponibilidadElementos(torre, pantalla, mouse, teclado);
+        }catch (PersistenceException ex){
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos por teclado", ex);
+        }    
+    }
 }
