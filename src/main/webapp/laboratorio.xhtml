@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Registrar Laboratorio</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <h:body>
+        <center>
+        <img src="resources/img/logo2.png" width="200" height="150" align="center"/>
+        <p:button class="volver" outcome="menu.xhtml" value=""/>
+        </center>
+        <br/>
+        <br/>
+        <center>
+        <p:outputLabel value="Registro Laboratorios"/>
+        <h:form id="formLaboratorio">
+            <h:panelGrid columns="1">
+                <h:outputLabel value="Nombre"/>
+                <p:inputText id="Departamento" type="String" binding="#{departamento}"/>
+            </h:panelGrid>
+            
+            <br>
+                <p:commandButton update="formLaboratorio" class="Button" value="Registrar Laboratorio" actionListener="#{Laboratorio.registrarLaboratorio(idLaboratorio.value, departamento.value)}"/>
+            </br>
+            <br/>
+            <p:dataTable value="#{Laboratorio.laboratorios}" var="lab" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                     paginator="true" rows="10" style="width:450px;" >
+                <center>
+                    <p:column headerText="idLaboratorio">
+                        <p:outputLabel value="#{lab.idlaboratorio}"/>
+                    </p:column>
+                    <p:column headerText="Departamento">
+                        <p:outputLabel value="#{lab.departamento}"/>
+                    </p:column>
+                    <p:column headerText="Equipos Asociados">
+                        <p:link  outcome="equiposLaboratorio?laboratorio=#{lab.idlaboratorio}" value="Ver equipos" style="color: #999;"></p:link>
+                    </p:column>
+                    <!--<p:column headerText="IdUser">
+                        <p:outputLabel value="null"/>
+                    </p:column>-->
+					<!--<p:column headerText="Historial de Novedades">
+						<p:link class="link" outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades"></p:link>
+					</p:column>-->
+					
+               </center>
+
+            </p:dataTable>          
+        </h:form>
+        </center>
+    </h:body>
+</html>

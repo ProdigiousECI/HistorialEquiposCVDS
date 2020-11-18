@@ -19,4 +19,5 @@ public class ExcepcionServiceHistorialEquipos extends Exception {
 	public ExcepcionServiceHistorialEquipos(String string, PersistenceException pex) {
 		super(string, pex);
 	}
+        
 }

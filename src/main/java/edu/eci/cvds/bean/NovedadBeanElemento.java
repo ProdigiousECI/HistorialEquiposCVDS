@@ -35,18 +35,42 @@ public class NovedadBeanElemento extends NovedadBean{
 	
 	private static final long serialVersionUID = -1071897882966043904L;
 	
-	
+	private ArrayList<String> images=new ArrayList<String>();
 		
 	private Integer elementoId;
-	private HashMap<Novedad,Integer> eliminar;
+
 	
 		
 	public NovedadBeanElemento(){
         service = ServiceFactory.getInstance().getServiceHistorialEquipos();
+        images=new ArrayList<String>();
+        images.add("cpu1.png");
+        images.add("cpu2.png");
+        images.add("cpu3.png");
+        images.add("cpu4.png");
+        images.add("cpu5.jpg");
+
        
-    }
+        }
 	
 	
+	
+	
+	public ArrayList<String> getImages() {
+		return images;
+	}
+
+
+	public void setImages(ArrayList<String> images) {
+		this.images = images;
+	}
+	
+	public Elemento obtenerElemento() throws ExcepcionServiceHistorialEquipos {
+		return service.consultarElemento(elementoId);
+	}
+
+
+
 	@Override
 	public ArrayList<Novedad> getNovedades() throws ExcepcionServiceHistorialEquipos, IOException {
 
@@ -84,33 +108,43 @@ public class NovedadBeanElemento extends NovedadBean{
 			System.out.println(n);
 		}
 	}
+        public void registrarNovedad(String titulo,String detalle){
+			
+            try {
+                    if(titulo.length()>0 && detalle.length()>0) {
+                            Novedad n=new Novedad(titulo,detalle);
+                    Elemento e=service.consultarElemento(elementoId);
+                    n.setElemento(e);
+                    service.registrarNovedad(n);
+                    showMessage("Tu registro de la novedad ha sido exitoso");
+                    }else {
+                            showMessage("Tu registro de la novedad ha fallado");
+                    }
+
+            } catch (ExcepcionServiceHistorialEquipos ex) {
+
+                showMessage("Tu registro de la novedad no ha sido valido");
+            } 
+        }
+        
 	public void registrarNovedad(){
 			
-        try {
-        	titulo=titulo.trim();
-        	detalle=detalle.trim();
-        	if(titulo.length()>0 && detalle.length()>0) {
-        		Novedad n=new Novedad(titulo,detalle);
-            	Elemento e=service.consultarElemento(elementoId);
-            	n.setElemento(e);
-                service.registrarNovedad(n);
-                showMessage("Tu registro de la novedad ha sido exitoso");
-        	}else {
-        		showMessage("Tu registro de la novedad ha fallado");
-        	}
-        	
-        } catch (ExcepcionServiceHistorialEquipos ex) {
-           
-            showMessage("Tu registro de la novedad no ha sido valido");
-        } 
+            try {
+                    titulo=titulo.trim();
+                    detalle=detalle.trim();
+                    if(titulo.length()>0 && detalle.length()>0) {
+                            Novedad n=new Novedad(titulo,detalle);
+                    Elemento e=service.consultarElemento(elementoId);
+                    n.setElemento(e);
+                    service.registrarNovedad(n);
+                    showMessage("Tu registro de la novedad ha sido exitoso");
+                    }else {
+                            showMessage("Tu registro de la novedad ha fallado");
+                    }
+
+            } catch (ExcepcionServiceHistorialEquipos ex) {
+
+                showMessage("Tu registro de la novedad no ha sido valido");
+            } 
+        }
     }
-	
-
-	
-
-	
-
-	
-	
-
-}

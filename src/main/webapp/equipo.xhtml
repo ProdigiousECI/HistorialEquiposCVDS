@@ -15,23 +15,55 @@ and open the template in the editor.
         <h:outputStylesheet name="style.css" library="css" />
     </h:head>
     <h:body>
+
+		
+      
+        <img src="resources/img/logo4.png" class="imagenElemento"/>
+		<p:button class="volver" outcome="menu.xhtml" value=""/>
+        
         <center>
-        <img src="resources/img/logo.png" width="300" height="100" align="center"/>
-        </center>
-        <br/>
-        <br/>
-        <center>
+
         <p:outputLabel value="Registro Equipos"/>
-        <h:form id="formEquipo">
+        <h:form id="formEquipo" >
             <h:panelGrid columns="1">
                 <h:outputLabel value="Nombre"/>
                 <p:inputText id="Nombre" type="String" binding="#{nombre}"/>
+                <h:outputLabel value="Torre"/>
+                
+                <p:selectOneMenu id="Torre" binding="#{torre}">
+                    <f:selectItem itemLabel="--Seleccione--" itemValue="" />
+                    <f:selectItems value="#{Elemento.getElementosTorre()}" />
+                </p:selectOneMenu>
+                    
+                <h:outputLabel value="Pantalla"/>
+                
+                <p:selectOneMenu id="Pantalla" binding="#{pantalla}">
+                    <f:selectItem itemLabel="--Seleccione--" itemValue="" />
+                    <f:selectItems value="#{Elemento.getElementosPantalla()}" />
+                </p:selectOneMenu>
+                    
+                <h:outputLabel value="Mouse" binding="#{mouse}"/>
+                
+                <p:selectOneMenu id="Mouse">
+                    <f:selectItem itemLabel="--Seleccione--" itemValue="" />
+                    <f:selectItems value="#{Elemento.getElementosMouse()}" />
+                </p:selectOneMenu>
+                
+                <h:outputLabel value="Teclado"/>
+                
+                <p:selectOneMenu id="Teclado" binding="#{teclado}">
+                    <f:selectItem itemLabel="--Seleccione--" itemValue="" />
+                    <f:selectItems value="#{Elemento.getElementosTeclado()}" />
+                </p:selectOneMenu>
+                
             </h:panelGrid>
             
+
             <br>
-            <p:commandButton update="formEquipo" class="Button" value="Registrar Equipo" actionListener="#{Equipo.registrarEquipo(id.value, nombre.value )}"/>
+            <p:commandButton update="formEquipo" class="Button" value="Registrar Equipo" actionListener="#{Equipo.registrarEquipo(id.value, nombre.value,torre.value, pantalla.value, mouse.value, teclado.value)}"/>
             </br>
             <br/>
+
             <p:dataTable value="#{Equipo.equipos}" var="equip" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="width:450px;" >
                 <center>
@@ -41,12 +73,13 @@ and open the template in the editor.
                     <p:column headerText="Nombre">
                         <p:outputLabel value="#{equip.nombre}"/>
                     </p:column>
-                    <p:column headerText="IdUser">
-                        <p:outputLabel value="null"/>
+                    
+                    
+
+                    <p:column headerText="Historial de Novedades">
+                      <p:link  outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades" style="color: #999;"></p:link>
                     </p:column>
-					<p:column headerText="Historial de Novedades">
-						<p:link class="link" outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades"></p:link>
-					</p:column>
+
 					
                </center>
 

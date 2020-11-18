@@ -13,10 +13,12 @@ import com.google.inject.Injector;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.impl.ServiceHistorialEquiposImpl;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
+import edu.eci.cvds.sampleprj.dao.LaboratorioDAO;
 import edu.eci.cvds.sampleprj.dao.NovedadDAO;
 
 import edu.eci.cvds.sampleprj.dao.UsersDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISElementoDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISLaboratorioDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISNovedadDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDao;
 
@@ -46,6 +48,7 @@ public class GuiceContextListener implements ServletContextListener {
                                 bind(NovedadDAO.class).to(MyBATISNovedadDAO.class);
                                 bind(ElementoDAO.class).to(MyBATISElementoDAO.class);
                                 bind(UsersDAO.class).to(MyBatisUsuarioDao.class);
+                                bind(LaboratorioDAO.class).to(MyBATISLaboratorioDAO.class);
 			}
 		}
 

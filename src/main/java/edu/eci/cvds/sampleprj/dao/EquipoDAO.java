@@ -16,4 +16,6 @@ public interface EquipoDAO {
     public Equipo consultarEquipo(int id) throws PersistenceException;
     
     public ArrayList<Equipo> consultarEquipos() throws PersistenceException;
+    
+    public ArrayList<Equipo> consultarEquiposPorLaboratorio(Integer laboratorioId) throws PersistenceException;
 }
