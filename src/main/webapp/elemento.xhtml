@@ -52,7 +52,9 @@ and open the template in the editor.
                      paginator="true" rows="10" >
                 <center>
 					<f:facet name="{Exporters}">
-							<p:commandButton value=" " class="eliminar" actionListener="#{Elemento.multiplesBajas()}"/>
+							<p:commandButton value=" " class="eliminar" actionListener="#{Elemento.multiplesBajas()}">
+								<p:confirm header="Confirmation" message="Estas seguro de dar de baja estos elementos?" icon="pi pi-exclamation-triangle" />
+							</p:commandButton>
 							 <br></br>
 							<p:commandButton update="tabla" value="id" actionListener="#{Elemento.ordenarElementosporFiltro(1)}"/>
 							<p:commandButton update="tabla" value="nombre" actionListener="#{Elemento.ordenarElementosporFiltro(2)}"/>
@@ -80,9 +82,7 @@ and open the template in the editor.
                         <p:outputLabel value="#{el.tipo}"/>
                     </p:column>
 
-                    <p:column headerText="Dar de Baja" style="background-color:#{Elemento.color(el)};color:#000000;">
-                        <p:commandLink update="tabla" class="Button" value="Dar de Baja" actionListener="#{Elemento.darBajaElemento(el.id)}"/>
-                    </p:column>
+    
 					<p:column headerText="Historial de Novedades" style="background-color:#{Elemento.color(el)};color:#000000;">
 						<p:link style="color: #011DEB;" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
 					</p:column>

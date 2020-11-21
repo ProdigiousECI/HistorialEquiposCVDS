@@ -95,13 +95,16 @@ public class EquipoBean{
                 
                 User user=new User();
         		user.setCorreo(ShiroBean.getUser());
-    
-        		serviceHE.registrarNovedad(new Novedad("nuevo equipo","registro de "+e.getNombre(),user,serviceHE.consultarEquipoPorNombre(nombre)));
+        		Equipo equipo=serviceHE.consultarEquipoPorNombre(nombre);
+        		serviceHE.registrarNovedad(new Novedad("nuevo equipo","registro de "+e.getNombre(),user,equipo));
 	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(torre)));
 	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(pantalla)));
 	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(mouse)));
 	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(teclado)));
-	            
+	            serviceHE.asociarElementoAEquipo(torre,equipo.getId());
+	            serviceHE.asociarElementoAEquipo(pantalla,equipo.getId());
+	            serviceHE.asociarElementoAEquipo(mouse,equipo.getId());
+	            serviceHE.asociarElementoAEquipo(teclado,equipo.getId());
 	            
 	            equipos = serviceHE.consultarEquipos();
 	            showMessage("El registro del equipo ha sido un exito");

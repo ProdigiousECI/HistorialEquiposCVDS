@@ -35,7 +35,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -107,17 +106,23 @@ public class ElementoBean{
     }
 
     public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {
+    
         Elemento e=obtenerElemento(id);
-        if("no".equals(e.getBaja()))
-        {
-            int input = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja el elemento "+id+"?");
-            if(input==0)
-            {
-                serviceHE.darBajaElemento(id); 
+    
+        if(e.getBaja().equals("no")){
+
+        	if(e.getEquipo()==null) {
+                serviceHE.darBajaElemento(id);
+                User user=new User();
+        		user.setCorreo(ShiroBean.getUser());
+        		
+                serviceHE.registrarNovedad(new Novedad(e.getNombre()+" dado de Baja","Se ha dado de baja el elemento con id "+e.getId(),user,serviceHE.consultarElemento(id)));
+ 
                 showMessage("Elemento "+ e.getNombre()+ " con id " +id+" ha sido dado de baja");
-                novedadElemento=new NovedadBeanElemento(e.getNombre()+" dado de Baja", "Se ha dado de baja el elemento con id "+e.getId(),id);
-                novedadElemento.registrarNovedad();
-            }   
+        	}else {
+        		showMessage("Elemento " + e.getNombre()+ " con id " +id+" ya se encuentra ocupado");
+        	}
+              
         }else
         {
             showMessage("Elemento " + e.getNombre()+ " con id " +id+" ya se encuentra dado de baja");
@@ -221,6 +226,9 @@ public class ElementoBean{
 	    	}if(numero==-2) {
 	    		
 	    		color="#F93D3D";
+	    	}if(numero==-3) {
+	    		
+	    		color="#ADFF81";
 	    	}
     	}
     	return color;
@@ -231,6 +239,8 @@ public class ElementoBean{
     		if(nombre.getBaja().equals("si")) {
     			
     			return -2;
+    		}if(nombre.getEquipo()==null) {
+    			return -3;
     		}
     		if(nombre.getId()==e.getId()) {
     			return cont; 
@@ -244,7 +254,7 @@ public class ElementoBean{
     		
     		if(salvar.get(in)) {
     			
-    			serviceHE.darBajaElemento(in); 
+    			darBajaElemento(in);
     			salvar.put(in,false);
     		}
     		

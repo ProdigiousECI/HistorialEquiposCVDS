@@ -282,6 +282,13 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new UnsupportedOperationException("Errores al consultar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
+    public void asociarElementoAEquipo(String nombre, int id) {
+    	try {
+            elementoDAO.asociarElementoAEquipo(nombre,id);
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("Errores al asociar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
 
     
 

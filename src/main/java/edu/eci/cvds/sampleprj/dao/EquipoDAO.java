@@ -20,4 +20,6 @@ public interface EquipoDAO {
     public ArrayList<Equipo> consultarEquiposPorLaboratorio(Integer laboratorioId) throws PersistenceException;
 
 	public Equipo consultarEquipoPorNombre(String nombre) throws PersistenceException;
+
+	
 }
