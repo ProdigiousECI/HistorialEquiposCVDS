@@ -14,22 +14,9 @@ public class Novedad implements Serializable{
 	private Equipo equipo;
 	private Elemento elemento;
 	private User user;
-	private boolean eliminar;
-
-	
-	
-	public boolean isEliminar() {
-		return eliminar;
-	}
 
 
 
-
-
-
-	public void setEliminar(boolean eliminar) {
-		this.eliminar = eliminar;
-	}
 
 
 
@@ -69,22 +56,25 @@ public class Novedad implements Serializable{
 		this.user = user;
 	}
 
-	public Novedad(int id, Date fecha, String titulo,String detalle){
+	public Novedad(String titulo,String detalle,User user,Elemento elemento){
 		
-		this.id=id;
-		this.fecha=fecha;
+		
 		this.titulo=titulo;
 		this.detalle=detalle;
+		this.user=user;
+		this.elemento=elemento;
+		
+	}
+public Novedad(String titulo,String detalle,User user,Equipo equipo){
+		
+		
+		this.titulo=titulo;
+		this.detalle=detalle;
+		this.user=user;
+		this.equipo=equipo;
 		
 	}
 	
-	public Novedad(String titulo,String detalle){
-		
-	
-		this.titulo=titulo;
-		this.detalle=detalle;
-		
-	}
 	
 	public int getId() {
 		return id;
@@ -120,7 +110,7 @@ public class Novedad implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Novedad [id=" + id + ", fecha=" + fecha + ", equipo=" + equipo +", elemento=" + elemento +", titulo=" + titulo + ", detalle=" + detalle + "]";
+		return "Novedad [id=" + id + ", fecha=" + fecha + ", equipo=" + equipo + ", user=" + user + ", elemento=" + elemento +", titulo=" + titulo + ", detalle=" + detalle + "]";
 	}
 	
 

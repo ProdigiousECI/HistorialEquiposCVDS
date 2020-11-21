@@ -17,6 +17,7 @@ import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.entities.Equipo;
+import edu.eci.cvds.sample.entities.Novedad;
 import edu.eci.cvds.sample.entities.User;
 import javax.faces.bean.ViewScoped;
 import edu.eci.cvds.sample.factory.ServiceFactory;
@@ -42,6 +43,8 @@ public class EquipoBean{
     
     private final ServiceHistorialEquipos serviceHE;
     public ArrayList<Equipo> equipos;
+    private NovedadBeanEquipo novedadEquipo;
+    private NovedadBeanElemento novedadElemento;
     public Integer laboratorioId;
     private ArrayList<String> images=new ArrayList<String>();
     public ArrayList<Equipo> equiposLab;
@@ -55,7 +58,7 @@ public class EquipoBean{
 	}
 
 	public ArrayList<Equipo> getEquipos() {
-		System.out.println(equipos);
+		
         return equipos;
     }
 
@@ -81,12 +84,25 @@ public class EquipoBean{
     }
     
     public void registrarEquipo(int id, String nombre, String torre, String pantalla, String mouse, String teclado){
-        System.out.println(torre);
+   
         try {
         	nombre=nombre.trim();
         	if(nombre.length()>0) {
+        		Equipo e=new Equipo(id,nombre);
 	            serviceHE.registrarEquipo(new Equipo(id,nombre));
-                    serviceHE.actualizarDisponibilidadElementos(torre,pantalla,mouse,teclado);
+                serviceHE.actualizarDisponibilidadElementos(torre,pantalla,mouse,teclado);
+                e=serviceHE.consultarEquipoPorNombre(nombre);
+                
+                User user=new User();
+        		user.setCorreo(ShiroBean.getUser());
+    
+        		serviceHE.registrarNovedad(new Novedad("nuevo equipo","registro de "+e.getNombre(),user,serviceHE.consultarEquipoPorNombre(nombre)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(torre)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(pantalla)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(mouse)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(teclado)));
+	            
+	            
 	            equipos = serviceHE.consultarEquipos();
 	            showMessage("El registro del equipo ha sido un exito");
         	}else {
@@ -97,8 +113,9 @@ public class EquipoBean{
             new ExcepcionServiceHistorialEquipos("No se pudo registrar equipo");
         }       
     }
+    
     public ArrayList<Equipo> getEquiposPorLaboratorio() throws ExcepcionServiceHistorialEquipos{
-            
+
             return serviceHE.consultarEquiposPorLaboratorio(laboratorioId);
         
     }
@@ -121,6 +138,19 @@ public class EquipoBean{
 
     public void setEquiposLab(ArrayList<Equipo> equiposLab) {
         this.equiposLab = equiposLab;
+    }
+    public String color(Equipo nombre) {
+    	String color="#FFC264";
+    	
+    	int numero=equipos.indexOf(nombre);
+    	if (numero==-1) {
+    		color=null;
+    	}
+    	
+    	else if(numero%2==0) {
+    		color="#D27F00";
+    	}
+    	return color;
     }
     
 }

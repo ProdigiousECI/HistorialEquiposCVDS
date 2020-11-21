@@ -80,5 +80,11 @@ public interface ServiceHistorialEquipos {
     public abstract ArrayList<Laboratorio> consultarLaboratorios(int e) throws ExcepcionServiceHistorialEquipos;
     public abstract Laboratorio consultarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos;
 
+	public abstract Elemento consultarElementoPorNombre(String tipo) throws ExcepcionServiceHistorialEquipos;
+
+	public abstract Equipo consultarEquipoPorNombre(String nombre) throws ExcepcionServiceHistorialEquipos;
+
+	
+
 	
 }

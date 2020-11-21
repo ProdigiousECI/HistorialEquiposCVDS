@@ -94,13 +94,16 @@ and open the template in the editor.
 			<!--<p:column headerText="nombre">
 				<h:outputText value="#{elemento.nombre}" />
 			</p:column>-->
-			<p:column headerText="fecha">
+			<p:column headerText="fecha" style="background-color:#{NovedadElemento.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.fecha}" />
 			</p:column>
-			<p:column headerText="Titulo">
+			<p:column headerText="responsable" style="background-color:#{NovedadElemento.color(novedad)};color:#000000;">
+				<h:outputText value="#{novedad.user.correo}" />
+			</p:column>
+			<p:column headerText="Titulo" style="background-color:#{NovedadElemento.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.titulo}" />
 			</p:column>
-			<p:column headerText="Detalle">
+			<p:column headerText="Detalle" style="background-color:#{NovedadElemento.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.detalle}" />
 			</p:column>
 			

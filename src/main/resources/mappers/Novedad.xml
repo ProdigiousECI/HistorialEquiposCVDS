@@ -12,13 +12,15 @@
 		<result property='titulo' column='titulo'/>  
 		<result property="detalle" column="detalle"/>
 		<association property="elemento" javaType='Elemento' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper.ElementoResult" columnPrefix='elemento_'></association>
-		<association property="equipo" javaType='Equipo' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult" columnPrefix='equipo_'></association> 
+		<association property="equipo" javaType='Equipo' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult" columnPrefix='equipo_'></association>
+		<association property="user" javaType='Usuario' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult" columnPrefix='user_'></association> 
+		
 
 	</resultMap>
 	
 	<insert parameterType="map" id="registrarNovedad" >
 		
-		INSERT INTO novedad values((SELECT MAX(id) +1 FROM novedad),NOW(),#{idn.titulo},1,#{idn.detalle},#{idn.equipo.id},#{idn.elemento.id})
+		INSERT INTO novedad values((SELECT MAX(id) +1 FROM novedad),NOW(),#{idn.titulo},#{idn.user.correo},#{idn.detalle},#{idn.equipo.id},#{idn.elemento.id})
 		
 	</insert>
 	
@@ -31,12 +33,14 @@
 			n.id,
 			n.fecha,
 			e.nombre as elemento_nombre,
+			us.correo as user_correo,
 			n.titulo,
 			n.detalle
 
 		
 		FROM novedad AS n
 		left join elemento as e on n.idelemento = e.id 
+		left join usuario as us on n.responsable = us.correo
 		
 		WHERE n.idelemento=#{numero}
 		
@@ -54,6 +58,7 @@
 			n.id,
 			n.fecha,
 			eq.nombre as equipo_nombre,
+			us.correo as user_correo,
 			n.titulo,
 			n.detalle
 		
@@ -61,6 +66,7 @@
 		
 		FROM novedad as n
 		left join equipo as eq on n.idequipo = eq.id
+		left join usuario as us on n.responsable = us.correo
 		
 		WHERE n.idequipo=#{numero}
 		
@@ -76,11 +82,13 @@
 			n.fecha,
 			e.nombre as elemento_nombre,
 			eq.nombre as equipo_nombre,
+			us.correo as user_correo,
 			n.titulo,
 			n.detalle		
 		FROM novedad AS n
 		left join elemento as e on n.idelemento = e.id
-		left join equipo as eq on n.idequipo = eq.id 
+		left join equipo as eq on n.idequipo = eq.id
+		left join usuario as us on n.responsable = us.correo 
 		
 		ORDER BY id DESC
 		

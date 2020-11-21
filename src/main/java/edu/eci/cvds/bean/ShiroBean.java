@@ -19,6 +19,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 
+
 /**
  *
  * @author Andres Davila 
@@ -42,7 +43,10 @@ public class ShiroBean implements Serializable{
     }
 
     public String getUserName() {
+    	
+       
         return userName;
+        
     }
 
     public void setUserName(String userName) {

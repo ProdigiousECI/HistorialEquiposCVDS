@@ -73,9 +73,9 @@ h2 {
   border: none;
   cursor: pointer;
   padding: 100px 100px;
-  height: 500px;
-  width: 46%;
-  margin-left: 4%;
+  height: 250px;
+  width: 35%;
+  margin-left: 15%;
 
   
 }
@@ -86,8 +86,8 @@ h2 {
   border :none;
   cursor: pointer;
   padding: 100px 100px;
-   height: 500px;
-  width: 46%;
+   height: 250px;
+  width: 35%; 
 
 }
 .boton3{
@@ -96,9 +96,9 @@ h2 {
   border: none;
   cursor: pointer;
   padding: 100px 100px;
-  height: 500px;
-  width: 46%;
-  margin-left: 4%;
+  height: 250px;
+  width: 35%;
+  margin-left: 15%;
 
 }
 .boton4{
@@ -107,8 +107,19 @@ h2 {
   border: none;
   cursor: pointer;
   padding: 100px 100px;
-  height: 500px;
-  width: 46%;
+  height: 250px;
+  width: 35%;
+
+}
+.eliminar{
+  background: url("#{resource['img/eci4.jpeg']}") center;
+  background-size: 100% 100%;
+  border: none;
+  cursor: pointer;
+  padding: 100px 100px;
+  height: 35px;
+  width: 35px;
+  float: right;
 
 }
 .volver{
@@ -116,6 +127,15 @@ h2 {
   background: url("#{resource['img/volver.JPG']}") center;
   background-size: 100% 100%;
   border: none;
+  cursor: pointer;
+  padding: 15px 15px;
+  height: 29px;
+  width: 101px;
+}
+.ajuste{
+	float: left;
+  border: none;
+  background: #b80f22;
   cursor: pointer;
   padding: 15px 15px;
   height: 29px;
@@ -195,6 +215,17 @@ h2 {
   margin-left: auto;
   margin-right: auto;
   font-weight: 700;
+}
+#formUsuario button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+ 
+  margin-right: auto;
 }
 
 #formEquipo .link{
