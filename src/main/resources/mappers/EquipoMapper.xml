@@ -19,6 +19,13 @@
                 FROM Equipo as e
                 where e.id=#{idequip}
         </select>
+        <select parameterType="map" id="consultarEquipoPorNombre" resultMap="EquipoResult">
+            select
+                e.id,
+                e.nombre
+                FROM Equipo as e
+                where e.nombre=#{nom}
+        </select>
         <select  parameterType="map" id="consultarEquipos" resultMap="EquipoResult">
             select
                 e.id,

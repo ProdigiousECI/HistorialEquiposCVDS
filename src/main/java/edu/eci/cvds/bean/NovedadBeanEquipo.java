@@ -20,6 +20,7 @@ import org.primefaces.PrimeFaces;
 import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.entities.Equipo;
 import edu.eci.cvds.sample.entities.Novedad;
+import edu.eci.cvds.sample.entities.User;
 import edu.eci.cvds.sample.factory.ServiceFactory;
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
@@ -41,6 +42,12 @@ public class NovedadBeanEquipo extends NovedadBean{
 	public NovedadBeanEquipo(){
             service = ServiceFactory.getInstance().getServiceHistorialEquipos();
         }
+	public NovedadBeanEquipo(String titulo,String detalle,Integer equipoId){
+    	this.titulo=titulo;
+    	this.detalle=detalle;
+    	this.equipoId=equipoId; 
+  
+    }
 	
 	public ServiceHistorialEquipos getService() {
 		return service;
@@ -90,10 +97,11 @@ public class NovedadBeanEquipo extends NovedadBean{
         	titulo=titulo.trim();
         	detalle=detalle.trim();
         	if(titulo.length()>0 && detalle.length()>0) {
-	        	Novedad n=new Novedad(titulo,detalle);
-	        	Equipo e=service.consultarEquipo(equipoId);
-	        	n.setEquipo(e);
-	            service.registrarNovedad(n);
+        		User u=new User();
+                u.setCorreo(ShiroBean.getUser());
+               
+	        	Novedad n=new Novedad(titulo,detalle,u,service.consultarEquipo(equipoId));
+	        	service.registrarNovedad(n);
 	            showMessage("Tu registro de la novedad ha sido exitoso");
         	}else {
         		showMessage("Tu registro de la novedad ha fallado");

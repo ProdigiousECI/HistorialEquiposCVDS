@@ -35,6 +35,18 @@ and open the template in the editor.
 							<h:outputText value="nombre" />
 							<h:outputText value="#{equipo.nombre}" />
 							
+							<h:outputText value="Torre" />
+							<h:outputText value="#{equipo.nombre}" />
+							
+							<h:outputText value="Mouse" />
+							<h:outputText value="#{equipo.nombre}" />
+							
+							<h:outputText value="Pantalla" />
+							<h:outputText value="#{equipo.nombre}" />
+							
+							<h:outputText value="Teclado" />
+							<h:outputText value="#{equipo.nombre}" />
+							
 						
 									
 						
@@ -73,14 +85,17 @@ and open the template in the editor.
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 					 paginator="true" rows="10"  >
 	
-			<p:column headerText="fecha">
+			<p:column headerText="fecha" style="background-color:#{NovedadEquipo.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.fecha}" />
 			</p:column>
+			<p:column headerText="responsable" style="background-color:#{NovedadEquipo.color(novedad)};color:#000000;">
+				<h:outputText value="#{novedad.user.correo}" />
+			</p:column>
 	
-			<p:column headerText="Titulo">
+			<p:column headerText="Titulo" style="background-color:#{NovedadEquipo.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.titulo}" />
 			</p:column>
-			<p:column headerText="Detalle">
+			<p:column headerText="Detalle" style="background-color:#{NovedadEquipo.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.detalle}" />
 			</p:column>
 			

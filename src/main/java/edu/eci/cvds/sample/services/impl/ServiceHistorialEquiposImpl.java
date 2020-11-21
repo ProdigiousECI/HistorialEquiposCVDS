@@ -266,6 +266,22 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new UnsupportedOperationException("Errores al consultar baja no ", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
+    
+    public Elemento consultarElementoPorNombre(String tipo) throws ExcepcionServiceHistorialEquipos {
+        try {
+            return elementoDAO.consultarElementoPorNombre(tipo);
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("Errores al consultar elemento ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+    public Equipo consultarEquipoPorNombre(String nombre) throws ExcepcionServiceHistorialEquipos {
+        try {
+            return equipoDAO.consultarEquipoPorNombre(nombre);
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("Errores al consultar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
 
     
 

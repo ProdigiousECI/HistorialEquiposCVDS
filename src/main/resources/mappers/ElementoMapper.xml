@@ -93,6 +93,16 @@
                 FROM Elemento as e
                 WHERE e.tipo LIKE 'Teclado'
         </select>
+        <select parameterType="map" id="consultarElementoPorNombre" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo,
+                e.activo,
+                e.baja
+                FROM Elemento as e
+                WHERE e.nombre LIKE #{ele}
+        </select>
         
         <insert id="registrarElemento" parameterType="map">
             INSERT INTO Elemento values ((SELECT MAX(id) +1 FROM Elemento), #{ele.nombre}, #{ele.tipo}, 'si','no',null) <!---->

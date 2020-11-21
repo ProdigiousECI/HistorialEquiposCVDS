@@ -17,8 +17,11 @@ import org.primefaces.PrimeFaces;
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.entities.Laboratorio;
+import edu.eci.cvds.sample.entities.Novedad;
 //import edu.eci.cvds.sample.entities.Equipo;
 import edu.eci.cvds.sample.factory.ServiceFactory;
+
+import java.io.IOException;
 import java.util.ArrayList;
 /**
  *
@@ -80,5 +83,31 @@ public class LaboratorioBean {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     
         PrimeFaces.current().dialog().showMessageDynamic(message);
     }
+   
+   public String color(Laboratorio nombre) throws ExcepcionServiceHistorialEquipos, IOException {
+   	String color="#FFC264";
+   	if (nombre==null) {
+   		color=null;
+   	}else {
+   		int numero=buscar(nombre);
+   		
+	    	if(numero%2==0) {
+	    		color="#D27F00";
+	    	}
+   	}
+   	return color;
+   }
+   private int buscar(Laboratorio nombre) throws ExcepcionServiceHistorialEquipos, IOException {
+   	
+   	int cont=0;
+   	
+   	for(Laboratorio l:getLaboratorios()) {
+   		
+   		if(l.getIdlaboratorio()==nombre.getIdlaboratorio()) {
+   			return cont; 
+   		}cont++;
+   	}
+   	return -1;
+   }
     
 }

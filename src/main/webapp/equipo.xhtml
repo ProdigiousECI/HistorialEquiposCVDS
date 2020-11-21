@@ -24,7 +24,7 @@ and open the template in the editor.
 		<br/><br/>
 		<p:imageSwitch effect="zoom" id="fadeEffect" style="float: right;height:200px;width: 200px;border: none;margin-right: 20%;">
 				<ui:repeat value="#{Equipo.images}" var="image" id="equiposSwitcherImages">
-					<img src="resources/img/#{image}" id="images" style="float: right;height:200px;width: 200px;border: none;background-size: 100% 100%;background:#DEDEDE;"/>
+					<img src="resources/img/#{image}" id="images" style="float: right;height:200px;width: 200px;border: none;background-size: 100% 100%;background:#DEDEDE;" />
 				</ui:repeat>
 		</p:imageSwitch>
 		
@@ -54,9 +54,9 @@ and open the template in the editor.
                     <f:selectItems value="#{Elemento.getElementosPantalla()}" />
                 </p:selectOneMenu>
                     
-                <h:outputLabel value="Mouse" binding="#{mouse}" class="letra"/>
+                <h:outputLabel value="Mouse"  class="letra"/>
                 
-                <p:selectOneMenu id="Mouse">
+                <p:selectOneMenu id="Mouse" binding="#{mouse}">
                     <f:selectItem itemLabel="--Seleccione--" itemValue="" />
                     <f:selectItems value="#{Elemento.getElementosMouse()}" />
                 </p:selectOneMenu>
@@ -76,30 +76,29 @@ and open the template in the editor.
             </br>
             <br/>
 
-            <p:dataTable value="#{Equipo.equipos}" var="equip" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                     paginator="true" rows="10" style="width : 100%" >
-
-                    <p:column headerText="id">
+            <p:dataTable value="#{Equipo.equipos}" var="equip"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters} "
+                     paginator="true" rows="10">
+					
+				
+					
+                    <p:column headerText="id" style="background-color:#{Equipo.color(equip)};color:#000000;">
                         <p:outputLabel value="#{equip.id}"/>
                     </p:column>
-                    <p:column headerText="Nombre">
+                    <p:column headerText="Nombre" style="background-color:#{Equipo.color(equip)};color:#000000">
                         <p:outputLabel value="#{equip.nombre}"/>
                     </p:column>
 					
             
 					
-					<p:column headerText="idLaboratorio">
+					<p:column headerText="idLaboratorio" style="background-color:#{Equipo.color(equip)};color:#000000">
                         <p:outputLabel value="#{equip.idlaboratorio}"/>
                     </p:column>
                     
                     
 
-                    <p:column headerText="Historial de Novedades">
-                      <p:link  outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades" style="color: #011DEB;"></p:link>
+                    <p:column headerText="Historial de Novedades" style="background-color:#{Equipo.color(equip)}">
+                      <p:link  outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades" style="color: #06008B;"></p:link>
                     </p:column>
-
-					
-		
 
             </p:dataTable>          
         </h:form>

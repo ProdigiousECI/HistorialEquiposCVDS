@@ -110,6 +110,14 @@ public class MyBATISElementoDAO implements ElementoDAO{
              throw new PersistenceException("Error al consultar el elemento", e);
         } 
     }
+	@Override
+	public Elemento consultarElementoPorNombre(String tipo) throws PersistenceException {
+		try{
+            return elementoMapper.consultarElementoPorNombre(tipo);
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+             throw new PersistenceException("Error al consultar el elemento", e);
+        } 
+	}
 
     
 }
