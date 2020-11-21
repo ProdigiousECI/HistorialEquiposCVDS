@@ -27,6 +27,7 @@ public interface ElementoMapper {
     public void darBajaElemento(@Param("idele") int id);
     public ArrayList<Elemento> bajaNoElemento();
 	public Elemento consultarElementoPorNombre(@Param("ele") String ele);
+	public void asociarElementoAEquipo(@Param("nom")String nombre,@Param("ide") int id);
 
 
 }

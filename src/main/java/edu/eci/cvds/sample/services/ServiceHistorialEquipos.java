@@ -84,6 +84,8 @@ public interface ServiceHistorialEquipos {
 
 	public abstract Equipo consultarEquipoPorNombre(String nombre) throws ExcepcionServiceHistorialEquipos;
 
+	public abstract void asociarElementoAEquipo(String torre, int id) throws ExcepcionServiceHistorialEquipos;
+
 	
 
 	

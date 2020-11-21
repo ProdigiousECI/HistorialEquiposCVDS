@@ -10,7 +10,7 @@
 		<result property='tipo' column='tipo'/>  
 		<result property='activo' column='activo'/>  
 		<result property='baja' column='baja'/>  
-                <!--association property="equipo" javaType="Equipo" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association-->
+        <association property="equipo" javaType="Equipo" columnPrefix="equipo_" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association>
 	</resultMap>
         
         
@@ -20,8 +20,11 @@
                 e.nombre,
                 e.tipo,
                 e.activo,
-                e.baja
+                e.baja,
+                eq.id as equipo_id,
+                eq.nombre as equipo_nombre
                 FROM Elemento as e
+                left join equipo as eq on eq.id = e.idequipo
                 where e.id=#{idele}
         </select>
         <select parameterType="map" id="bajaNoElemento" resultMap="ElementoResult">
@@ -40,8 +43,12 @@
                 e.nombre,
                 e.tipo,
                 e.activo,
-                e.baja
+                e.baja,
+                eq.id as equipo_id,
+                eq.nombre as equipo_nombre
                 FROM Elemento as e
+                left join equipo as eq on eq.id = e.idequipo
+                
                 <if test="ordenar == 1"> ORDER BY e.id ASC </if>
 				<if test="ordenar == 2"> ORDER BY e.nombre ASC </if>
 				<if test="ordenar == 3"> ORDER BY e.tipo ASC </if>
@@ -108,7 +115,11 @@
             INSERT INTO Elemento values ((SELECT MAX(id) +1 FROM Elemento), #{ele.nombre}, #{ele.tipo}, 'si','no',null) <!---->
         </insert>
 
-        
+        <update id="asociarElementoAEquipo" parameterType="map">
+            UPDATE Elemento
+            SET idequipo=#{ide}
+            WHERE nombre=#{nom}
+        </update> 
         <update id="actualizarDisponibilidadElementos" parameterType="map">
             UPDATE Elemento
             SET activo='si'

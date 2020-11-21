@@ -49,14 +49,14 @@ public class Elemento implements Serializable{
         //this.equipo = equipo;
     }
     
-    /*public Equipo getEquipo() {
+    public Equipo getEquipo() {
         return equipo;
     }
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
-*/
+
     public String getTipo() {
         return tipo;
     }
@@ -83,6 +83,6 @@ public class Elemento implements Serializable{
     
     @Override
     public String toString() {
-        return "Elemento{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", activo=" + activo + ", baja=" + baja + '}'; /*", equipo=" + equipo +*/
+        return "Elemento{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", activo=" + activo + ", baja=" + baja + ", equipo=" + equipo + '}';
     }
 }
