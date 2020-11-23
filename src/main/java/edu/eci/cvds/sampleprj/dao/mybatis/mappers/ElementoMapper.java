@@ -15,7 +15,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ElementoMapper {
     public Elemento consultarElemento(@Param("idele") int id);
-    public ArrayList<Elemento> consultarElementos(@Param("ordenar") int e);
+    public ArrayList<Elemento> consultarElementos(@Param("ordenar") int e,@Param("filtrar") String s);
     public ArrayList<Elemento> consultarElementosTorre();
     public ArrayList<Elemento> consultarElementosPantalla();
     public ArrayList<Elemento> consultarElementosMouse();
@@ -28,6 +28,7 @@ public interface ElementoMapper {
     public ArrayList<Elemento> bajaNoElemento();
 	public Elemento consultarElementoPorNombre(@Param("ele") String ele);
 	public void asociarElementoAEquipo(@Param("nom")String nombre,@Param("ide") int id);
+	public void eliminarAsociacion(@Param("null") int n);
 
 
 }

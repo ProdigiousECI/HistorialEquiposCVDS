@@ -62,17 +62,28 @@ public class ElementoBean{
     public ArrayList<Elemento> elementos;
     private Map<Integer, Boolean> confirmar = new HashMap<Integer, Boolean>();
     private Map<Integer, Boolean> salvar = new HashMap<Integer, Boolean>();
-
+    private String filtrar="";
     public ArrayList<Elemento> noDadosDeBaja;
 
     private ArrayList<String> images=new ArrayList<String>();
     //public ArrayList<Equipo> equipos;
 
-    public ArrayList<Elemento> getElementos() throws ExcepcionServiceHistorialEquipos, InterruptedException {
-    	
-        return serviceHE.consultarElementos(filtro);
+    public ArrayList<Elemento> getElementos() throws ExcepcionServiceHistorialEquipos, InterruptedException {     
+    	for(Integer i:salvar.keySet()) {
+        	confirmar.put(i,salvar.get(i));
+        }
+        return serviceHE.consultarElementos(filtro,filtrar);
     }
-    public List<String> getElementosTorre()throws ExcepcionServiceHistorialEquipos{
+    
+    public String getFiltrar() {
+		return filtrar;
+	}
+
+	public void setFiltrar(String filtrar) {
+		this.filtrar = filtrar;
+	}
+
+	public List<String> getElementosTorre()throws ExcepcionServiceHistorialEquipos{
         //System.out.println(serviceHE.consultarElementosTorre());
         return serviceHE.consultarElementosTorre().stream().map(elemento -> elemento.getNombre()).collect(Collectors.toList());
     }
@@ -100,13 +111,15 @@ public class ElementoBean{
 
 	public void ordenarElementosporFiltro(int i) throws ExcepcionServiceHistorialEquipos {
     	filtro=i;
-    	elementos=serviceHE.consultarElementos(filtro);
-    	
-    	
+    	elementos=serviceHE.consultarElementos(filtro,filtrar);	
     }
-
+	public void ordenarElementos(String s) throws ExcepcionServiceHistorialEquipos {
+		filtrar=s;
+		System.out.println(s);
+    	elementos=serviceHE.consultarElementos(filtro,filtrar);	
+    }
     public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {
-    
+    	String mensaje="";
         Elemento e=obtenerElemento(id);
     
         if(e.getBaja().equals("no")){
@@ -118,16 +131,42 @@ public class ElementoBean{
         		
                 serviceHE.registrarNovedad(new Novedad(e.getNombre()+" dado de Baja","Se ha dado de baja el elemento con id "+e.getId(),user,serviceHE.consultarElemento(id)));
  
-                showMessage("Elemento "+ e.getNombre()+ " con id " +id+" ha sido dado de baja");
+                mensaje+="Elemento "+ e.getNombre()+ " con id " +id+" ha sido dado de baja";
         	}else {
-        		showMessage("Elemento " + e.getNombre()+ " con id " +id+" ya se encuentra ocupado");
+        		mensaje+="Elemento " + e.getNombre()+ " con id " +id+" ya se encuentra ocupado ";
         	}
               
         }else
         {
-            showMessage("Elemento " + e.getNombre()+ " con id " +id+" ya se encuentra dado de baja");
+        	mensaje+="Elemento " + e.getNombre()+ " con id " +id+" ya se encuentra dado de baja";
         }
+        showMessage(mensaje);
     }
+    public String darBajaElementos(int id,String mensaje) throws ExcepcionServiceHistorialEquipos {
+        Elemento e=obtenerElemento(id);
+    
+        if(e.getBaja().equals("no")){
+
+        	if(e.getEquipo()==null) {
+                serviceHE.darBajaElemento(id);
+                User user=new User();
+        		user.setCorreo(ShiroBean.getUser());
+        		
+                serviceHE.registrarNovedad(new Novedad(e.getNombre()+" dado de Baja","Se ha dado de baja el elemento con id "+e.getId(),user,serviceHE.consultarElemento(id)));
+ 
+               
+        	}else {
+        		mensaje+="Elemento " + e.getNombre()+ " con id " +id+",";
+        	}
+              
+        }else
+        {
+        	mensaje+="Elemento " + e.getNombre()+ " con id " +id+",";
+        }
+        return mensaje;
+    }
+    
+    
 
     public int getFiltro() {
         return filtro;
@@ -165,7 +204,7 @@ public class ElementoBean{
         
         try{
         	filtro=1;
-            elementos = serviceHE.consultarElementos(1);  
+            elementos = serviceHE.consultarElementos(1,filtrar);  
             for(Elemento e:elementos) {
             	salvar.put(e.getId(),false);
             }
@@ -185,7 +224,7 @@ public class ElementoBean{
     	return confirmar;
     	
     }
-    
+   
     public void registrarElemento(String nombre, String tipo){
         try {
         	nombre=nombre.trim();
@@ -249,27 +288,27 @@ public class ElementoBean{
     	return -1;
     }
     public void multiplesBajas() throws ExcepcionServiceHistorialEquipos, IOException {
-
+    	String mensaje="";
     	for(Integer in:salvar.keySet()) {
     		
     		if(salvar.get(in)) {
     			
-    			darBajaElemento(in);
+    			mensaje=darBajaElementos(in,mensaje);
     			salvar.put(in,false);
     		}
     		
     	
     	}
-    	ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-    	context.redirect(context.getRequestContextPath() + "elemento.xhtml");
-
+    	//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+    	//context.redirect(context.getRequestContextPath() + "elemento.xhtml");
+    	if(mensaje!="") {
+    		showMessage("Los elementos: "+mensaje +"no se pudieron dar de baja");
+    	}else {
+    		showMessage("Todos los elementos se han dado de baja exitosamente");
+    	}
+    	
     	
     }
-    public void vaciar() throws ExcepcionServiceHistorialEquipos {
-    	elementos = serviceHE.consultarElementos(filtro);  
-        
-    	for(Elemento e:elementos) {
-        	salvar.put(e.getId(),false);
-        }
-    }
+    
+   
 }

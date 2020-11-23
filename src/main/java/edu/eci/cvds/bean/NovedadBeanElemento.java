@@ -24,6 +24,7 @@ import org.primefaces.PrimeFaces;
 import com.google.inject.Inject;
 
 import edu.eci.cvds.sample.entities.Elemento;
+import edu.eci.cvds.sample.entities.Equipo;
 import edu.eci.cvds.sample.entities.Novedad;
 import edu.eci.cvds.sample.entities.User;
 import edu.eci.cvds.sample.factory.ServiceFactory;
@@ -108,7 +109,34 @@ public class NovedadBeanElemento extends NovedadBean{
 		this.elementoId = elementoId;
 	}
 	
-        
+     public void asociarEquipo(Equipo equipo) throws ExcepcionServiceHistorialEquipos, IOException {
+    	ArrayList<Elemento> ele=service.consultarElementos(1 , "");
+    	if(service.consultarElemento(elementoId).getEquipo()==null && service.consultarElemento(elementoId).getBaja().contentEquals("no")) {
+	    		
+	    	
+	    	for(Elemento e:ele) {
+	    		if(e.getEquipo()!=null) {	
+	    			if(e.getEquipo().getId()==equipo.getId() && e.getTipo().equals(service.consultarElemento(elementoId).getTipo())) {
+	        			service.eliminarAsociacion(e.getId());
+	        		}
+	    			
+	    		}
+	    		
+	    	}
+	    	service.asociarElementoAEquipo(service.consultarElemento(elementoId).getNombre(), equipo.getId());
+	    	User u=new User();
+    		u.setCorreo(ShiroBean.getUser());
+            Novedad n=new Novedad("Asociacion","el elemento ha sido asociado a "+equipo.getNombre(),u,service.consultarElemento(elementoId));
+            service.registrarNovedad(n);
+            
+            showMessage("ha sido asociado satisfactoriamente");
+    	}else {
+    		showMessage("Este elemento ya esta asigando a un equipo, o ya esta dado de baja");
+    	}
+    	ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+    	context.redirect(context.getRequestContextPath() + "registrarNovedad.xhtml?elemento="+elementoId+"&i=0");
+    	 
+     }
         
 	public void registrarNovedad(){
 			

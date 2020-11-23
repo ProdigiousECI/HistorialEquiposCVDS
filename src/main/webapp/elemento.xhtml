@@ -52,7 +52,7 @@ and open the template in the editor.
                      paginator="true" rows="10" >
                 <center>
 					<f:facet name="{Exporters}">
-							<p:commandButton value=" " class="eliminar" actionListener="#{Elemento.multiplesBajas()}">
+							<p:commandButton value=" " update="tabla" class="eliminar" actionListener="#{Elemento.multiplesBajas()}">
 								<p:confirm header="Confirmation" message="Estas seguro de dar de baja estos elementos?" icon="pi pi-exclamation-triangle" />
 							</p:commandButton>
 							 <br></br>
@@ -62,7 +62,10 @@ and open the template in the editor.
 							<p:commandButton update="tabla" value="activo" actionListener="#{Elemento.ordenarElementosporFiltro(4)}"/>
 							<p:commandButton update="tabla" value="dado por baja" actionListener="#{Elemento.ordenarElementosporFiltro(5)}"/>
 							<p:commandButton update="tabla" value="equipo asociado" actionListener="#{Elemento.ordenarElementosporFiltro(6)}"/>
-							
+							<h:form>
+								<p:inputText id="filtrar" type="String" binding="#{filtrar}"/>
+								<p:commandButton update="tabla" value="filtrar" actionListener="#{Elemento.ordenarElementos(filtrar.value)}"/>
+							</h:form>
 			
 					</f:facet>
 					<f:facet name="{PageLinks}" listener="#{Elemento.vaciar()}"/>/>

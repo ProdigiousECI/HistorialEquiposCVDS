@@ -101,6 +101,11 @@ public class EquipoBean{
 	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(pantalla)));
 	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(mouse)));
 	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(teclado)));
+	            
+	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
 	            serviceHE.asociarElementoAEquipo(torre,equipo.getId());
 	            serviceHE.asociarElementoAEquipo(pantalla,equipo.getId());
 	            serviceHE.asociarElementoAEquipo(mouse,equipo.getId());
@@ -155,5 +160,6 @@ public class EquipoBean{
     	}
     	return color;
     }
+  
     
 }

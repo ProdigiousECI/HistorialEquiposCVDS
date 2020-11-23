@@ -111,14 +111,13 @@ h2 {
   width: 35%;
 
 }
-.eliminar{
-  background: url("#{resource['img/eci4.jpeg']}") center;
-  background-size: 100% 100%;
+#tabla .eliminar{
+  background: url("#{resource['img/eliminar1.JPG']}") center;
+background-size: 100% 100%;
   border: none;
   cursor: pointer;
-  padding: 100px 100px;
-  height: 35px;
-  width: 35px;
+  weight:15px;
+ height: 20px;
   float: right;
 
 }

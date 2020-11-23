@@ -114,9 +114,9 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
     }
 
     @Override
-    public ArrayList<Elemento> consultarElementos(int e) throws ExcepcionServiceHistorialEquipos {
+    public ArrayList<Elemento> consultarElementos(int e,String s) throws ExcepcionServiceHistorialEquipos {
         try {
-            return elementoDAO.consultarElementos(e);
+            return elementoDAO.consultarElementos(e,s);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos", ex);
         }
@@ -221,7 +221,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         }    
     }
 
-
+    @Override
     public void registrarLaboratorio(Laboratorio lab) throws ExcepcionServiceHistorialEquipos {
         try {
             laboratorioDAO.registrarLaboratorio(lab);
@@ -258,7 +258,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         }
     }
 
-
+    @Override
     public ArrayList<Elemento> bajaNoElemento() throws ExcepcionServiceHistorialEquipos {
         try {
             return elementoDAO.bajaNoElemento();
@@ -266,7 +266,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new UnsupportedOperationException("Errores al consultar baja no ", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
-    
+    @Override
     public Elemento consultarElementoPorNombre(String tipo) throws ExcepcionServiceHistorialEquipos {
         try {
             return elementoDAO.consultarElementoPorNombre(tipo);
@@ -274,7 +274,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new UnsupportedOperationException("Errores al consultar elemento ", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
-    
+    @Override
     public Equipo consultarEquipoPorNombre(String nombre) throws ExcepcionServiceHistorialEquipos {
         try {
             return equipoDAO.consultarEquipoPorNombre(nombre);
@@ -282,6 +282,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new UnsupportedOperationException("Errores al consultar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
+    @Override
     public void asociarElementoAEquipo(String nombre, int id) {
     	try {
             elementoDAO.asociarElementoAEquipo(nombre,id);
@@ -289,7 +290,15 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new UnsupportedOperationException("Errores al asociar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
-
+    
+    @Override
+    public void eliminarAsociacion(int n) {
+    	try {
+            elementoDAO.eliminarAsociacion(n);
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("Errores al asociar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
     
 
 }
