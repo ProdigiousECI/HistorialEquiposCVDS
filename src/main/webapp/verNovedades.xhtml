@@ -27,19 +27,22 @@
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 					 paginator="true" rows="20">
 			
-			<p:column headerText="Elemento nombre">
+			<p:column headerText="Elemento nombre" style="background-color:#{Novedades.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.elemento.nombre}" />
 			</p:column>
-			<p:column headerText="Equipo nombre">
+			<p:column headerText="Equipo nombre" style="background-color:#{Novedades.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.equipo.nombre}" />
 			</p:column>
-			<p:column headerText="fecha">
+			<p:column headerText="responsable" style="background-color:#{Novedades.color(novedad)};color:#000000;">
+				<h:outputText value="#{novedad.user.correo}" />
+			</p:column>
+			<p:column headerText="fecha" style="background-color:#{Novedades.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.fecha}" />
 			</p:column>
-			<p:column headerText="Titulo">
+			<p:column headerText="Titulo" style="background-color:#{Novedades.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.titulo}" />
 			</p:column>
-			<p:column headerText="Detalle">
+			<p:column headerText="Detalle" style="background-color:#{Novedades.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.detalle}" />
 			</p:column>
 			

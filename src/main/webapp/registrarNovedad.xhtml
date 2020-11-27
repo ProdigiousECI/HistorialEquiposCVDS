@@ -41,25 +41,26 @@ and open the template in the editor.
 							<h:outputText value="tipo" />
 							<h:outputText value="#{elemento.tipo}" />
 										
-							<h:outputText value="disponible" />
-							<h:outputText value="#{elemento.activo}" />
 										
 							<h:outputText value="dado por baja" />
 							<h:outputText value="#{elemento.baja}" />
 										
 							<h:outputText value="equipo relacionado" />
-							<h:outputText value="1" />
+							<h:outputText value="#{elemento.equipo.nombre}" />
+							
+							<h:outputText value=" "/>
+							<p:commandLink update="tabla" class="Button" value="Dar de Baja" actionListener="#{Elemento.darBajaElemento(elemento.id)}">
+								<p:confirm header="Confirmation" message="Estas seguro de dar de baja este elemento?" icon="pi pi-exclamation-triangle" />
+							</p:commandLink>
 						
 						</p:panelGrid>
 					</p:carousel>
 			
-			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
 				
-			
-			
-			
-	
-	
 		
 			<h:form id="formNovedad" style="width:50%">
 						<br/>
@@ -94,13 +95,16 @@ and open the template in the editor.
 			<!--<p:column headerText="nombre">
 				<h:outputText value="#{elemento.nombre}" />
 			</p:column>-->
-			<p:column headerText="fecha">
+			<p:column headerText="fecha" style="background-color:#{NovedadElemento.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.fecha}" />
 			</p:column>
-			<p:column headerText="Titulo">
+			<p:column headerText="responsable" style="background-color:#{NovedadElemento.color(novedad)};color:#000000;">
+				<h:outputText value="#{novedad.user.correo}" />
+			</p:column>
+			<p:column headerText="Titulo" style="background-color:#{NovedadElemento.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.titulo}" />
 			</p:column>
-			<p:column headerText="Detalle">
+			<p:column headerText="Detalle" style="background-color:#{NovedadElemento.color(novedad)};color:#000000;">
 				<h:outputText value="#{novedad.detalle}" />
 			</p:column>
 			
@@ -116,6 +120,40 @@ and open the template in the editor.
 
 		</p:commandButton>
 		</h:form>
+		<br/><br/><br/>
+		<p:dataTable id="tablaAsociacion" var="equip"  value="#{Equipo.equipos}"
+		
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+						 paginator="true" rows="10" >
+				
+			
+				<p:column headerText="id" style="background-color:#{Equipo.color(equip)};color:#000000;">
+					 <p:outputLabel value="#{equip.id}"/>
+				</p:column>
+				<p:column headerText="nombre" style="background-color:#{Equipo.color(equip)};color:#000000;">
+					<h:outputText value="#{equip.nombre}" />
+				</p:column>
+				<p:column headerText="Asociar" style="background-color:#{Equipo.color(equip)};">
+                      <p:commandLink value="Asociar" update="tablaAsociacion" actionListener="#{NovedadElemento.asociarEquipo(equip)}" style="color:#06008B;">
+						<p:confirm header="Confirmation" message="Estas seguro que desea asociar este elemento al equipo #{equip.nombre}?" icon="pi pi-exclamation-triangle" />
+					  </p:commandLink>
+                 </p:column>
+
+				
+			
+			
+			</p:dataTable>
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
+		
+		
+		
+		
+		
+		
 				
 
 </html>

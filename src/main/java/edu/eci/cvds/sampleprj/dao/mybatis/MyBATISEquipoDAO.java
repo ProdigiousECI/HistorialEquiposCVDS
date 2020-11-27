@@ -59,6 +59,15 @@ public class MyBATISEquipoDAO implements EquipoDAO{
             throw new PersistenceException("Error al consultar equipos por laboratorio",e);
         }
     }
+
+	@Override
+	public Equipo consultarEquipoPorNombre(String nombre) throws PersistenceException {
+		try{
+            return equipoMapper.consultarEquipoPorNombre(nombre);
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar equipo",e);
+        }
+	}
     
     
 }

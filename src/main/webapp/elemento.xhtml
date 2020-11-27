@@ -41,7 +41,7 @@ and open the template in the editor.
                 </p:selectOneMenu>
             </h:panelGrid>
 		
-            <p:commandButton update="tabla" class="boton_elemento" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(name.value, tipo.value )}"/>
+            <p:commandButton update="tabla" class="boton_elemento" value="Registrar Elemento" actionListener="#{Elemento.registrarElemento(name.value, tipo.value)}"/>
             
             </h:form>
 	
@@ -52,6 +52,9 @@ and open the template in the editor.
                      paginator="true" rows="10" >
                 <center>
 					<f:facet name="{Exporters}">
+							<p:commandButton value=" " update="tabla" class="eliminar" actionListener="#{Elemento.multiplesBajas()}">
+								<p:confirm header="Confirmation" message="Estas seguro de dar de baja estos elementos?" icon="pi pi-exclamation-triangle" />
+							</p:commandButton>
 							 <br></br>
 							<p:commandButton update="tabla" value="id" actionListener="#{Elemento.ordenarElementosporFiltro(1)}"/>
 							<p:commandButton update="tabla" value="nombre" actionListener="#{Elemento.ordenarElementosporFiltro(2)}"/>
@@ -59,12 +62,45 @@ and open the template in the editor.
 							<p:commandButton update="tabla" value="activo" actionListener="#{Elemento.ordenarElementosporFiltro(4)}"/>
 							<p:commandButton update="tabla" value="dado por baja" actionListener="#{Elemento.ordenarElementosporFiltro(5)}"/>
 							<p:commandButton update="tabla" value="equipo asociado" actionListener="#{Elemento.ordenarElementosporFiltro(6)}"/>
+							<h:form>
+								<p:inputText id="filtrar" type="String" binding="#{filtrar}"/>
+								<p:commandButton update="tabla" value="filtrar" actionListener="#{Elemento.ordenarElementos(filtrar.value)}"/>
+							</h:form>
 			
 					</f:facet>
-					<!--<p:column headerText="" style="width:20px;">
-						<p:selectBooleanCheckbox value="#{novedad.eliminar}"/>
-					</p:column>-->
+					<f:facet name="{PageLinks}" listener="#{Elemento.vaciar()}"/>/>
+					<p:column headerText="" style="width:20px;background-color:#{Elemento.color(el)};color:#000000;">
+						<h:selectBooleanCheckbox value="#{Elemento.confirmar[el.id]}" >
+							<p:ajax listener="#{Elemento.setConfirmar(el.id)}" />
+						</h:selectBooleanCheckbox>
+					</p:column>
 					
+                    <p:column headerText="id" style="background-color:#{Elemento.color(el)};color:#000000;">
+                        <p:outputLabel value="#{el.id}"/>
+                    </p:column>
+                    <p:column headerText="Nombre" style="background-color:#{Elemento.color(el)};color:#000000;">
+                        <p:outputLabel value="#{el.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Tipo" style="background-color:#{Elemento.color(el)};color:#000000;">
+                        <p:outputLabel value="#{el.tipo}"/>
+                    </p:column>
+
+    
+					<p:column headerText="Historial de Novedades" style="background-color:#{Elemento.color(el)};color:#000000;">
+						<p:link style="color: #011DEB;" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
+					</p:column>
+
+               </center>
+
+            </p:dataTable> 
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
+			
+			<p:dataTable id="tabla2" value="#{Elemento.elementos}" var="el" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                     paginator="true" rows="10" style="display:none">				
                     <p:column headerText="id">
                         <p:outputLabel value="#{el.id}"/>
                     </p:column>
@@ -74,23 +110,14 @@ and open the template in the editor.
                     <p:column headerText="Tipo">
                         <p:outputLabel value="#{el.tipo}"/>
                     </p:column>
-                    <p:column headerText="Historial de Novedades">
-                        <p:link class="link" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
-                    </p:column>
-                    <p:column headerText="Dar de Baja">
-                        <p:commandLink update="tabla" class="Button" value="Dar de Baja" actionListener="#{Elemento.darBajaElemento(el.id)}"/>
-                    </p:column>
-					<p:column headerText="Historial de Novedades">
-						<p:link style="color: #011DEB;" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
-					</p:column>
 
-               </center>
 
-            </p:dataTable>  
+
+            </p:dataTable>
 						
 		<h:form id="descargar">
 			<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
-				<p:dataExporter type="xls" target="tabla" fileName="historialElementos" />
+				<p:dataExporter type="xls" target="tabla2" fileName="historialElementos" />
 			</p:commandButton>
 		</h:form>
  

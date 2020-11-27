@@ -16,7 +16,7 @@ import java.util.List;
 public interface ElementoDAO {
     public void registrarElemento(Elemento ele) throws PersistenceException;
     public Elemento consultarElemento(int id) throws PersistenceException;
-    public ArrayList<Elemento> consultarElementos(int e) throws PersistenceException;
+    public ArrayList<Elemento> consultarElementos(int e,String s) throws PersistenceException;
 
     public ArrayList<Elemento> consultarElementosTorre() throws PersistenceException;
     public List<Elemento> consultarElementosPantalla() throws PersistenceException;
@@ -26,5 +26,8 @@ public interface ElementoDAO {
 
     public void darBajaElemento(int id) throws PersistenceException;
     public ArrayList<Elemento> bajaNoElemento() throws PersistenceException;
+	public Elemento consultarElementoPorNombre(String tipo) throws PersistenceException;
+	public void asociarElementoAEquipo(String nombre, int id) throws PersistenceException;
+	public void eliminarAsociacion(int n) throws PersistenceException;
 
 }

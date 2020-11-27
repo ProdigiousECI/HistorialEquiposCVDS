@@ -62,7 +62,7 @@ public interface ServiceHistorialEquipos {
 
 
     public abstract void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos;
-    public abstract ArrayList<Elemento> consultarElementos(int e) throws ExcepcionServiceHistorialEquipos;
+    public abstract ArrayList<Elemento> consultarElementos(int e,String s) throws ExcepcionServiceHistorialEquipos;
     public abstract Elemento consultarElemento(int id) throws ExcepcionServiceHistorialEquipos;
     public abstract ArrayList<Elemento> consultarElementosTorre()throws ExcepcionServiceHistorialEquipos;
     public abstract List<Elemento> consultarElementosPantalla()throws ExcepcionServiceHistorialEquipos;
@@ -79,6 +79,16 @@ public interface ServiceHistorialEquipos {
     public abstract void registrarLaboratorio(Laboratorio lab)throws ExcepcionServiceHistorialEquipos;
     public abstract ArrayList<Laboratorio> consultarLaboratorios(int e) throws ExcepcionServiceHistorialEquipos;
     public abstract Laboratorio consultarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos;
+
+	public abstract Elemento consultarElementoPorNombre(String tipo) throws ExcepcionServiceHistorialEquipos;
+
+	public abstract Equipo consultarEquipoPorNombre(String nombre) throws ExcepcionServiceHistorialEquipos;
+
+	public abstract void asociarElementoAEquipo(String torre, int id) throws ExcepcionServiceHistorialEquipos;
+
+	public abstract void eliminarAsociacion(int n) throws ExcepcionServiceHistorialEquipos;
+
+	
 
 	
 }

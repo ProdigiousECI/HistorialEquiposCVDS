@@ -16,6 +16,7 @@ import org.primefaces.context.RequestContext;
 
 import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
+import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.entities.Novedad;
 import edu.eci.cvds.sample.factory.ServiceFactory;
 
@@ -31,11 +32,11 @@ import java.util.Map;
 //@RequestScoped
 @ViewScoped
 //@ApplicationScoped
-public class NovedadBean implements Serializable{
+public class NovedadBean {
 	
 	
 	
-	private static final long serialVersionUID = -1071897882966043904L;
+	
 	
 	protected ServiceHistorialEquipos service;
 	
@@ -48,7 +49,7 @@ public class NovedadBean implements Serializable{
 	protected String titulo;
 	
 	protected String detalle;
-	
+	protected String user;
 	protected ArrayList<Novedad> novedades;
 	
 	public NovedadBean(){
@@ -58,6 +59,19 @@ public class NovedadBean implements Serializable{
     }
 	
 	
+	
+	public String getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+
+
 	public ServiceHistorialEquipos getService() {
 		return service;
 	}
@@ -123,6 +137,31 @@ public class NovedadBean implements Serializable{
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);
          
         PrimeFaces.current().dialog().showMessageDynamic(message);
+    }
+	public String color(Novedad nombre) throws ExcepcionServiceHistorialEquipos, IOException {
+    	String color="#FFC264";
+    	if (nombre==null) {
+    		color=null;
+    	}else {
+    		int numero=buscar(nombre);
+    		
+	    	if(numero%2==0) {
+	    		color="#D27F00";
+	    	}
+    	}
+    	return color;
+    }
+    private int buscar(Novedad nombre) throws ExcepcionServiceHistorialEquipos, IOException {
+    	
+    	int cont=0;
+    	
+    	for(Novedad n:getNovedades()) {
+    		
+    		if(nombre.getId()==n.getId()) {
+    			return cont; 
+    		}cont++;
+    	}
+    	return -1;
     }
 	
 }
