@@ -47,4 +47,13 @@ public class MyBATISLaboratorioDAO implements LaboratorioDAO{
              throw new PersistenceException("Error al consultar elementos", e);
         }
     }
+
+    @Override
+    public void cerrarLaboratorio(int id) throws PersistenceException {
+        try{
+            laboratorioMapper.cerrarLaboratorio(id);
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+             throw new PersistenceException("Error al consultar elementos", e);
+        }
+    }
 }

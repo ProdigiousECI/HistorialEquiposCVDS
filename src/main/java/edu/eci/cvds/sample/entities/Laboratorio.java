@@ -16,12 +16,22 @@ public class Laboratorio implements Serializable{
     
     private int idlaboratorio;
     private String departamento;
+    private String activo;
+
+    public String getActivo() {
+        return activo;
+    }
+
+    public void setActivo(String activo) {
+        this.activo = activo;
+    }
     //pendiente por implementar
     private ArrayList<Equipo> equipos;
     
-    public Laboratorio (int idlaboratorio, String departamento) {
+    public Laboratorio (int idlaboratorio, String departamento, String activo) {
         this.idlaboratorio = idlaboratorio;
         this.departamento = departamento;
+        this.activo=activo;
      } 
     public Laboratorio(){}
 

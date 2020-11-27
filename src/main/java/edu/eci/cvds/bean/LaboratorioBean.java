@@ -67,7 +67,7 @@ public class LaboratorioBean {
         try {
         	departamento=departamento.trim();
         	if(departamento.length()>0) {
-	            serviceHE.registrarLaboratorio(new Laboratorio(idLaboratorio,departamento));
+	            serviceHE.registrarLaboratorio(new Laboratorio(idLaboratorio,departamento,"Si"));
 	        
 	            showMessage("El registro del Laboratorio ha sido un exito");
         	}else {
@@ -78,6 +78,11 @@ public class LaboratorioBean {
             new ExcepcionServiceHistorialEquipos("No se pudo registrar Laboratorio");
         }       
     }
+   public void cerrarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos
+   {
+       serviceHE.cerrarLaboratorio(id);
+       showMessage("Laboratorio " + id+ " cerrado");
+   }
 
    public void showMessage(String confirmacion) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     

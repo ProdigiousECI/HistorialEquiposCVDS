@@ -7,6 +7,7 @@
 	<resultMap type='Laboratorio' id='LaboratorioResult'>
 		<id property='idlaboratorio' column='idlaboratorio'/>
 		<result property='departamento' column='departamento'/>  
+                <result property='activo' column='activo'/>  
                 <!--association property="equipo" javaType="Equipo" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association-->
 	</resultMap>
         <select parameterType="map" id="consultarLaboratorio" resultMap="LaboratorioResult">
@@ -31,4 +32,9 @@
         <insert id="registrarLaboratorio" parameterType="map">
             INSERT INTO Laboratorio values ((SELECT MAX(idlaboratorio) +1 FROM Laboratorio), #{lab.departamento}) <!---->
         </insert>
+        <update id="cerrarLaboratorio" parameterType="map">
+            UPDATE Laboratorio
+            SET activo='No'
+            WHERE id=#{idlab}
+        </update>
 </mapper>

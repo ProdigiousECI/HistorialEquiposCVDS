@@ -299,6 +299,16 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new UnsupportedOperationException("Errores al asociar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
         }
     }
+
+    @Override
+    public void cerrarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos {
+        try {
+            laboratorioDAO.cerrarLaboratorio(id);
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("Errores al asociar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+    }
     
 
 }

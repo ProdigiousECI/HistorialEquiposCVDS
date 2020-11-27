@@ -45,6 +45,7 @@ public interface ServiceHistorialEquipos {
     
     public ArrayList<Elemento> bajaNoElemento() throws ExcepcionServiceHistorialEquipos;
 
+    public void cerrarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos;
     /**
      * Retorna el usuario segun sus credenciales
      * @param correo String  correo del usuario
