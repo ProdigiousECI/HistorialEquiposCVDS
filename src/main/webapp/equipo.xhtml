@@ -15,6 +15,9 @@ and open the template in the editor.
         <title>Registrar Equipo</title>
         <h:outputStylesheet name="style.css" library="css" />
     </h:head>
+	<f:metadata>
+			<f:viewParam name="indice" value="#{Equipo.indice}" />
+		</f:metadata>
     <h:body>
 
 		
@@ -72,14 +75,47 @@ and open the template in the editor.
             
 
             <br>
-            <p:commandButton update="formEquipo" class="Button" value="Registrar Equipo" actionListener="#{Equipo.registrarEquipo(id.value, nombre.value,torre.value, pantalla.value, mouse.value, teclado.value)}"/>
+            <p:commandButton update="tabla" class="Button" value="Registrar Equipo" actionListener="#{Equipo.registrarEquipo(id.value, nombre.value,torre.value, pantalla.value, mouse.value, teclado.value)}"/>
             </br>
             <br/>
+			</h:form>
+			<h:form id="menu">
 
-            <p:dataTable value="#{Equipo.equipos}" var="equip"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters} "
+			<p:tabMenu activeIndex="#{param.indice}">
+				<p:menuitem value="equipos activos" outcome="equipo.xhtml"
+					icon="pi pi-star">
+					<f:param name="indice" value="0" />
+				</p:menuitem>
+				<p:menuitem value="todos los equipos" outcome="equipo.xhtml"
+					icon="pi pi-star">
+					<f:param name="indice" value="1" />
+				</p:menuitem>
+				
+			</p:tabMenu>
+		</h:form>
+			
+            <p:dataTable id="tabla" value="#{Equipo.equipos}" var="equip"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters} "
                      paginator="true" rows="10">
 					
-				
+					
+					<f:facet name="{Exporters}">
+							<p:commandButton value=" " update="tabla" class="eliminar" actionListener="#{Elemento.multiplesBajas()}">
+								<p:confirm header="Confirmation" message="Estas seguro de dar de baja estos elementos?" icon="pi pi-exclamation-triangle" />
+							</p:commandButton>
+							 <br></br>
+							<p:commandButton update="tabla" value="id" actionListener="#{Equipo.ordenarEquiposporFiltro(1)}"/>
+							<p:commandButton update="tabla" value="nombre" actionListener="#{Equipo.ordenarEquiposporFiltro(2)}"/>
+							<p:commandButton update="tabla" value="activo" actionListener="#{Equipo.ordenarEquiposporFiltro(3)}"/>
+							<p:commandButton update="tabla" value="idlaboratorio" actionListener="#{Equipo.ordenarEquiposporFiltro(4)}"/>
+							<h:form>
+								<p:inputText id="filtrar" type="String" binding="#{filtrar}"/>
+								<p:commandButton update="tabla" value="filtrar" actionListener="#{Equipo.ordenarEquipos(filtrar.value)}"/>
+							</h:form>
+			
+					</f:facet>
+					
+					
+					
 					
                     <p:column headerText="id" style="background-color:#{Equipo.color(equip)};color:#000000;">
                         <p:outputLabel value="#{equip.id}"/>
@@ -97,11 +133,42 @@ and open the template in the editor.
                     
 
                     <p:column headerText="Historial de Novedades" style="background-color:#{Equipo.color(equip)}">
-                      <p:link  outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver novedades" style="color: #06008B;"></p:link>
+                      <p:link  outcome="novedadEquipo?equipo=#{equip.id}&amp;i=0" value="ver equipos" style="color: #06008B;"></p:link>
                     </p:column>
 
             </p:dataTable>          
-        </h:form>
+        
         </center>
+		<p:dataTable id="tabla2" value="#{Equipo.equipos}" var="equip"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters} "
+                     paginator="true" rows="10" style="display:none">
+					
+
+                    <p:column headerText="id">
+                        <p:outputLabel value="#{equip.id}"/>
+                    </p:column>
+					
+                    <p:column headerText="Nombre">
+                        <p:outputLabel value="#{equip.nombre}"/>
+                    </p:column>
+					
+					
+					<p:column headerText="idLaboratorio">
+                        <p:outputLabel value="#{equip.idlaboratorio}"/>
+                    </p:column>
+					
+					<p:column headerText="activo">
+                        <p:outputLabel value="#{equip.activo}"/>
+                    </p:column>
+                    
+                    
+
+                    
+
+            </p:dataTable>   
+		<h:form id="descargar">
+			<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+				<p:dataExporter type="xls" target="tabla2" fileName="historialElementos" />
+			</p:commandButton>
+		</h:form>
     </h:body>
 </html>

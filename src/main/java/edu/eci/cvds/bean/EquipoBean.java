@@ -43,13 +43,42 @@ public class EquipoBean{
     
     private final ServiceHistorialEquipos serviceHE;
     public ArrayList<Equipo> equipos;
+    private int indice; 
     private NovedadBeanEquipo novedadEquipo;
     private NovedadBeanElemento novedadElemento;
+    private int filtro;
+    private String filtrar;
     public Integer laboratorioId;
     private ArrayList<String> images=new ArrayList<String>();
     public ArrayList<Equipo> equiposLab;
     
-    public ArrayList<String> getImages() {
+    
+    
+    public int getIndice() {
+		return indice;
+	}
+
+	public void setIndice(int indice) {
+		this.indice = indice;
+	}
+
+	public int getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(int filtro) {
+		this.filtro = filtro;
+	}
+
+	public String getFiltrar() {
+		return filtrar;
+	}
+
+	public void setFiltrar(String filtrar) {
+		this.filtrar = filtrar;
+	}
+
+	public ArrayList<String> getImages() {
 		return images;
 	}
 
@@ -57,9 +86,16 @@ public class EquipoBean{
 		this.images = images;
 	}
 
-	public ArrayList<Equipo> getEquipos() {
+	public ArrayList<Equipo> getEquipos() throws ExcepcionServiceHistorialEquipos {
 		
-        return equipos;
+		
+		if(indice==0 ) {
+			equipos= serviceHE.consultarEquiposActivos(filtro, filtrar);
+		}else if(indice==1) {
+			equipos= serviceHE.consultarEquipos(filtro, filtrar);
+		}
+		return equipos;
+        
     }
 
     public void setEquipos(ArrayList<Equipo> equipos) {
@@ -68,21 +104,32 @@ public class EquipoBean{
     
     public EquipoBean(){
         serviceHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
-        try{
-            equipos = serviceHE.consultarEquipos();  
+      
+        	filtrar="";
+        	filtro=1;
+             
             images.add("eci1.jpg");
             images.add("boton1.JPG");
             images.add("equipo.jpg");
             images.add("eci2.jpg");
             images.add("prodigious.png");
-        }catch(ExcepcionServiceHistorialEquipos e){
-        }
+        
     }
+    
+  
+    public void ordenarEquipos(String s) throws ExcepcionServiceHistorialEquipos {
+		filtrar=s;
+    	getEquipos();
+    }
+    
     
     public void start(){
         
     }
-    
+    public void ordenarEquiposporFiltro(int i) throws ExcepcionServiceHistorialEquipos {
+    	filtro=i;
+    	equipos=serviceHE.consultarEquipos(filtro,filtrar);	
+    }
     public void registrarEquipo(int id, String nombre, String torre, String pantalla, String mouse, String teclado){
    
         try {
@@ -111,7 +158,7 @@ public class EquipoBean{
 	            serviceHE.asociarElementoAEquipo(mouse,equipo.getId());
 	            serviceHE.asociarElementoAEquipo(teclado,equipo.getId());
 	            
-	            equipos = serviceHE.consultarEquipos();
+	            equipos = getEquipos();
 	            showMessage("El registro del equipo ha sido un exito");
         	}else {
         		showMessage("El registro del equipo ha fracasado");
@@ -147,18 +194,30 @@ public class EquipoBean{
     public void setEquiposLab(ArrayList<Equipo> equiposLab) {
         this.equiposLab = equiposLab;
     }
-    public String color(Equipo nombre) {
+    public String color(Equipo nombre) throws ExcepcionServiceHistorialEquipos {
     	String color="#FFC264";
     	
-    	int numero=equipos.indexOf(nombre);
-    	if (numero==-1) {
+    	if(nombre==null) {
     		color=null;
-    	}
-    	
-    	else if(numero%2==0) {
-    		color="#D27F00";
+    	}else{
+	    	int numero=buscar(nombre);
+	    	if(numero%2==0) {
+	    		color="#D27F00";
+	    	}
     	}
     	return color;
+    }
+    private int buscar(Equipo nombre) throws ExcepcionServiceHistorialEquipos {
+    	
+    	int cont=0;
+    	
+    	for(Equipo e:equipos) {
+    		
+    		if(nombre.getId()==e.getId()) {
+    			return cont; 
+    		}cont++;
+    	}
+    	return -1;
     }
   
     

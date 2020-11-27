@@ -16,6 +16,7 @@ public class Equipo implements Serializable{
     private int id;
     private String nombre;
     private int idlaboratorio;
+    private String activo;
 
     private User iduser = null;
     
@@ -23,7 +24,20 @@ public class Equipo implements Serializable{
     }
     
     
-    public int getIdlaboratorio() {
+    
+    public String getActivo() {
+		return activo;
+	}
+
+
+
+	public void setActivo(String activo) {
+		this.activo = activo;
+	}
+
+
+
+	public int getIdlaboratorio() {
 		return idlaboratorio;
 	}
 
@@ -60,7 +74,7 @@ public class Equipo implements Serializable{
 
     @Override
     public String toString() {
-        return "Equipo{" + "id=" + id + ", nombre=" + nombre + ", idlaboratorio=" + idlaboratorio + '}'; /*", iduser=" + iduser +*/
+        return "Equipo{" + "id=" + id + ", nombre=" + nombre +", activo=" + activo + ", idlaboratorio=" + idlaboratorio + '}'; /*", iduser=" + iduser +*/
     }
 
     public User getUser() {

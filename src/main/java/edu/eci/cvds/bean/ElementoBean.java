@@ -115,7 +115,6 @@ public class ElementoBean{
     }
 	public void ordenarElementos(String s) throws ExcepcionServiceHistorialEquipos {
 		filtrar=s;
-		System.out.println(s);
     	elementos=serviceHE.consultarElementos(filtro,filtrar);	
     }
     public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {

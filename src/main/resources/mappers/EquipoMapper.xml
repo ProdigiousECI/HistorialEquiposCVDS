@@ -30,8 +30,27 @@
             select
                 e.id,
                 e.nombre,
-                e.idlaboratorio
+                e.idlaboratorio,
+                e.activo
                 FROM Equipo as e
+                WHERE e.nombre LIKE #{filtrar}
+                <if test="filtro == 1"> ORDER BY e.id ASC </if>
+				<if test="filtro == 2"> ORDER BY e.nombre ASC </if>
+				<if test="filtro == 3"> ORDER BY e.idlaboratorio ASC </if>
+				<if test="filtro == 4"> ORDER BY e.activo DESC </if>
+        </select>
+        <select  parameterType="map" id="consultarEquiposActivos" resultMap="EquipoResult">
+            select
+                e.id,
+                e.nombre,
+                e.idlaboratorio,
+                e.activo
+                FROM Equipo as e
+                WHERE e.nombre LIKE #{filtrar} and activo like 'si'
+                <if test="filtro == 1"> ORDER BY e.id ASC </if>
+				<if test="filtro == 2"> ORDER BY e.nombre ASC </if>
+				<if test="filtro == 3"> ORDER BY e.idlaboratorio ASC </if>
+				<if test="filtro == 4"> ORDER BY e.activo DESC </if>
         </select>
         
         <select  parameterType="map" id="consultarEquiposPorLaboratorio" resultMap="EquipoResult">
@@ -46,7 +65,7 @@
         </select>
         
         <insert id="registrarEquipo" parameterType="map">
-            INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null,null) <!---->
+            INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null,'si',1) <!---->
             
         </insert>
 </mapper>

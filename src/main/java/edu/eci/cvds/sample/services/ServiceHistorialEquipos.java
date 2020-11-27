@@ -36,7 +36,7 @@ public interface ServiceHistorialEquipos {
     
     public abstract Equipo consultarEquipo(int id) throws ExcepcionServiceHistorialEquipos;
     
-    public abstract ArrayList<Equipo> consultarEquipos() throws ExcepcionServiceHistorialEquipos;
+    public abstract ArrayList<Equipo> consultarEquipos(int filtro,String filtrar) throws ExcepcionServiceHistorialEquipos;
 
     public abstract ArrayList<Equipo> consultarEquiposPorLaboratorio(Integer laboratorioId)throws ExcepcionServiceHistorialEquipos;
     public abstract void actualizarDisponibilidadElementos(String torre,String pantalla,String mouse,String teclado)throws ExcepcionServiceHistorialEquipos;
@@ -87,6 +87,10 @@ public interface ServiceHistorialEquipos {
 	public abstract void asociarElementoAEquipo(String torre, int id) throws ExcepcionServiceHistorialEquipos;
 
 	public abstract void eliminarAsociacion(int n) throws ExcepcionServiceHistorialEquipos;
+
+	public abstract ArrayList<Equipo> consultarEquiposActivos(int filtro, String filtrar) throws ExcepcionServiceHistorialEquipos;
+
+
 
 	
 

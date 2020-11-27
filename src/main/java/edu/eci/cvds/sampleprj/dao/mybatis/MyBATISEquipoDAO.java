@@ -42,9 +42,9 @@ public class MyBATISEquipoDAO implements EquipoDAO{
     }
 
     @Override
-    public ArrayList<Equipo> consultarEquipos() throws PersistenceException {
+    public ArrayList<Equipo> consultarEquipos(int filtro,String filtrar) throws PersistenceException {
         try{
-            return equipoMapper.consultarEquipos();
+            return equipoMapper.consultarEquipos(filtro,"%"+filtrar+"%");
         }catch(org.apache.ibatis.exceptions.PersistenceException e){
             throw new PersistenceException("Error al consultar equipos",e);
         }
@@ -66,6 +66,15 @@ public class MyBATISEquipoDAO implements EquipoDAO{
             return equipoMapper.consultarEquipoPorNombre(nombre);
         }catch(org.apache.ibatis.exceptions.PersistenceException e){
             throw new PersistenceException("Error al consultar equipo",e);
+        }
+	}
+
+	@Override
+	public ArrayList<Equipo> consultarEquiposActivos(int filtro, String filtrar) throws PersistenceException {
+		try{
+            return equipoMapper.consultarEquiposActivos(filtro,"%"+filtrar+"%");
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar equipos",e);
         }
 	}
     
