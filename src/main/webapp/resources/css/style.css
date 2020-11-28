@@ -111,12 +111,32 @@ h2 {
   width: 35%;
 
 }
+.ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.eliminar{
+	display:none;
+}
+
+.ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only{
+	display:none;
+}
+.ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom .ui-inputfield.ui-inputtext.ui-widget.ui-state-default.ui-corner-all{
+	display:none;
+}
+.ui-carousel-button.ui-carousel-next-button.ui-icon.ui-icon-circle-triangle-e{
+	display:none;
+}
+.ui-carousel-button.ui-carousel-prev-button.ui-icon.ui-icon-circle-triangle-w.ui-state-disabled{
+	display:none;
+}
+
+.ui-icon.ui-carousel-page-link.ui-icon-radio-off.ui-icon-radio-on{
+	display:none;
+}
 #tabla .eliminar{
   background: url("#{resource['img/eliminar1.JPG']}") center;
 background-size: 100% 100%;
   border: none;
   cursor: pointer;
-  weight:15px;
+
  height: 20px;
   float: right;
 

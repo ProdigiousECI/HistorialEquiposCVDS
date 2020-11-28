@@ -47,11 +47,21 @@ and open the template in the editor.
 	
 			
 			
-			<br></br>
-            <p:dataTable id="tabla" value="#{Elemento.elementos}" var="el" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+			<br/>
+			<label><img src="resources/img/verde.png" style="height:30px;width: 30px;" id="imagess"/>
+			Disponibles
+			<img src="resources/img/amarillo.jpg" style="height:30px;width: 30px;" id="imagens"/>
+			ocupados
+			<img src="resources/img/rojo.png" style="height:30px;width: 30px;" id="imageness"/>
+            Dados de baja</label>
+		
+			<p:dataTable id="tabla" value="#{Elemento.elementos}" var="el" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" >
                 <center>
 					<f:facet name="{Exporters}">
+						
+								
+
 							<p:commandButton value=" " update="tabla" class="eliminar" actionListener="#{Elemento.multiplesBajas()}">
 								<p:confirm header="Confirmation" message="Estas seguro de dar de baja estos elementos?" icon="pi pi-exclamation-triangle" />
 							</p:commandButton>
@@ -59,7 +69,7 @@ and open the template in the editor.
 							<p:commandButton update="tabla" value="id" actionListener="#{Elemento.ordenarElementosporFiltro(1)}"/>
 							<p:commandButton update="tabla" value="nombre" actionListener="#{Elemento.ordenarElementosporFiltro(2)}"/>
 							<p:commandButton update="tabla" value="tipo" actionListener="#{Elemento.ordenarElementosporFiltro(3)}"/>
-							<p:commandButton update="tabla" value="activo" actionListener="#{Elemento.ordenarElementosporFiltro(4)}"/>
+					
 							<p:commandButton update="tabla" value="dado por baja" actionListener="#{Elemento.ordenarElementosporFiltro(5)}"/>
 							<p:commandButton update="tabla" value="equipo asociado" actionListener="#{Elemento.ordenarElementosporFiltro(6)}"/>
 							<h:form>
@@ -68,7 +78,7 @@ and open the template in the editor.
 							</h:form>
 			
 					</f:facet>
-					<f:facet name="{PageLinks}" listener="#{Elemento.vaciar()}"/>/>
+					
 					<p:column headerText="" style="width:20px;background-color:#{Elemento.color(el)};color:#000000;">
 						<h:selectBooleanCheckbox value="#{Elemento.confirmar[el.id]}" >
 							<p:ajax listener="#{Elemento.setConfirmar(el.id)}" />

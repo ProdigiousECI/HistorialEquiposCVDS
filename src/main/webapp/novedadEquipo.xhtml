@@ -35,17 +35,23 @@ and open the template in the editor.
 							<h:outputText value="nombre" />
 							<h:outputText value="#{equipo.nombre}" />
 							
+							<h:outputText value="activo" />
+							<h:outputText value="#{equipo.activo}" />
+							
+							<h:outputText value="departamento" />
+							<h:outputText value="#{equipo.laboratorio.departamento}" />
+							
 							<h:outputText value="Torre" />
-							<h:outputText value="#{equipo.nombre}" />
+							<h:outputText value="#{NovedadEquipo.obtenerElemento(equipo,'Torre')}" />
 							
 							<h:outputText value="Mouse" />
-							<h:outputText value="#{equipo.nombre}" />
+							<h:outputText value="#{NovedadEquipo.obtenerElemento(equipo,'Mouse')}" />
 							
 							<h:outputText value="Pantalla" />
-							<h:outputText value="#{equipo.nombre}" />
+							<h:outputText value="#{NovedadEquipo.obtenerElemento(equipo,'Pantalla')}" />
 							
 							<h:outputText value="Teclado" />
-							<h:outputText value="#{equipo.nombre}" />
+							<h:outputText value="#{NovedadEquipo.obtenerElemento(equipo,'Teclado')}" />
 							
 						
 									

@@ -72,6 +72,7 @@ public class ElementoBean{
     	for(Integer i:salvar.keySet()) {
         	confirmar.put(i,salvar.get(i));
         }
+    	
         return serviceHE.consultarElementos(filtro,filtrar);
     }
     
@@ -111,11 +112,11 @@ public class ElementoBean{
 
 	public void ordenarElementosporFiltro(int i) throws ExcepcionServiceHistorialEquipos {
     	filtro=i;
-    	elementos=serviceHE.consultarElementos(filtro,filtrar);	
+    	
     }
 	public void ordenarElementos(String s) throws ExcepcionServiceHistorialEquipos {
 		filtrar=s;
-    	elementos=serviceHE.consultarElementos(filtro,filtrar);	
+    	
     }
     public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {
     	String mensaje="";
@@ -203,6 +204,7 @@ public class ElementoBean{
         
         try{
         	filtro=1;
+        	filtrar="";
             elementos = serviceHE.consultarElementos(1,filtrar);  
             for(Elemento e:elementos) {
             	salvar.put(e.getId(),false);
@@ -227,7 +229,7 @@ public class ElementoBean{
     public void registrarElemento(String nombre, String tipo){
         try {
         	nombre=nombre.trim();
-        	if(nombre.length()>0) {
+        	if(nombre.length()>0 && !verificacionNombre(nombre)) {
         		Elemento e=new Elemento(nombre,tipo);
 	            serviceHE.registrarElemento(e);
 	            
@@ -235,6 +237,7 @@ public class ElementoBean{
 	            
 	            novedadElemento=new NovedadBeanElemento("nuevo elemento","Es una "+tipo+" ",e.getId());
                 novedadElemento.registrarNovedad();
+                salvar.put(e.getId(), false);
               
 	            showMessage("El registro del elemento ha sido un exito");
         	}else {
@@ -246,7 +249,14 @@ public class ElementoBean{
         }       
     }
 
-    
+    private boolean verificacionNombre(String nombre) {
+    	for(Elemento e:elementos) {
+    		if(e.getNombre().equals(nombre)) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
     
     public void showMessage(String confirmacion) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     

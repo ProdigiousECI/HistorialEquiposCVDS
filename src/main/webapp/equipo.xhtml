@@ -78,7 +78,15 @@ and open the template in the editor.
             <p:commandButton update="tabla" class="Button" value="Registrar Equipo" actionListener="#{Equipo.registrarEquipo(id.value, nombre.value,torre.value, pantalla.value, mouse.value, teclado.value)}"/>
             </br>
             <br/>
+			
 			</h:form>
+			</center>
+			<label><img src="resources/img/verde.png" style="height:30px;width: 30px;" id="imagess"/>
+			Disponibles
+			<img src="resources/img/amarillo.jpg" style="height:30px;width: 30px;" id="imagens"/>
+			ocupados
+			<img src="resources/img/rojo.png" style="height:30px;width: 30px;" id="imageness"/>
+            Dados de baja</label>
 			<h:form id="menu">
 
 			<p:tabMenu activeIndex="#{param.indice}">
@@ -93,14 +101,15 @@ and open the template in the editor.
 				
 			</p:tabMenu>
 		</h:form>
+		
 			
             <p:dataTable id="tabla" value="#{Equipo.equipos}" var="equip"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters} "
                      paginator="true" rows="10">
 					
 					
 					<f:facet name="{Exporters}">
-							<p:commandButton value=" " update="tabla" class="eliminar" actionListener="#{Elemento.multiplesBajas()}">
-								<p:confirm header="Confirmation" message="Estas seguro de dar de baja estos elementos?" icon="pi pi-exclamation-triangle" />
+							<p:commandButton value=" " update="tabla" class="eliminar" actionListener="#{Equipo.multiplesBajas()}">
+								<p:confirm header="Confirmation" message="Estas seguro de dar de baja estos equipos?" />
 							</p:commandButton>
 							 <br></br>
 							<p:commandButton update="tabla" value="id" actionListener="#{Equipo.ordenarEquiposporFiltro(1)}"/>
@@ -113,6 +122,11 @@ and open the template in the editor.
 							</h:form>
 			
 					</f:facet>
+					<p:column headerText="" style="width:20px;background-color:#{Equipo.color(equip)};color:#000000;">
+						<h:selectBooleanCheckbox value="#{Equipo.confirmar[equip.id]}" >
+							<p:ajax listener="#{Equipo.setConfirmar(equip.id)}" />
+						</h:selectBooleanCheckbox>
+					</p:column>
 					
 					
 					
@@ -126,8 +140,8 @@ and open the template in the editor.
 					
             
 					
-					<p:column headerText="idLaboratorio" style="background-color:#{Equipo.color(equip)};color:#000000">
-                        <p:outputLabel value="#{equip.idlaboratorio}"/>
+					<p:column headerText="Laboratorio" style="background-color:#{Equipo.color(equip)};color:#000000">
+                        <p:outputLabel value="#{equip.laboratorio.departamento}"/>
                     </p:column>
                     
                     
@@ -138,7 +152,7 @@ and open the template in the editor.
 
             </p:dataTable>          
         
-        </center>
+        
 		<p:dataTable id="tabla2" value="#{Equipo.equipos}" var="equip"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters} "
                      paginator="true" rows="10" style="display:none">
 					
@@ -152,19 +166,23 @@ and open the template in the editor.
                     </p:column>
 					
 					
-					<p:column headerText="idLaboratorio">
-                        <p:outputLabel value="#{equip.idlaboratorio}"/>
+					<p:column headerText="Laboratorio">
+                        <p:outputLabel value="#{equip.laboratorio.departamento}"/>
                     </p:column>
 					
 					<p:column headerText="activo">
                         <p:outputLabel value="#{equip.activo}"/>
                     </p:column>
                     
-                    
+                
+                   
 
-                    
-
-            </p:dataTable>   
+            </p:dataTable>  
+			
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
 		<h:form id="descargar">
 			<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
 				<p:dataExporter type="xls" target="tabla2" fileName="historialElementos" />
