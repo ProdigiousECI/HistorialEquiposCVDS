@@ -153,10 +153,11 @@ public class EquipoBean{
     	return false;
     }
     public void registrarEquipo(int id, String nombre, String torre, String pantalla, String mouse, String teclado){
-   
         try {
+        	
         	nombre=nombre.trim();
         	if(nombre.length()>0 && !verificacionNombre(nombre) && torre!="" && pantalla!="" && mouse!="" && teclado!="") {
+        		
         		Equipo e=new Equipo(id,nombre);
 	            serviceHE.registrarEquipo(new Equipo(id,nombre));
                 serviceHE.actualizarDisponibilidadElementos(torre,pantalla,mouse,teclado);
