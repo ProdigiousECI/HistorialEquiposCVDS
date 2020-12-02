@@ -56,7 +56,7 @@
 
   * **Integrantes:**
   * **Breve Descripción de Metodoloía:**
-  * **Enlace a Taiga:**
+  * **Enlace a Taiga:** https://tree.taiga.io/project/javier200151-historial-de-equipos-labinfo-1/backlog?milestone=276704
   * **Release-burndown chart y puntos de historias realizadas y faltantes**
   * **Sprints**
   * **Pruebas:**
