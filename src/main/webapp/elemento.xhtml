@@ -30,8 +30,8 @@ and open the template in the editor.
 			<p:outputLabel value="Registro Elementos" style="color: #000;font-size: 30px;border-radius: 30px;margin-right: auto;font-weight: 700;" />
 			<br/><br/>
             <h:panelGrid columns="2">
-                <h:outputLabel class="letra" value="Nombre"/>
-                <p:inputText id="Nombre"  type="String" binding="#{name}"/>
+                <h:outputLabel class="letra" value="Nombre" />
+                <p:inputText id="Nombre"  type="String" binding="#{name}" style="width:210px;text-transform:capitalize;"/>
                 <h:outputLabel class="letra" value="Tipo"/>        
                 <p:selectOneMenu id="Tipo" binding="#{tipo}" style="width:187px">
                     <f:selectItem itemLabel="Torre" itemValue="Torre"/>
@@ -48,12 +48,12 @@ and open the template in the editor.
 			
 			
 			<br/>
-			<label><img src="resources/img/verde.png" style="height:30px;width: 30px;" id="imagess"/>
+			<label style="font-weight: 700;"><img src="resources/img/verde.png" style="height:30px;width: 30px;" id="imagess"/>
 			Disponibles
 			<img src="resources/img/amarillo.jpg" style="height:30px;width: 30px;" id="imagens"/>
-			ocupados
+			Ocupados
 			<img src="resources/img/rojo.png" style="height:30px;width: 30px;" id="imageness"/>
-            Dados de baja</label>
+            Dados De Baja</label>
 		
 			<p:dataTable id="tabla" value="#{Elemento.elementos}" var="el" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" >
@@ -66,15 +66,15 @@ and open the template in the editor.
 								<p:confirm header="Confirmation" message="Estas seguro de dar de baja estos elementos?" icon="pi pi-exclamation-triangle" />
 							</p:commandButton>
 							 <br></br>
-							<p:commandButton update="tabla" value="id" actionListener="#{Elemento.ordenarElementosporFiltro(1)}"/>
-							<p:commandButton update="tabla" value="nombre" actionListener="#{Elemento.ordenarElementosporFiltro(2)}"/>
-							<p:commandButton update="tabla" value="tipo" actionListener="#{Elemento.ordenarElementosporFiltro(3)}"/>
+							<p:commandButton update="tabla" value="Id" actionListener="#{Elemento.ordenarElementosporFiltro(1)}"/>
+							<p:commandButton update="tabla" value="Nombre" actionListener="#{Elemento.ordenarElementosporFiltro(2)}"/>
+							<p:commandButton update="tabla" value="Tipo" actionListener="#{Elemento.ordenarElementosporFiltro(3)}"/>
 					
-							<p:commandButton update="tabla" value="dado por baja" actionListener="#{Elemento.ordenarElementosporFiltro(5)}"/>
-							<p:commandButton update="tabla" value="equipo asociado" actionListener="#{Elemento.ordenarElementosporFiltro(6)}"/>
+							<p:commandButton update="tabla" value="Dado De Baja" actionListener="#{Elemento.ordenarElementosporFiltro(5)}"/>
+							<p:commandButton update="tabla" value="Equipo Asociado" actionListener="#{Elemento.ordenarElementosporFiltro(6)}"/>
 							<h:form>
-								<p:inputText id="filtrar" type="String" binding="#{filtrar}"/>
-								<p:commandButton update="tabla" value="filtrar" actionListener="#{Elemento.ordenarElementos(filtrar.value)}"/>
+								<p:inputText id="filtrar" type="String" binding="#{filtrar}" style="text-transform:capitalize;"/>
+								<p:commandButton update="tabla" value="Filtrar" actionListener="#{Elemento.ordenarElementos(filtrar.value)}"/>
 							</h:form>
 			
 					</f:facet>
@@ -85,7 +85,7 @@ and open the template in the editor.
 						</h:selectBooleanCheckbox>
 					</p:column>
 					
-                    <p:column headerText="id" style="background-color:#{Elemento.color(el)};color:#000000;">
+                    <p:column headerText="Id" style="background-color:#{Elemento.color(el)};color:#000000;">
                         <p:outputLabel value="#{el.id}"/>
                     </p:column>
                     <p:column headerText="Nombre" style="background-color:#{Elemento.color(el)};color:#000000;">
@@ -97,7 +97,7 @@ and open the template in the editor.
 
     
 					<p:column headerText="Historial de Novedades" style="background-color:#{Elemento.color(el)};color:#000000;">
-						<p:link style="color: #011DEB;" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="ver elemento"></p:link>
+						<p:link style="color: #011DEB;" outcome="registrarNovedad?elemento=#{el.id}&amp;i=0" value="Ver Elemento"></p:link>
 					</p:column>
 
                </center>
