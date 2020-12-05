@@ -50,7 +50,7 @@ and open the template in the editor.
 			<br/>
 			<label style="font-weight: 700;"><img src="resources/img/verde.png" style="height:30px;width: 30px;" id="imagess"/>
 			Disponibles
-			<img src="resources/img/amarillo.jpg" style="height:30px;width: 30px;" id="imagens"/>
+			<img src="resources/img/amarillo.png" style="height:30px;width: 30px;" id="imagens"/>
 			Ocupados
 			<img src="resources/img/rojo.png" style="height:30px;width: 30px;" id="imageness"/>
             Dados De Baja</label>
@@ -126,7 +126,7 @@ and open the template in the editor.
             </p:dataTable>
 						
 		<h:form id="descargar">
-			<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+			<p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
 				<p:dataExporter type="xls" target="tabla2" fileName="historialElementos" />
 			</p:commandButton>
 		</h:form>
