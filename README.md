@@ -20,7 +20,7 @@
   * **Javier Esteban López:** Desarrollador
   * **Yarit Yajanny Villalobos:** Desarrollador
   * **Andrés Felipe Dávila:** Desarrollador
-  * **Miguel Ángel Fúquene:** Desarrollador
+  * **Miguel Ángel Fúquene:** Desarrollador primi
   
 ### Descripción del proyecto
 
@@ -117,14 +117,21 @@ Al frente de cada fila de elemento, se podra ver un link "Ver Elemento", que los
     
     
   * **Diagrama de clases:**
-  * **Descripción de la arquitectura y el Stack de tecnologías utilizado:**
+  * **Descripción de la arquitectura y el Stack de tecnologías utilizado:
+ 
+   * [PrimeFaces (Framework)](https://www.primefaces.org/)
+   * [Guice (Inyección de Dependencias)](https://github.com/google/guice)
+   * PostgreSQL (DataBase Management)
+   * [MyBatis (Framework)](https://mybatis.org/mybatis-3/es/)
   * **Enlace a la aplicacion en Heroku:** https://historialequipos.herokuapp.com/faces/Autenticacion.xhtml
       
   * **Enlace al sistema de integración continua**
 ### Descripción del proceso:
 
   * **Integrantes:**
-  * **Breve Descripción de Metodoloía:**
+  * **Breve Descripción de Metodoloía:
+   Se utilizó la metodología **Scrum**,  el grupo de trabajo se reunió para planear cada uno de los sprints los cuales se dividieron en 3 en acuerdo con el cliente, para mejorar    la interacción con el cliente se le presento de acuerdo al tiempo establecido para cada sprint las debidas entregas.
+   después de la revisión del cliente se procede a hacer la restrospectiva del sprint entregado y la planeación del siguiente hasta la entrega final.
   * **Enlace a Taiga:** https://tree.taiga.io/project/javier200151-historial-de-equipos-labinfo-1/backlog?milestone=276704
   * **Release-burndown chart y puntos de historias realizadas y faltantes**
   * **Sprints**
