@@ -97,6 +97,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
 
     @Override
     public void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos {
+    	
         try {
             elementoDAO.registrarElemento(ele);
         } catch (PersistenceException ex) {

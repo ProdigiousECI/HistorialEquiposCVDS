@@ -25,6 +25,7 @@ public class ServiceHistorialEquiposTest {
     public ServiceHistorialEquiposTest() throws ExcepcionServiceHistorialEquipos {
             ServicioHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
             Elemento e = new Elemento("caca","adsadsadas");
+            Elemento e1=new Elemento("Toshiba","Torre");
             ServicioHE.registrarElemento(e); 
     }
 	
