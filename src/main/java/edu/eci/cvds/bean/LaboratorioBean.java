@@ -6,6 +6,7 @@
 package edu.eci.cvds.bean;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.sample.entities.Equipo;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
@@ -35,17 +36,18 @@ public class LaboratorioBean {
 
     private final ServiceHistorialEquipos serviceHE;
     private int filtro;
+    private String filtrar="";
     public ArrayList<Laboratorio> laboratorio;
     
     public ArrayList<Laboratorio> getLaboratorios() throws ExcepcionServiceHistorialEquipos {
-        return serviceHE.consultarLaboratorios(filtro);
+        return serviceHE.consultarLaboratorios(1,filtrar);
     }
     public Laboratorio obtenerLaboratorio(int n) throws ExcepcionServiceHistorialEquipos {
         return serviceHE.consultarLaboratorio(n);
     }
     public void ordenarLaboratorioFiltro(int i) throws ExcepcionServiceHistorialEquipos {
     	filtro=i;
-    	laboratorio=serviceHE.consultarLaboratorios(i);
+    	laboratorio=serviceHE.consultarLaboratorios(i,filtrar);
     }
     public void setLaboratorios(ArrayList<Laboratorio> laboratorio) {
         this.laboratorio = laboratorio;
@@ -58,16 +60,19 @@ public class LaboratorioBean {
         serviceHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
         try{
         	filtro=1;
-            laboratorio = serviceHE.consultarLaboratorios(filtro);          
+                filtrar="";
+            laboratorio = serviceHE.consultarLaboratorios(1,filtrar);
+             
         }catch(ExcepcionServiceHistorialEquipos e){
         }
     }
     
-        public void registrarLaboratorio(int idLaboratorio, String departamento){
+        public void registrarLaboratorio(int idLaboratorio,String nombre, String departamento){
         try {
         	departamento=departamento.trim();
         	if(departamento.length()>0) {
-	            serviceHE.registrarLaboratorio(new Laboratorio(idLaboratorio,departamento));
+	            serviceHE.registrarLaboratorio(new Laboratorio(idLaboratorio,nombre,departamento));
+
 	        
 	            showMessage("El registro del Laboratorio ha sido un exito");
         	}else {
@@ -78,6 +83,19 @@ public class LaboratorioBean {
             new ExcepcionServiceHistorialEquipos("No se pudo registrar Laboratorio");
         }       
     }
+   public void cerrarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos
+   {
+       serviceHE.cerrarLaboratorio(id);
+       ArrayList<Equipo> eq = serviceHE.consultarEquipos(1,"");
+       for (int i=0; i<eq.size();i++)
+       {
+           if(eq.get(i).getIdlaboratorio()==id)
+           {
+               serviceHE.desasociarEquipo(eq.get(i).getId());
+           }
+       }
+       showMessage("Laboratorio " + id+ " cerrado");
+   }
 
    public void showMessage(String confirmacion) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     
@@ -94,6 +112,10 @@ public class LaboratorioBean {
 	    	if(numero%2==0) {
 	    		color="#D27F00";
 	    	}
+                if(numero==-2)
+                {
+                    color="#F93D3D";
+                }
    	}
    	return color;
    }
@@ -103,9 +125,13 @@ public class LaboratorioBean {
    	
    	for(Laboratorio l:getLaboratorios()) {
    		
+                if(nombre.getActivo().equals("No")) {
+   			return -2; 
+   		}
    		if(l.getIdlaboratorio()==nombre.getIdlaboratorio()) {
    			return cont; 
    		}cont++;
+                
    	}
    	return -1;
    }

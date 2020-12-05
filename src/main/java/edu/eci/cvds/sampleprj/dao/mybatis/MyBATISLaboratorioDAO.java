@@ -40,11 +40,22 @@ public class MyBATISLaboratorioDAO implements LaboratorioDAO{
     }
 
     @Override
-    public ArrayList<Laboratorio> consultarLaboratorios(int ed) throws PersistenceException {
+    public ArrayList<Laboratorio> consultarLaboratorios(int ed,String s) throws PersistenceException {
        try{
-            return laboratorioMapper.consultarLaboratorios(ed);
+            return laboratorioMapper.consultarLaboratorios(ed,"%"+s+"%");
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+             throw new PersistenceException("Error al consultar laboratorios", e);
+        }
+    }
+    
+    @Override
+    public void cerrarLaboratorio(int id) throws PersistenceException {
+        try{
+            laboratorioMapper.cerrarLaboratorio(id);
         }catch(org.apache.ibatis.exceptions.PersistenceException e){
              throw new PersistenceException("Error al consultar elementos", e);
         }
     }
+
+    
 }
