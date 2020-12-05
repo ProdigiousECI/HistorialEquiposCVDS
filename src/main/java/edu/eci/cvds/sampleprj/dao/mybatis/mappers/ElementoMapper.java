@@ -21,14 +21,16 @@ public interface ElementoMapper {
     public ArrayList<Elemento> consultarElementosMouse();
     public ArrayList<Elemento> consultarElementosTeclado();
     public void registrarElemento(@Param("ele") Elemento ele);
-
+    
     public void actualizarDisponibilidadElementos(@Param("torr")String torre,@Param("pant")String pantalla,@Param("mous")String mouse,@Param("Tecl")String teclado);
 
     public void darBajaElemento(@Param("idele") int id);
     public ArrayList<Elemento> bajaNoElemento();
 	public Elemento consultarElementoPorNombre(@Param("ele") String ele);
+        public ArrayList<Elemento> consultarElementosPorEquipo(@Param("ideq") int equipoId);
 	public void asociarElementoAEquipo(@Param("nom")String nombre,@Param("ide") int id);
 	public void eliminarAsociacion(@Param("null") int n);
+        public void desasociarElementoEquipo(@Param("idequi")int id);
 
 
 }

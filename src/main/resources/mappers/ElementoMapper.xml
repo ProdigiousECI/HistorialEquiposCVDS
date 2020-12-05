@@ -136,5 +136,21 @@
         <update id="darBajaElemento" parameterType="map">
             UPDATE Elemento SET baja='si' WHERE id=#{idele}
         </update>
+        
+        
+        <select parameterType="map" id="consultarElementosPorEquipo" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo,
+                e.activo,
+                e.baja
+                FROM Elemento as e
+                WHERE e.idequipo=#{ideq}
+        </select>
+        
+        <update id="desasociarElementoEquipo" parameterType="map">
+            UPDATE Elemento SET idequipo=NULL WHERE elemento.idequipo=#{idequi}
+        </update>
 
 </mapper>

@@ -90,6 +90,10 @@ public class EquipoBean{
 	public void setImages(ArrayList<String> images) {
 		this.images = images;
 	}
+        
+        public Equipo obtenerEquipo(int n) throws ExcepcionServiceHistorialEquipos {
+            return serviceHE.consultarEquipo(n);
+        }
 
 	public ArrayList<Equipo> getEquipos() throws ExcepcionServiceHistorialEquipos {
 		for(Integer i:salvar.keySet()) {
@@ -151,6 +155,38 @@ public class EquipoBean{
     		}
     	}
     	return false;
+    }
+    public void darBajaEquipo(int id,String torre,String mouse,String pantalla,String teclado) throws ExcepcionServiceHistorialEquipos {
+    	String mensaje="";
+        Equipo e=obtenerEquipo(id);
+        Elemento elemTorre = serviceHE.consultarElementoPorNombre(torre);
+        Elemento elemMouse = serviceHE.consultarElementoPorNombre(mouse);
+        Elemento elemPantalla = serviceHE.consultarElementoPorNombre(pantalla);
+        Elemento elemTeclado = serviceHE.consultarElementoPorNombre(teclado);
+        
+        System.out.println(e.getActivo().equals("si"));
+        if(e.getActivo().equals("si")){
+
+                serviceHE.darBajaEquipo(id);
+                User user=new User();
+        		user.setCorreo(ShiroBean.getUser());
+        	serviceHE.desasociarElementoEquipo(id);
+                
+                serviceHE.registrarNovedad(new Novedad(elemTorre.getNombre()+" Desasociado","Se desasociado el elemento con id "+elemTorre.getId(),user,elemTorre));
+                serviceHE.registrarNovedad(new Novedad(elemMouse.getNombre()+" Desasociado","Se desasociado el elemento con id "+elemMouse.getId(),user,elemMouse));
+                serviceHE.registrarNovedad(new Novedad(elemPantalla.getNombre()+" Desasociado","Se desasociado el elemento con id "+e.getId(),user,elemPantalla));
+                serviceHE.registrarNovedad(new Novedad(elemTeclado.getNombre()+" Desasociado","Se desasociado el elemento con id "+e.getId(),user,elemTeclado));
+                
+                mensaje+="Equipo " + e.getNombre()+ " con id " +id+",";
+                
+                showMessage("Este equipo se ha dado de baja");
+                showMessage("Ahora puedes dar los elementos de baja");
+              
+        }else
+        {
+                showMessage("Este equipo ya esta dado de baja");
+        }
+        
     }
     public void registrarEquipo(int id, String nombre, String torre, String pantalla, String mouse, String teclado){
         try {
@@ -255,26 +291,23 @@ public class EquipoBean{
     	return -1;
     }
     
-    public String darBajaElementos(int id,String mensaje) throws ExcepcionServiceHistorialEquipos {
+    public String darBajaEquipos(int id,String mensaje) throws ExcepcionServiceHistorialEquipos {
         Equipo e=serviceHE.consultarEquipo(id);
         
-        if(e.getActivo().equals("no")){
+        if(e.getActivo().equals("si")){
 
-        	if(e.getActivo()==null) {
-                //serviceHE.darBajaElemento(id);
-                //User user=new User();
-        		//user.setCorreo(ShiroBean.getUser());
+        	
+                serviceHE.darBajaEquipo(id);
+                User user=new User();
+        		user.setCorreo(ShiroBean.getUser());
         		
-                //serviceHE.registrarNovedad(new Novedad(e.getNombre()+" dado de Baja","Se ha dado de baja el elemento con id "+e.getId(),user,serviceHE.consultarElemento(id)));
-        		
+                serviceHE.registrarNovedad(new Novedad(e.getNombre()+" dado de Baja","Se ha dado de baja el equipo con id "+e.getId(),user,serviceHE.consultarElemento(id)));
                
-        	}else {
-        		mensaje+="Elemento " + e.getNombre()+ " con id " +id+",";
-        	}
+        
               
         }else
         {
-        	mensaje+="Elemento " + e.getNombre()+ " con id " +id+",";
+        	mensaje+="Equipo " + e.getNombre()+ " con id " +id+",";
         }
         return mensaje;
     }
@@ -285,7 +318,7 @@ public class EquipoBean{
     		
     		if(salvar.get(in)) {
     			System.out.println(in);
-    			//mensaje=darBajaElementos(in,mensaje);
+    			mensaje=darBajaEquipos(in,mensaje);
     			salvar.put(in,false);
     		}
     		
@@ -294,9 +327,9 @@ public class EquipoBean{
     	//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
     	//context.redirect(context.getRequestContextPath() + "elemento.xhtml");
     	if(mensaje!="") {
-    		showMessage("Los elementos: "+mensaje +"no se pudieron dar de baja");
+    		showMessage("Los equipos: "+mensaje +"no se pudieron dar de baja");
     	}else {
-    		showMessage("Todos los elementos se han dado de baja exitosamente");
+    		showMessage("Todos los equipos se han dado de baja exitosamente");
     	}
     	
     	
@@ -308,6 +341,7 @@ public class EquipoBean{
     	return confirmar;
     	
     }
+    
   
     
 }

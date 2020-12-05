@@ -25,5 +25,7 @@ public interface EquipoMapper {
 	public Equipo consultarEquipoPorNombre(@Param("nom") String nombre);
 
 	public ArrayList<Equipo> consultarEquiposActivos(@Param("filtro")int filtro,@Param("filtrar")String filtrar);
+
+    public void darBajaEquipo(@Param("idbaja")int id);
     
 }

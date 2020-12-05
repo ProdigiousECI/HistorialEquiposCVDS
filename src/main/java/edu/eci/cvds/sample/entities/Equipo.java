@@ -35,14 +35,14 @@ public class Equipo implements Serializable{
 		return laboratorio;
 	}
 
-
+        
 
 
 	public void setLaboratorio(Laboratorio laboratorio) {
 		this.laboratorio = laboratorio;
 	}
 
-
+        
 
 
 	public String getActivo() {

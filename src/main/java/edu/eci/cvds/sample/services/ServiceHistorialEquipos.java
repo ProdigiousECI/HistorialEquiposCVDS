@@ -90,6 +90,12 @@ public interface ServiceHistorialEquipos {
 
 	public abstract ArrayList<Equipo> consultarEquiposActivos(int filtro, String filtrar) throws ExcepcionServiceHistorialEquipos;
 
+        public abstract void darBajaEquipo(int id)throws ExcepcionServiceHistorialEquipos;
+
+        public abstract ArrayList<Elemento> consultarElementosPorEquipo(int equipoId)throws ExcepcionServiceHistorialEquipos;
+
+        public abstract void desasociarElementoEquipo(int id)throws ExcepcionServiceHistorialEquipos;
+
 
 
 	

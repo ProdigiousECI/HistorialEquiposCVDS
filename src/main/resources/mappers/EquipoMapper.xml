@@ -80,4 +80,11 @@
             INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null,'si',null) <!---->
             
         </insert>
+        
+        <update id="darBajaEquipo" parameterType="map">
+            UPDATE Equipo SET activo='no' WHERE id=#{idbaja}
+        </update>
+        
+        
+        
 </mapper>

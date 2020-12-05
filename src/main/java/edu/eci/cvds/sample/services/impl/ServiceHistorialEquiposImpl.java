@@ -309,6 +309,34 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new ExcepcionServiceHistorialEquipos("Error al consultar equipos", ex);
         }
 	}
+
+        @Override
+        public void darBajaEquipo(int id) throws ExcepcionServiceHistorialEquipos {
+            try {
+                equipoDAO.darBajaEquipo(id);
+            } catch (PersistenceException ex) {
+                throw new UnsupportedOperationException("Errores al asociar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
+            }
+        }
+
+        @Override
+        public ArrayList<Elemento> consultarElementosPorEquipo(int equipoId) throws ExcepcionServiceHistorialEquipos {
+            try {
+                    return elementoDAO.consultarElementosPorEquipo(equipoId);
+            } catch (PersistenceException ex) {
+                throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos por Equipo", ex);
+            }
+
+        }
+
+    @Override
+    public void desasociarElementoEquipo(int id) throws ExcepcionServiceHistorialEquipos {
+        try {
+            elementoDAO.desasociarElementoEquipo(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar elementos por Equipo", ex);
+        }
+    }
     
 
 }

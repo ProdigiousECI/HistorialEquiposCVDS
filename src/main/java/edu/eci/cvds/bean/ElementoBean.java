@@ -121,8 +121,11 @@ public class ElementoBean{
     public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {
     	String mensaje="";
         Elemento e=obtenerElemento(id);
-    
+        System.out.println("===============");
+        System.out.println(e.getBaja().equals("no"));
         if(e.getBaja().equals("no")){
+            
+                System.out.println(e.getEquipo()==null);
 
         	if(e.getEquipo()==null) {
                 serviceHE.darBajaElemento(id);

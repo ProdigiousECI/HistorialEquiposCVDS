@@ -23,5 +23,7 @@ public interface EquipoDAO {
 
 	public ArrayList<Equipo> consultarEquiposActivos(int filtro,String filtrar) throws PersistenceException;
 
+    public void darBajaEquipo(int id)throws PersistenceException;
+
 	
 }
