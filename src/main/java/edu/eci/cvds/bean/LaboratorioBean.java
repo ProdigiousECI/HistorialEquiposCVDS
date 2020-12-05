@@ -35,17 +35,18 @@ public class LaboratorioBean {
 
     private final ServiceHistorialEquipos serviceHE;
     private int filtro;
+    private String filtrar="";
     public ArrayList<Laboratorio> laboratorio;
     
     public ArrayList<Laboratorio> getLaboratorios() throws ExcepcionServiceHistorialEquipos {
-        return serviceHE.consultarLaboratorios(filtro);
+        return serviceHE.consultarLaboratorios(1,filtrar);
     }
     public Laboratorio obtenerLaboratorio(int n) throws ExcepcionServiceHistorialEquipos {
         return serviceHE.consultarLaboratorio(n);
     }
     public void ordenarLaboratorioFiltro(int i) throws ExcepcionServiceHistorialEquipos {
     	filtro=i;
-    	laboratorio=serviceHE.consultarLaboratorios(i);
+    	laboratorio=serviceHE.consultarLaboratorios(i,filtrar);
     }
     public void setLaboratorios(ArrayList<Laboratorio> laboratorio) {
         this.laboratorio = laboratorio;
@@ -58,16 +59,18 @@ public class LaboratorioBean {
         serviceHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
         try{
         	filtro=1;
-            laboratorio = serviceHE.consultarLaboratorios(filtro);          
+                filtrar="";
+            laboratorio = serviceHE.consultarLaboratorios(1,filtrar);
+             
         }catch(ExcepcionServiceHistorialEquipos e){
         }
     }
     
-        public void registrarLaboratorio(int idLaboratorio, String departamento){
+        public void registrarLaboratorio(int idLaboratorio,String nombre, String departamento){
         try {
         	departamento=departamento.trim();
         	if(departamento.length()>0) {
-	            serviceHE.registrarLaboratorio(new Laboratorio(idLaboratorio,departamento));
+	            serviceHE.registrarLaboratorio(new Laboratorio(idLaboratorio,nombre,departamento));
 	        
 	            showMessage("El registro del Laboratorio ha sido un exito");
         	}else {

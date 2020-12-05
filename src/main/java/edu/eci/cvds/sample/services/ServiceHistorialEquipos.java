@@ -77,7 +77,7 @@ public interface ServiceHistorialEquipos {
     
     
     public abstract void registrarLaboratorio(Laboratorio lab)throws ExcepcionServiceHistorialEquipos;
-    public abstract ArrayList<Laboratorio> consultarLaboratorios(int e) throws ExcepcionServiceHistorialEquipos;
+    public abstract ArrayList<Laboratorio> consultarLaboratorios(int e,String s) throws ExcepcionServiceHistorialEquipos;
     public abstract Laboratorio consultarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos;
 
 	public abstract Elemento consultarElementoPorNombre(String tipo) throws ExcepcionServiceHistorialEquipos;

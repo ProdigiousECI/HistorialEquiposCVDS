@@ -241,9 +241,9 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
 
     @Override
 
-    public ArrayList<Laboratorio> consultarLaboratorios(int e) throws ExcepcionServiceHistorialEquipos {
+    public ArrayList<Laboratorio> consultarLaboratorios(int e,String s) throws ExcepcionServiceHistorialEquipos {
         try {
-            return laboratorioDAO.consultarLaboratorios(e);
+            return laboratorioDAO.consultarLaboratorios(e,s);
         } catch (PersistenceException ex) {
             throw new UnsupportedOperationException("No se pudo consultar los laboratorios ", ex); //To change body of generated methods, choose Tools | Templates.
         }

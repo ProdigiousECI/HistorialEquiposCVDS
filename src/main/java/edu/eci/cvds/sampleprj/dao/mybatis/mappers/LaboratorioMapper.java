@@ -15,7 +15,7 @@ import org.apache.ibatis.annotations.Param;
 public interface LaboratorioMapper {
     
     public Laboratorio consultarLaboratorio(@Param("idlab") int id);
-    public ArrayList<Laboratorio> consultarLaboratorios(@Param("ordenar") int e);
+    public ArrayList<Laboratorio> consultarLaboratorios(@Param("ordenar") int e,@Param("filtrar") String s);
     public void registrarLaboratorio(@Param("lab") Laboratorio lab);
     
 }
