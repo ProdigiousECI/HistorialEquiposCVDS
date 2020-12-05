@@ -20,7 +20,7 @@
   * **Javier Esteban López:** Desarrollador
   * **Yarit Yajanny Villalobos:** Desarrollador
   * **Andrés Felipe Dávila:** Desarrollador
-  * **Miguel Ángel Fúquene:** Carreado :v
+  * **Miguel Ángel Fúquene:** Desarrollador
   
 ### Descripción del proyecto
 
