@@ -82,6 +82,8 @@ Al frente de cada fila de elemento, se podra ver un link "Ver Elemento", que los
   # Novedades:
   Aquí se podrá ver todas las novedades de todos los elementos,quipos y laboratorios. Estaran ordenas de la mas reciente a la mas antigua.
   
+  ![](resources/novedades.JPG)
+  
   # Laboratorios:
   
   
