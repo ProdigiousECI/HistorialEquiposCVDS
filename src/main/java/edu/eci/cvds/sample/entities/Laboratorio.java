@@ -14,10 +14,34 @@ import edu.eci.cvds.sample.entities.Equipo;
  */
 public class Laboratorio implements Serializable{
     
-    private int idlaboratorio;
+    private int id;
+    private String nombre;
     private String departamento;
     private String activo;
 
+    //pendiente por implementar
+    private ArrayList<Equipo> equipos;
+    
+    public Laboratorio (int id,String nombre, String departamento) {
+        this.id = id;
+        this.nombre=nombre;
+        this.departamento = departamento;
+        activo="si";
+     } 
+    public Laboratorio(){}
+
+    public int getIdlaboratorio() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public String getActivo() {
         return activo;
     }
@@ -25,22 +49,9 @@ public class Laboratorio implements Serializable{
     public void setActivo(String activo) {
         this.activo = activo;
     }
-    //pendiente por implementar
-    private ArrayList<Equipo> equipos;
-    
-    public Laboratorio (int idlaboratorio, String departamento, String activo) {
-        this.idlaboratorio = idlaboratorio;
-        this.departamento = departamento;
-        this.activo=activo;
-     } 
-    public Laboratorio(){}
 
-    public int getIdlaboratorio() {
-        return idlaboratorio;
-    }
-
-    public void setIdlaboratorio(int idlaboratorio) {
-        this.idlaboratorio = idlaboratorio;
+    public void setIdlaboratorio(int id) {
+        this.id = id;
     }
 
     public String getDepartamento() {
@@ -61,7 +72,7 @@ public class Laboratorio implements Serializable{
     
     @Override
     public String toString() {
-        return "Laboratorio{" + "id=" + idlaboratorio + ", departamento=" + departamento + '}'; /*", equipo=" + equipo +*/
+        return "Laboratorio{" + "id=" + id +", nombre="+ nombre+", departamento=" + departamento +", activo="+ activo + '}'; /*", equipo=" + equipo +*/
     }
     
 }

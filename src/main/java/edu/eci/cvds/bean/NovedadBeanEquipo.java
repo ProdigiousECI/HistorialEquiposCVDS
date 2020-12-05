@@ -113,13 +113,18 @@ public class NovedadBeanEquipo extends NovedadBean{
     }
 	
 	
-	
-	
-	
+	public String obtenerElemento(Equipo equipo,String tipo) throws ExcepcionServiceHistorialEquipos {
+		
+		ArrayList<Elemento> ele=service.consultarElementos(1, "");
+		for(Elemento elemento:ele) {
+			if(elemento.getEquipo()!=null) {
+				if(equipo.getId()==elemento.getEquipo().getId() && elemento.getTipo().equals(tipo)) {
+					return elemento.getNombre();
+				}
+			}
+		}
+		return null;
+	}
 
 	
-
-	
-	
-
 }

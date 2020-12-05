@@ -13,9 +13,15 @@ import java.io.Serializable;
  */
 public class Equipo implements Serializable{
 
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
     private String nombre;
     private int idlaboratorio;
+    private String activo;
+    private Laboratorio laboratorio;
 
     private User iduser = null;
     
@@ -23,7 +29,35 @@ public class Equipo implements Serializable{
     }
     
     
-    public int getIdlaboratorio() {
+    
+    
+    public Laboratorio getLaboratorio() {
+		return laboratorio;
+	}
+
+
+
+
+	public void setLaboratorio(Laboratorio laboratorio) {
+		this.laboratorio = laboratorio;
+	}
+
+
+
+
+	public String getActivo() {
+		return activo;
+	}
+
+
+
+	public void setActivo(String activo) {
+		this.activo = activo;
+	}
+
+
+
+	public int getIdlaboratorio() {
 		return idlaboratorio;
 	}
 
@@ -38,6 +72,7 @@ public class Equipo implements Serializable{
         this.id = id;
         this.nombre = nombre;
         //this.iduser = iduser;
+        activo="si";
     
     }
     
@@ -60,7 +95,7 @@ public class Equipo implements Serializable{
 
     @Override
     public String toString() {
-        return "Equipo{" + "id=" + id + ", nombre=" + nombre + ", idlaboratorio=" + idlaboratorio + '}'; /*", iduser=" + iduser +*/
+        return "Equipo{" + "id=" + id + ", nombre=" + nombre +", activo=" + activo + ", idlaboratorio=" + idlaboratorio + ", laboratorio="+laboratorio + '}'; /*", iduser=" + iduser +*/
     }
 
     public User getUser() {

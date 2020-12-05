@@ -111,13 +111,34 @@ h2 {
   width: 35%;
 
 }
+.ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.eliminar{
+	display:none;
+}
+
+.ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only{
+	display:none;
+}
+.ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom .ui-inputfield.ui-inputtext.ui-widget.ui-state-default.ui-corner-all{
+	display:none;
+}
+.ui-carousel-button.ui-carousel-next-button.ui-icon.ui-icon-circle-triangle-e{
+	display:none;
+}
+.ui-carousel-button.ui-carousel-prev-button.ui-icon.ui-icon-circle-triangle-w.ui-state-disabled{
+	display:none;
+}
+
+.ui-icon.ui-carousel-page-link.ui-icon-radio-off.ui-icon-radio-on{
+	display:none;
+}
 #tabla .eliminar{
-  background: url("#{resource['img/eliminar1.JPG']}") center;
+  background: url("#{resource['img/eliminar.png']}") center;
 background-size: 100% 100%;
   border: none;
   cursor: pointer;
-  weight:15px;
- height: 20px;
+
+ height: 30px;
+width: 30px;	
   float: right;
 
 }
@@ -176,7 +197,9 @@ background-size: 100% 100%;
   margin-left: auto;
   margin-right: auto;
 }
-
+span {
+  text-transform: capitalize;
+}
 #formNovedad .letra{
   border: none;
   outline: none;
@@ -189,7 +212,18 @@ background-size: 100% 100%;
   margin-right: auto;
   font-weight: 700;
 }
+#formElemento .letra{
+  border: none;
+  outline: none;
+  width:100%;
+  height: 20px;
+  color: #000;
+  font-size: 20px;
 
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+}
 
 #formEquipo .letra{
   border: none;
@@ -203,6 +237,7 @@ background-size: 100% 100%;
   margin-right: auto;
   font-weight: 700;
 }
+
 #formLaboratorio .letra{
   border: none;
   outline: none;

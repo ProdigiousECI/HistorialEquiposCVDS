@@ -15,11 +15,13 @@ public interface EquipoDAO {
     
     public Equipo consultarEquipo(int id) throws PersistenceException;
     
-    public ArrayList<Equipo> consultarEquipos() throws PersistenceException;
+    public ArrayList<Equipo> consultarEquipos(int filtro,String filtrar) throws PersistenceException;
     
     public ArrayList<Equipo> consultarEquiposPorLaboratorio(Integer laboratorioId) throws PersistenceException;
 
 	public Equipo consultarEquipoPorNombre(String nombre) throws PersistenceException;
+
+	public ArrayList<Equipo> consultarEquiposActivos(int filtro,String filtrar) throws PersistenceException;
 
 	
 }

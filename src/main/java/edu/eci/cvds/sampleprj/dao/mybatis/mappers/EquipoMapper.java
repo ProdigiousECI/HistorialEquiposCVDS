@@ -16,12 +16,14 @@ import org.apache.ibatis.annotations.Param;
 public interface EquipoMapper {
     public Equipo consultarEquipo(@Param("idequip")int id);
     
-    public ArrayList<Equipo> consultarEquipos();
+    public ArrayList<Equipo> consultarEquipos(@Param("filtro")int filtro,@Param("filtrar")String filtrar);
     
     public void registrarEquipo(@Param("equip")Equipo equip);
     
     public ArrayList<Equipo> consultarEquiposPorLaboratorio(@Param("idlab")Integer laboratorioId);
 
 	public Equipo consultarEquipoPorNombre(@Param("nom") String nombre);
+
+	public ArrayList<Equipo> consultarEquiposActivos(@Param("filtro")int filtro,@Param("filtrar")String filtrar);
     
 }

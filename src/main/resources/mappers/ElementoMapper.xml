@@ -65,7 +65,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                WHERE e.tipo LIKE 'Torre'
+                WHERE e.tipo LIKE 'Torre' and e.baja LIKE 'no' and idequipo is null
         </select>
         
         <select parameterType="map" id="consultarElementosPantalla" resultMap="ElementoResult">
@@ -76,7 +76,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                WHERE e.tipo LIKE 'Pantalla'
+                WHERE e.tipo LIKE 'Pantalla' and e.baja LIKE 'no' and idequipo is null
         </select>
         
         <select parameterType="map" id="consultarElementosMouse" resultMap="ElementoResult">
@@ -87,7 +87,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                WHERE e.tipo LIKE 'Mouse'
+                WHERE e.tipo LIKE 'Mouse' and e.baja LIKE 'no' and idequipo is null
         </select>
         
         <select parameterType="map" id="consultarElementosTeclado" resultMap="ElementoResult">
@@ -98,7 +98,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                WHERE e.tipo LIKE 'Teclado'
+                WHERE e.tipo LIKE 'Teclado' and e.baja LIKE 'no' and idequipo is null
         </select>
         <select parameterType="map" id="consultarElementoPorNombre" resultMap="ElementoResult">
             select

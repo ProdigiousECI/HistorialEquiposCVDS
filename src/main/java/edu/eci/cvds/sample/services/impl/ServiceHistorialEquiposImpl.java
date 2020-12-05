@@ -78,9 +78,9 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
     }
 
     @Override
-    public ArrayList<Equipo> consultarEquipos() throws ExcepcionServiceHistorialEquipos {
+    public ArrayList<Equipo> consultarEquipos(int filtro,String filtrar) throws ExcepcionServiceHistorialEquipos {
         try {
-            return equipoDAO.consultarEquipos();
+            return equipoDAO.consultarEquipos(filtro,filtrar);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiceHistorialEquipos("Error al consultar equipos", ex);
         }
@@ -241,9 +241,9 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
 
     @Override
 
-    public ArrayList<Laboratorio> consultarLaboratorios(int e) throws ExcepcionServiceHistorialEquipos {
+    public ArrayList<Laboratorio> consultarLaboratorios(int e,String s) throws ExcepcionServiceHistorialEquipos {
         try {
-            return laboratorioDAO.consultarLaboratorios(e);
+            return laboratorioDAO.consultarLaboratorios(e,s);
         } catch (PersistenceException ex) {
             throw new UnsupportedOperationException("No se pudo consultar los laboratorios ", ex); //To change body of generated methods, choose Tools | Templates.
         }
@@ -283,7 +283,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         }
     }
     @Override
-    public void asociarElementoAEquipo(String nombre, int id) {
+    public void asociarElementoAEquipo(String nombre, int id) throws ExcepcionServiceHistorialEquipos{
     	try {
             elementoDAO.asociarElementoAEquipo(nombre,id);
         } catch (PersistenceException ex) {
@@ -292,7 +292,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
     }
     
     @Override
-    public void eliminarAsociacion(int n) {
+    public void eliminarAsociacion(int n) throws ExcepcionServiceHistorialEquipos {
     	try {
             elementoDAO.eliminarAsociacion(n);
         } catch (PersistenceException ex) {
@@ -309,6 +309,14 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         }
         
     }
-    
+
+    @Override
+    public ArrayList<Equipo> consultarEquiposActivos(int filtro, String filtrar) throws ExcepcionServiceHistorialEquipos {		
+	try {
+            return equipoDAO.consultarEquiposActivos(filtro,filtrar);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiceHistorialEquipos("Error al consultar equipos", ex);
+        }
+    }
 
 }

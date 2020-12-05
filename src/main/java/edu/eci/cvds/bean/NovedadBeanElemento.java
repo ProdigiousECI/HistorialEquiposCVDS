@@ -133,8 +133,7 @@ public class NovedadBeanElemento extends NovedadBean{
     	}else {
     		showMessage("Este elemento ya esta asigando a un equipo, o ya esta dado de baja");
     	}
-    	ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-    	context.redirect(context.getRequestContextPath() + "registrarNovedad.xhtml?elemento="+elementoId+"&i=0");
+    	
     	 
      }
         

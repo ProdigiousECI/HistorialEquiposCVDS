@@ -8,30 +8,61 @@
 	<resultMap type='Equipo' id='EquipoResult'>
 		<id property='id' column='id'/>
 		<result property='nombre' column='nombre'/>
+		<result property='activo' column='activo'/>
 		<result property='idlaboratorio' column='idlaboratorio'/> 
-                <!--association property="iduser" javaType="User" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association!-->
+        <association property="laboratorio" javaType="Laboratorio" columnPrefix="laboratorio_" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.LaboratorioMapper.LaboratorioResult"></association>
 	</resultMap>
         
         <select parameterType="map" id="consultarEquipo" resultMap="EquipoResult">
             select
                 e.id,
-                e.nombre
+                e.nombre,
+                e.activo,
+                e.idlaboratorio,
+                l.departamento as laboratorio_departamento
                 FROM Equipo as e
+                left join laboratorio as l on l.id = e.idlaboratorio
                 where e.id=#{idequip}
         </select>
         <select parameterType="map" id="consultarEquipoPorNombre" resultMap="EquipoResult">
             select
                 e.id,
-                e.nombre
+                e.nombre,
+                e.activo,
+                l.departamento as laboratorio_departamento
                 FROM Equipo as e
+                left join laboratorio as l on l.id = e.idlaboratorio
                 where e.nombre=#{nom}
         </select>
         <select  parameterType="map" id="consultarEquipos" resultMap="EquipoResult">
             select
                 e.id,
                 e.nombre,
-                e.idlaboratorio
+                e.activo,
+                e.idlaboratorio,
+                l.departamento as laboratorio_departamento
                 FROM Equipo as e
+                left join laboratorio as l on l.id = e.idlaboratorio
+                WHERE e.nombre LIKE #{filtrar}
+                <if test="filtro == 1"> ORDER BY e.id ASC </if>
+				<if test="filtro == 2"> ORDER BY e.nombre ASC </if>
+				<if test="filtro == 3"> ORDER BY l.departamento ASC </if>
+				<if test="filtro == 4"> ORDER BY e.activo DESC </if>
+        </select>
+        <select  parameterType="map" id="consultarEquiposActivos" resultMap="EquipoResult">
+            select
+                e.id,
+                e.nombre,
+                e.activo,
+                e.idlaboratorio,
+                l.departamento as laboratorio_departamento
+                FROM Equipo as e
+                left join laboratorio as l on l.id = e.idlaboratorio
+                WHERE e.nombre LIKE #{filtrar} and e.activo like 'si'
+                <if test="filtro == 1"> ORDER BY e.id ASC </if>
+				<if test="filtro == 2"> ORDER BY e.nombre ASC </if>
+				<if test="filtro == 3"> ORDER BY l.departamento ASC </if>
+				<if test="filtro == 4"> ORDER BY e.activo DESC </if>
         </select>
         
         <select  parameterType="map" id="consultarEquiposPorLaboratorio" resultMap="EquipoResult">
@@ -46,7 +77,7 @@
         </select>
         
         <insert id="registrarEquipo" parameterType="map">
-            INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null,null) <!---->
+            INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null,'si',null) <!---->
             
         </insert>
 </mapper>
