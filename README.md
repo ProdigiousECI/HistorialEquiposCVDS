@@ -139,7 +139,31 @@ Al frente de cada fila de elemento, se podra ver un link "Ver Elemento", que los
    Se utilizó la metodología **Scrum**,  el grupo de trabajo se reunió para planear cada uno de los sprints los cuales se dividieron en 3 en acuerdo con el cliente, para mejorar    la interacción con el cliente se le presento de acuerdo al tiempo establecido para cada sprint las debidas entregas.
    después de la revisión del cliente se procede a hacer la restrospectiva del sprint entregado y la planeación del siguiente hasta la entrega final.
   * **Enlace a Taiga:** https://tree.taiga.io/project/javier200151-historial-de-equipos-labinfo-1/backlog?milestone=276704
-  * **Release-burndown chart y puntos de historias realizadas y faltantes
+  * **Release-burndown chart y puntos de historias realizadas y faltantes:
+  ## Detalles por sprint
+### Sprint 1
+**Sprint-burndown chart**\
+![](https://github.com/ProdigiousECI/HistorialEquiposCVDS/blob/master/resources/sprint%201%20backlog.PNG)
+
+##### Resumen del sprint 1
+Durante el inicio del proyecto, hubi difcultades en cuanto a comunicacion y coordinacion de los detalles de como iba a ser la metodologia de trabajo dado a las condiciones de ultima instancia. esto nos retraso un poco en cuanto a la entrega se logro el objetivo en  cuanto al sprint 1.
+
+**Sprint 1  backlog**\
+![](https://github.com/ProdigiousECI/HistorialEquiposCVDS/blob/master/resources/sprint%201.PNG)
+### Sprint 2
+**Sprint-burndown chart**\
+![](https://github.com/ProdigiousECI/HistorialEquiposCVDS/blob/master/resources/sprint%202%20backlog.PNG)
+##### Resumen del sprint 2
+Para este Sprint comenzamos ya de forma adecuada, unas tareas sin actualizar a tiempo en el taiga, por eso el cambio, ya para este momento nos reunimos a final de cada sprint para la integracion de las funcionalidades de acuerdo a las asignaciones con el fin de que cada integrante trabajara de forma adecuada y en conjunto. en este sprint incluimos las correcciones del sprint 1.
+**Sprint 2  backlog**\
+![](https://github.com/ProdigiousECI/HistorialEquiposCVDS/blob/master/resources/sprint%202.PNG)
+### Sprint3
+**Sprint-burndown chart**\
+![](https://github.com/ProdigiousECI/HistorialEquiposCVDS/blob/master/resources/sprint%203%20backlog.PNG)
+##### Resumen del sprint 3
+Comenzamos el sprint de forma adecuada con un poco de tiempo, por esto logramos empatar los puntos en algunas fechas, el equipo sin excepcion trabajo en sus funcionalidades y las correcciones generales. para este punto el proyecto se desarrollo de acuerdo a la metodologia planeada sin inconvinientes
+**Sprint 3 backlog ** \
+![](https://github.com/ProdigiousECI/HistorialEquiposCVDS/blob/master/resources/sprint%203.PNG)
   * **Pruebas:**
   * **Reporte de Analisis estático de código**
 
