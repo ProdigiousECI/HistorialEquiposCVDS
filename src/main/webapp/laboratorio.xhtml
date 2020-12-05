@@ -39,9 +39,38 @@ and open the template in the editor.
             </br>
             </h:form>
             </center>
-            <p:dataTable value="#{Laboratorio.laboratorios}" var="lab" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+            <br/>
+			<label style="font-weight: 700;"><img src="resources/img/verde.png" style="height:30px;width: 30px;" id="imagess"/>
+			Activos
+			<img src="resources/img/rojo.png" style="height:30px;width: 30px;" id="imageness"/>
+            Cerrados</label>
+            
+            
+                                       
+            
+            
+            <p:dataTable id="tabla" value="#{Laboratorio.laboratorios}" var="lab" styleClass = "Table" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="width:100%;" >
                 <center>
+                    
+                     <f:facet name="{Exporters}">
+						
+								
+
+							
+							 <br></br>
+							<p:commandButton update="tabla" value="Id" actionListener="#{Laboratorio.ordenarLaboratorioFiltro(1)}"/>
+							<p:commandButton update="tabla" value="Nombre" actionListener="#{Laboratorio.ordenarLaboratorioFiltro(2)}"/>
+							<p:commandButton update="tabla" value="Departamento" actionListener="#{Laboratorio.ordenarLaboratorioFiltro(3)}"/>
+					
+							<p:commandButton update="tabla" value="Dado De Baja" actionListener="#{Laboratorio.ordenarLaboratorioFiltro(4)}"/>
+							
+							<h:form>
+								<p:inputText id="filtrar" type="String" binding="#{filtrar}" style="text-transform:capitalize;"/>
+								<p:commandButton update="tabla" value="Filtrar" actionListener="#{Laboratorio.ordenarLaboratorios(filtrar.value)}"/>
+							</h:form>
+			
+					</f:facet>
                     <p:column headerText="idLaboratorio" style="background-color:#{Laboratorio.color(lab)};color:#000000;">
                         <p:outputLabel value="#{lab.idlaboratorio}"/>
                     </p:column>

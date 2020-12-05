@@ -39,14 +39,18 @@ public class LaboratorioBean {
     public ArrayList<Laboratorio> laboratorio;
     
     public ArrayList<Laboratorio> getLaboratorios() throws ExcepcionServiceHistorialEquipos {
-        return serviceHE.consultarLaboratorios(1,filtrar);
+        return serviceHE.consultarLaboratorios(filtro,filtrar);
     }
     public Laboratorio obtenerLaboratorio(int n) throws ExcepcionServiceHistorialEquipos {
         return serviceHE.consultarLaboratorio(n);
     }
     public void ordenarLaboratorioFiltro(int i) throws ExcepcionServiceHistorialEquipos {
     	filtro=i;
-    	laboratorio=serviceHE.consultarLaboratorios(i,filtrar);
+    	
+    }
+    public void ordenarLaboratorios(String s) throws ExcepcionServiceHistorialEquipos {
+		filtrar=s;
+    	
     }
     public void setLaboratorios(ArrayList<Laboratorio> laboratorio) {
         this.laboratorio = laboratorio;
