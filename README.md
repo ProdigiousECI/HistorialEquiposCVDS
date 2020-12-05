@@ -125,16 +125,21 @@ Al frente de cada fila de elemento, se podra ver un link "Ver Elemento", que los
    * [MyBatis (Framework)](https://mybatis.org/mybatis-3/es/)
   * **Enlace a la aplicacion en Heroku:** https://historialequipos.herokuapp.com/faces/Autenticacion.xhtml
       
-  * **Enlace al sistema de integración continua**
+  * **Enlace al sistema de integración continua https://app.circleci.com/pipelines/github/ProdigiousECI/HistorialEquiposCVDS
 ### Descripción del proceso:
 
-  * **Integrantes:**
+  * **Integrantes:
+   >|     Nombre    |     Rol         |
+   >|--------------|------------- |
+   >|Miguel Fuquene	|Developer  | 
+   >|Yarit  Villalobos|Developer   |
+   >|Javier Lopez|Developer   |
+   >|Andres Davila|Developer   |
   * **Breve Descripción de Metodoloía:
    Se utilizó la metodología **Scrum**,  el grupo de trabajo se reunió para planear cada uno de los sprints los cuales se dividieron en 3 en acuerdo con el cliente, para mejorar    la interacción con el cliente se le presento de acuerdo al tiempo establecido para cada sprint las debidas entregas.
    después de la revisión del cliente se procede a hacer la restrospectiva del sprint entregado y la planeación del siguiente hasta la entrega final.
   * **Enlace a Taiga:** https://tree.taiga.io/project/javier200151-historial-de-equipos-labinfo-1/backlog?milestone=276704
-  * **Release-burndown chart y puntos de historias realizadas y faltantes**
-  * **Sprints**
+  * **Release-burndown chart y puntos de historias realizadas y faltantes
   * **Pruebas:**
   * **Reporte de Analisis estático de código**
 
