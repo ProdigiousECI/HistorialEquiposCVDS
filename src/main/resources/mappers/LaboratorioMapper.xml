@@ -6,6 +6,7 @@
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.LaboratorioMapper">
 	<resultMap type='Laboratorio' id='LaboratorioResult'>
 		<id property='idlaboratorio' column='idlaboratorio'/>
+                <result property='nombre' column='nombre'/> 
 		<result property='departamento' column='departamento'/>  
                 <result property='activo' column='activo'/>  
                 <!--association property="equipo" javaType="Equipo" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association-->
@@ -24,9 +25,6 @@
                 FROM Laboratorio as l
                 <if test="ordenar == 1"> ORDER BY l.idlaboratorio ASC </if>
 				<if test="ordenar == 2"> ORDER BY l.departamento ASC </if>
-				
-		
-				
 				
         </select>
         <insert id="registrarLaboratorio" parameterType="map">
