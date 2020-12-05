@@ -86,6 +86,16 @@ public class MyBATISEquipoDAO implements EquipoDAO{
                  throw new PersistenceException("Error al consultar elementos", e);
             }
         }
+
+		@Override
+		public void asociarEquipoALaboratorio(int in, Integer laboratorioId) throws PersistenceException {
+			try{
+                equipoMapper.asociarEquipoALaboratorio(in,laboratorioId);
+            }catch(org.apache.ibatis.exceptions.PersistenceException e){
+                 throw new PersistenceException("Error al Asociar equipo a Laboratorio", e);
+            }
+			
+		}
     
     
 }

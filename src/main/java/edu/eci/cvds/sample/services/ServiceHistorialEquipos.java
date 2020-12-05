@@ -91,6 +91,8 @@ public interface ServiceHistorialEquipos {
 
 	public abstract ArrayList<Equipo> consultarEquiposActivos(int filtro, String filtrar) throws ExcepcionServiceHistorialEquipos;
 
+	public abstract void asociarEquipoALaboratorio(int in, Integer laboratorioId) throws ExcepcionServiceHistorialEquipos;
+
 
 
 	

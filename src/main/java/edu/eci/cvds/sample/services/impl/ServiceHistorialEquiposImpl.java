@@ -328,4 +328,14 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
             throw new ExcepcionServiceHistorialEquipos("Error al desasociar equipos", ex);
         }
     }
+
+	@Override
+	public void asociarEquipoALaboratorio(int in, Integer laboratorioId) throws ExcepcionServiceHistorialEquipos {
+		try {
+            equipoDAO.asociarEquipoALaboratorio(in,laboratorioId);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiceHistorialEquipos("Error al asociar laboratorio a equipo", ex);
+        }
+		
+	}
 }

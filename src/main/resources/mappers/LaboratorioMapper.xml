@@ -18,7 +18,7 @@
                 l.departamento,
                 l.activo
                 FROM Laboratorio as l
-                where l.idlaboratorio=#{idlab}
+                where l.id=#{idlab}
         </select>
         <select parameterType="map" id="consultarLaboratorios" resultMap="LaboratorioResult">
             select

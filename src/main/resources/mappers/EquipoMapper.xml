@@ -32,7 +32,7 @@
                 l.departamento as laboratorio_departamento
                 FROM Equipo as e
                 left join laboratorio as l on l.id = e.idlaboratorio
-                where e.nombre=#{nom}
+                where UPPER(e.nombre)=UPPER(#{nom})
         </select>
         <select  parameterType="map" id="consultarEquipos" resultMap="EquipoResult">
             select
@@ -43,7 +43,7 @@
                 l.departamento as laboratorio_departamento
                 FROM Equipo as e
                 left join laboratorio as l on l.id = e.idlaboratorio
-                WHERE e.nombre LIKE #{filtrar}
+                WHERE UPPER(e.nombre) LIKE UPPER(#{filtrar})
                 <if test="filtro == 1"> ORDER BY e.id ASC </if>
 				<if test="filtro == 2"> ORDER BY e.nombre ASC </if>
 				<if test="filtro == 3"> ORDER BY l.departamento ASC </if>
@@ -58,7 +58,7 @@
                 l.departamento as laboratorio_departamento
                 FROM Equipo as e
                 left join laboratorio as l on l.id = e.idlaboratorio
-                WHERE e.nombre LIKE #{filtrar} and e.activo like 'si'
+                WHERE UPPER(e.nombre) LIKE UPPER(#{filtrar}) and UPPER(e.activo) like 'SI'
                 <if test="filtro == 1"> ORDER BY e.id ASC </if>
 				<if test="filtro == 2"> ORDER BY e.nombre ASC </if>
 				<if test="filtro == 3"> ORDER BY l.departamento ASC </if>
@@ -84,5 +84,10 @@
             UPDATE Equipo
             SET idlaboratorio=null
             WHERE id=#{ideq}
+        </update>
+        <update id="asociarEquipoALaboratorio" parameterType="map">
+            UPDATE Equipo
+            SET idlaboratorio=#{inlab}
+            WHERE id=#{ineq}
         </update>
 </mapper>

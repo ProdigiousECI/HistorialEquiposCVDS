@@ -18,7 +18,7 @@ and open the template in the editor.
 	<p:button class="volver" outcome="laboratorio.xhtml" value=""/>
 	
 	<center>
-        <img src="resources/img/logo1.png" width="300" height="100" align="center"/>
+        <img src="resources/img/logo4.png" width="300" height="100" align="center"/>
         </center>
         <br/>
         <center>
@@ -40,13 +40,67 @@ and open the template in the editor.
 			<p:column headerText="Nombre">
 				<h:outputText value="#{equipo.nombre}" />
 			</p:column>
+			<p:column headerText="Des-Asociar">
+			<p:commandLink update="tabla" class="Button" value="Eliminar Asociación" actionListener="#{Equipo.eliminarAsociacion(equipo.id)}">
+						<p:confirm header="Confirmation" message="Estas seguro que desear eliminiar la asociación con el laboratorio ?"/>
+			</p:commandLink>
+			</p:column>
 	
 			
 			
 			
 			</p:dataTable>
+			<br/><br/>
+			<i><h:outputText value="Asociar Equipos Al Laboratorio" style="width:100%;height: 25px;color: #000000;font-size:40px;border-radius: 30px;margin-left: 4%;font-weight: 700;"/></i>
+			<br/><br/>
+			<p:dataTable id="tablaAsociacion" value="#{Equipo.equipos}" var="equip"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters} "
+                     paginator="true" rows="10">
+					
+					
+					<f:facet name="{Exporters}">
+							<p:commandButton style="float: right;background: #38A9B2;" value="Asociar" update="tablaAsociacion" actionListener="#{Equipo.asociacionLaboratorio()}">
+								<p:confirm header="Confirmation" message="Estas seguro de Asociar los equipos a este laboratorio?" />
+							</p:commandButton>
+							 <br/><br/>
+							<p:commandButton update="tabla" value="Id" actionListener="#{Equipo.ordenarEquiposporFiltro(1)}"/>
+							<p:commandButton update="tabla" value="Nombre" actionListener="#{Equipo.ordenarEquiposporFiltro(2)}"/>
+							<p:commandButton update="tabla" value="Laboratorio" actionListener="#{Equipo.ordenarEquiposporFiltro(4)}"/>
+							<h:form>
+								<p:inputText id="filtrar" type="String" binding="#{filtrar}" style="text-transform:capitalize;"/>
+								<p:commandButton update="tabla" value="Filtrar" actionListener="#{Equipo.ordenarEquipos(filtrar.value)}"/>
+							</h:form>
+			
+					</f:facet>
+					<p:column headerText="" style="width:20px;background-color:#{Equipo.color(equip)};color:#000000;">
+						<h:selectBooleanCheckbox value="#{Equipo.confirmar[equip.id]}" >
+							<p:ajax listener="#{Equipo.setConfirmar(equip.id)}" />
+						</h:selectBooleanCheckbox>
+					</p:column>
+					
+					
+					
+					
+                    <p:column headerText="Id" style="background-color:#{Equipo.color(equip)};color:#000000;">
+                        <p:outputLabel value="#{equip.id}"/>
+                    </p:column>
+                    <p:column headerText="Nombre" style="background-color:#{Equipo.color(equip)};color:#000000">
+                        <p:outputLabel value="#{equip.nombre}" style="text-transform:capitalize;"/>
+                    </p:column>
+					
+            
+					
+					<p:column headerText="Laboratorio" style="background-color:#{Equipo.color(equip)};color:#000000">
+                        <p:outputLabel value="#{equip.laboratorio.departamento}" style="text-transform:capitalize;"/>
+                    </p:column>
+                    
+    
+
+            </p:dataTable>   
 		
-		
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
 	
 		
 		 

@@ -24,4 +24,6 @@ public interface EquipoDAO {
     public ArrayList<Equipo> consultarEquiposActivos(int filtro,String filtrar) throws PersistenceException;
 	
     public void desasociarEquipo(int id)throws PersistenceException;
+
+	public void asociarEquipoALaboratorio(int in, Integer laboratorioId) throws PersistenceException;
 }

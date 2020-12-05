@@ -19,6 +19,7 @@ import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.entities.Equipo;
+import edu.eci.cvds.sample.entities.Laboratorio;
 import edu.eci.cvds.sample.entities.Novedad;
 import edu.eci.cvds.sample.entities.User;
 import javax.faces.bean.ViewScoped;
@@ -146,7 +147,7 @@ public class EquipoBean{
     private boolean verificacionNombre(String nombre) throws ExcepcionServiceHistorialEquipos {
     	equipos=getEquipos();
     	for(Equipo e:equipos) {
-    		if(e.getNombre().equals(nombre)) {
+    		if(e.getNombre().toUpperCase().equals(nombre.toUpperCase())) {
     			return true;
     		}
     	}
@@ -166,16 +167,20 @@ public class EquipoBean{
                 User user=new User();
         		user.setCorreo(ShiroBean.getUser());
         		Equipo equipo=serviceHE.consultarEquipoPorNombre(nombre);
-        		serviceHE.registrarNovedad(new Novedad("nuevo equipo","registro de "+e.getNombre(),user,equipo));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(torre)));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(pantalla)));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(mouse)));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(teclado)));
+        		serviceHE.registrarNovedad(new Novedad("nuevo equipo","registro de "+e.getNombre().toUpperCase(),user,equipo));
+        		Elemento torreEquipo=serviceHE.consultarElementoPorNombre(torre);
+        		Elemento mouseEquipo=serviceHE.consultarElementoPorNombre(mouse);
+        		Elemento tecladoEquipo=serviceHE.consultarElementoPorNombre(teclado);
+        		Elemento pantallaEquipo=serviceHE.consultarElementoPorNombre(pantalla);
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con "+e.getNombre().toUpperCase(),user,serviceHE.consultarElementoPorNombre(torre)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con "+e.getNombre().toUpperCase(),user,serviceHE.consultarElementoPorNombre(pantalla)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con "+e.getNombre().toUpperCase(),user,serviceHE.consultarElementoPorNombre(mouse)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con "+e.getNombre().toUpperCase(),user,serviceHE.consultarElementoPorNombre(teclado)));
 	            
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con la torre "+torreEquipo.getNombre().toUpperCase(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con la pantalla "+pantallaEquipo.getNombre().toUpperCase(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con el mouse "+mouseEquipo.getNombre().toUpperCase(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con el teclado "+tecladoEquipo.getNombre().toUpperCase(),user,equipo));
 	            serviceHE.asociarElementoAEquipo(torre,equipo.getId());
 	            serviceHE.asociarElementoAEquipo(pantalla,equipo.getId());
 	            serviceHE.asociarElementoAEquipo(mouse,equipo.getId());
@@ -298,6 +303,51 @@ public class EquipoBean{
     	}else {
     		showMessage("Todos los elementos se han dado de baja exitosamente");
     	}
+    	
+    	
+    }
+    public void asociarEquipoALaboratorio(int in) throws ExcepcionServiceHistorialEquipos {
+    	serviceHE.asociarEquipoALaboratorio(in, laboratorioId);
+    	User user=new User();
+		user.setCorreo(ShiroBean.getUser());
+		Equipo equipo=serviceHE.consultarEquipo(in);
+		Laboratorio l=serviceHE.consultarLaboratorio(laboratorioId);
+		serviceHE.registrarNovedad(new Novedad("Asociación a Laboratorio","Asociación del "+equipo.getNombre().toUpperCase() +" al laboratorio "+ l.getNombre().toUpperCase(),user,equipo));
+        
+    }
+    public void eliminarAsociacion(Integer id) throws ExcepcionServiceHistorialEquipos {
+    	serviceHE.desasociarEquipo(id);
+    	User user=new User();
+		user.setCorreo(ShiroBean.getUser());
+		Equipo equipo=serviceHE.consultarEquipo(id);
+		Laboratorio l=serviceHE.consultarLaboratorio(laboratorioId);
+		serviceHE.registrarNovedad(new Novedad("Eliminar Asociación","Eliminación de Asociación entre "+equipo.getNombre().toUpperCase() +" y "+ l.getNombre().toUpperCase(),user,equipo));
+    }
+    public void asociacionLaboratorio() throws ExcepcionServiceHistorialEquipos, IOException {
+    	boolean bandera=false;
+    	Laboratorio l=serviceHE.consultarLaboratorio(laboratorioId);
+    	if(l.getActivo().equals("si") || l.getActivo().equals("Si")) {
+	    	for(Integer in:salvar.keySet()) {
+	    		
+	    		if(salvar.get(in)) {
+	    			asociarEquipoALaboratorio(in);
+	    			bandera=true;
+	    			salvar.put(in,false);
+	    		}
+	    		
+	    	
+	    	}
+	    	//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+	    	//context.redirect(context.getRequestContextPath() + "elemento.xhtml");
+	    	if(bandera) {
+	    		showMessage("Todos los equipos han sido Asociados exitosamente");
+	    	}else {
+	    		showMessage("No selecciono equipos a asociar");
+	    	}
+    	}else {
+    		showMessage("Este laboratorio este cerrado");
+    	}
+    	
     	
     	
     }
