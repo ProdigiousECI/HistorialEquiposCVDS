@@ -6,6 +6,7 @@
 package edu.eci.cvds.bean;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.sample.entities.Equipo;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
@@ -85,6 +86,14 @@ public class LaboratorioBean {
    public void cerrarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos
    {
        serviceHE.cerrarLaboratorio(id);
+       ArrayList<Equipo> eq = serviceHE.consultarEquipos(1,"");
+       for (int i=0; i<eq.size();i++)
+       {
+           if(eq.get(i).getIdlaboratorio()==id)
+           {
+               serviceHE.desasociarEquipo(eq.get(i).getId());
+           }
+       }
        showMessage("Laboratorio " + id+ " cerrado");
    }
 
@@ -103,6 +112,10 @@ public class LaboratorioBean {
 	    	if(numero%2==0) {
 	    		color="#D27F00";
 	    	}
+                if(numero==-2)
+                {
+                    color="#F93D3D";
+                }
    	}
    	return color;
    }
@@ -112,9 +125,13 @@ public class LaboratorioBean {
    	
    	for(Laboratorio l:getLaboratorios()) {
    		
+                if(nombre.getActivo().equals("No")) {
+   			return -2; 
+   		}
    		if(l.getIdlaboratorio()==nombre.getIdlaboratorio()) {
    			return cont; 
    		}cont++;
+                
    	}
    	return -1;
    }

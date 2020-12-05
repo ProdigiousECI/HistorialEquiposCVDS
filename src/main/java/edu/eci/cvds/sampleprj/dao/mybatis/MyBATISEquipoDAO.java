@@ -78,6 +78,14 @@ public class MyBATISEquipoDAO implements EquipoDAO{
             throw new PersistenceException("Error al consultar equipos",e);
         }
 	}
+        @Override
+        public void desasociarEquipo(int id) throws PersistenceException {
+            try{
+                equipoMapper.desasociarEquipo(id);
+            }catch(org.apache.ibatis.exceptions.PersistenceException e){
+                 throw new PersistenceException("Error al consultar elementos", e);
+            }
+        }
     
     
 }

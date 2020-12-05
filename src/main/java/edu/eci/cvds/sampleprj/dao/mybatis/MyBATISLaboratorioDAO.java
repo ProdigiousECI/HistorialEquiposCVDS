@@ -56,4 +56,6 @@ public class MyBATISLaboratorioDAO implements LaboratorioDAO{
              throw new PersistenceException("Error al consultar elementos", e);
         }
     }
+
+    
 }

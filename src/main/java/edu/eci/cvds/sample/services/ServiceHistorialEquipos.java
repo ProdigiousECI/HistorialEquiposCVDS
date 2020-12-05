@@ -60,7 +60,7 @@ public interface ServiceHistorialEquipos {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract List<User> consultarUsuarios() throws ExcepcionServiceHistorialEquipos;
-
+    public void desasociarEquipo(int id)throws ExcepcionServiceHistorialEquipos;
 
     public abstract void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos;
     public abstract ArrayList<Elemento> consultarElementos(int e,String s) throws ExcepcionServiceHistorialEquipos;

@@ -80,4 +80,9 @@
             INSERT INTO Equipo values ((SELECT MAX(id) +1 FROM Equipo), #{equip.nombre}, null,'si',null) <!---->
             
         </insert>
+        <update id="desasociarEquipo" parameterType="map">
+            UPDATE Equipo
+            SET idlaboratorio=null
+            WHERE id=#{ideq}
+        </update>
 </mapper>

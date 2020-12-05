@@ -17,4 +17,5 @@ public interface LaboratorioDAO {
     public Laboratorio consultarLaboratorio(int id) throws PersistenceException;
     public void cerrarLaboratorio(int id) throws PersistenceException;
     public ArrayList<Laboratorio> consultarLaboratorios(int e,String s) throws PersistenceException;
+    
 }
