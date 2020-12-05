@@ -97,6 +97,7 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
 
     @Override
     public void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos {
+    	
         try {
             elementoDAO.registrarElemento(ele);
         } catch (PersistenceException ex) {
@@ -241,9 +242,9 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
 
     @Override
 
-    public ArrayList<Laboratorio> consultarLaboratorios(int e) throws ExcepcionServiceHistorialEquipos {
+    public ArrayList<Laboratorio> consultarLaboratorios(int e,String s) throws ExcepcionServiceHistorialEquipos {
         try {
-            return laboratorioDAO.consultarLaboratorios(e);
+            return laboratorioDAO.consultarLaboratorios(e,s);
         } catch (PersistenceException ex) {
             throw new UnsupportedOperationException("No se pudo consultar los laboratorios ", ex); //To change body of generated methods, choose Tools | Templates.
         }
@@ -300,10 +301,19 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         }
     }
 
-	@Override
-	public ArrayList<Equipo> consultarEquiposActivos(int filtro, String filtrar) throws ExcepcionServiceHistorialEquipos {
-		
-		try {
+    @Override
+    public void cerrarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos {
+        try {
+            laboratorioDAO.cerrarLaboratorio(id);
+        } catch (PersistenceException ex) {
+            throw new UnsupportedOperationException("Errores al asociar equipo ", ex); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+    }
+
+    @Override
+    public ArrayList<Equipo> consultarEquiposActivos(int filtro, String filtrar) throws ExcepcionServiceHistorialEquipos {		
+	try {
             return equipoDAO.consultarEquiposActivos(filtro,filtrar);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiceHistorialEquipos("Error al consultar equipos", ex);
@@ -338,5 +348,25 @@ public class ServiceHistorialEquiposImpl implements ServiceHistorialEquipos {
         }
     }
     
+    
 
+    @Override
+    public void desasociarEquipo(int id) throws ExcepcionServiceHistorialEquipos {
+        try {
+            equipoDAO.desasociarEquipo(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiceHistorialEquipos("Error al desasociar equipos", ex);
+        }
+    }
+
+
+	@Override
+	public void asociarEquipoALaboratorio(int in, Integer laboratorioId) throws ExcepcionServiceHistorialEquipos {
+		try {
+            equipoDAO.asociarEquipoALaboratorio(in,laboratorioId);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiceHistorialEquipos("Error al asociar laboratorio a equipo", ex);
+        }
+		
+    }
 }

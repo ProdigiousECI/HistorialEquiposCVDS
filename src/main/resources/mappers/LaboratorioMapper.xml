@@ -5,30 +5,41 @@
   
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.LaboratorioMapper">
 	<resultMap type='Laboratorio' id='LaboratorioResult'>
-		<id property='idlaboratorio' column='idlaboratorio'/>
-		<result property='departamento' column='departamento'/>  
+		<id property='id' column='id'/>
+                <result property='nombre' column='nombre'/>
+		<result property='departamento' column='departamento'/>
+                <result property='activo' column='activo'/>  
                 <!--association property="equipo" javaType="Equipo" columnPrefix="id" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult"></association-->
 	</resultMap>
         <select parameterType="map" id="consultarLaboratorio" resultMap="LaboratorioResult">
             select
-                l.idlaboratorio,
-                l.departamento
+                l.id,
+                l.nombre,
+                l.departamento,
+                l.activo
                 FROM Laboratorio as l
-                where l.idlaboratorio=#{idlab}
+                where l.id=#{idlab}
         </select>
         <select parameterType="map" id="consultarLaboratorios" resultMap="LaboratorioResult">
             select
-                l.idlaboratorio,
-                l.departamento
+                l.id,
+                l.nombre,
+                l.departamento,
+                l.activo
                 FROM Laboratorio as l
-                <if test="ordenar == 1"> ORDER BY l.idlaboratorio ASC </if>
-				<if test="ordenar == 2"> ORDER BY l.departamento ASC </if>
-				
-		
-				
-				
+                WHERE l.nombre LIKE #{filtrar}
+                <if test="ordenar == 1"> ORDER BY l.id ASC </if>
+                                <if test="ordenar == 2"> ORDER BY l.nombre ASC </if>
+				<if test="ordenar == 3"> ORDER BY l.departamento ASC </if>
+				<if test="ordenar == 4"> ORDER BY l.activo DESC </if>
+			
         </select>
         <insert id="registrarLaboratorio" parameterType="map">
-            INSERT INTO Laboratorio values ((SELECT MAX(idlaboratorio) +1 FROM Laboratorio), #{lab.departamento}) <!---->
+            INSERT INTO Laboratorio values ((SELECT MAX(id) +1 FROM Laboratorio),#{lab.nombre}, #{lab.departamento},'si') <!---->
         </insert>
+        <update id="cerrarLaboratorio" parameterType="map">
+            UPDATE Laboratorio
+            SET activo='No'
+            WHERE id=#{idlab}
+        </update>
 </mapper>
