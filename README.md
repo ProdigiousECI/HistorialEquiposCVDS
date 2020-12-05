@@ -85,17 +85,29 @@ Al frente de cada fila de elemento, se podra ver un link "Ver Elemento", que los
   ![](resources/novedades.JPG)
   
   # Laboratorios:
+  Pantalla de laboratorios
   
+  ![](resources/pagina.PNG)
+  
+  A la hora de ingresar a los laboratorios nos permite la opción de registrar ingresando el nombre y el departamento 
+  
+  ![](resources/registrar.PNG)
+  
+  Podemos encontrar en la columnas un boton *Cerrar Laboratorio*, donde al interactuar y aceptar el cuadro cerrará el laboratorio marcandolo con un color rojo que significa que el laboratorio se encuentra cerrado. Aclarar que si el laboratorio cuenta con equipos, estos de desasociarán de los laboratorios cerrados
+  
+  ![](resources/cerrado.PNG)
+  
+  El otro boton que encontramos en la columnas es *Equipos Asociados*, que al interactuar nos enviará a una nueva pantalla donde veremos la información de los equipos que estan asociados a este laboratorio
+  
+  ![](resources/equipos.PNG)
+  
+  Como una opción añadida se pueden descargar los laboratorios como archivo .xls para visualizarla en una hoja de calculo y tenerla guardado en archivos locales
+  
+  ![](resources/download.PNG)
   
 ### Arquitectura y Diseño Detallado
 
   * **Modelo E-R:**
-     
-     
-     ![](resources/diagrama.JPG)
-     
-     
-     
   * **Diagrama de clases:**
   * **Descripción de la arquitectura y el Stack de tecnologías utilizado:**
   * **Enlace a la aplicacion en Heroku:** https://historialequipos.herokuapp.com/faces/Autenticacion.xhtml
