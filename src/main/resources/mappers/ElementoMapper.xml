@@ -47,7 +47,7 @@
                 eq.id as equipo_id,
                 eq.nombre as equipo_nombre
                 FROM Elemento as e
-                left join equipo as eq on eq.id = e.idequipo
+                left join equipo as eq on eq.id = e.idequipos
                 WHERE e.nombre LIKE #{filtrar}
                 <if test="ordenar == 1"> ORDER BY e.id ASC </if>
 				<if test="ordenar == 2"> ORDER BY e.nombre ASC </if>
