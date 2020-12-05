@@ -86,6 +86,10 @@ and open the template in the editor.
                      <p:column headerText="Activo" style="background-color:#{Laboratorio.color(lab)};color:#000000;">
                         <p:outputLabel value="#{lab.activo}"/>
                     </p:column>
+                    
+                    <p:column headerText="Historial de Novedades" style="background-color:#{Laboratorio.color(el)};color:#000000;">
+			<p:link style="color: #011DEB;" outcome="registrarLaboratorio?laboratorio=#{lab.idlaboratorio}&amp;i=0" value="Ver Laboratorio"></p:link>
+                    </p:column>
                     <!--<p:column headerText="IdUser">
                         <p:outputLabel value="null"/>
                     </p:column>-->

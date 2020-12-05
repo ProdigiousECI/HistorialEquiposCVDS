@@ -37,6 +37,7 @@ public class LaboratorioBean {
     private int filtro;
     private String filtrar="";
     public ArrayList<Laboratorio> laboratorio;
+   
     
     public ArrayList<Laboratorio> getLaboratorios() throws ExcepcionServiceHistorialEquipos {
         return serviceHE.consultarLaboratorios(filtro,filtrar);
@@ -116,5 +117,6 @@ public class LaboratorioBean {
    	}
    	return -1;
    }
+   
     
 }
