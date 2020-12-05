@@ -101,6 +101,10 @@ Al frente de cada fila de elemento, se podra ver un link "Ver Elemento", que los
   
   ![](resources/equipos.PNG)
   
+  Además de ello se podrán asociar los equipos a los laboratorios, selecciona los equipos que desea asociar y le da en asociar que se encuentra en la parte superior derecha
+  
+  ![](resources/asociar.JPG)
+  
   Como una opción añadida se pueden descargar los laboratorios como archivo .xls para visualizarla en una hoja de calculo y tenerla guardado en archivos locales
   
   ![](resources/download.PNG)
