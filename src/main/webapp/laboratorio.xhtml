@@ -27,18 +27,18 @@ and open the template in the editor.
         <h:form id="formLaboratorio">
             <h:panelGrid columns="2">
                 <h:outputLabel value="Nombre" class="letra"/>
-                <p:inputText id="Nombre" type="String" binding="#{nombre}"/>
-            </h:panelGrid>
-            <h:panelGrid columns="2">
+                <p:inputText id="Nombre" type="String" binding="#{nombre}" style="text-transform:capitalize;"/>
+         
                 <h:outputLabel value="Departamento" class="letra"/>
-                <p:inputText id="Departamento" type="String" binding="#{departamento}"/>
+                <p:inputText id="Departamento" type="String" binding="#{departamento}" style="text-transform:capitalize;"/>
             </h:panelGrid>
             
             <br>
                 <p:commandButton update="formLaboratorio" class="Button" value="Registrar Laboratorio" actionListener="#{Laboratorio.registrarLaboratorio(idLaboratorio.value,nombre.value, departamento.value)}"/>
-            </br>
+            </br><br/>
             </h:form>
             </center>
+
             <br/>
 			<label style="font-weight: 700;"><img src="resources/img/verde.png" style="height:30px;width: 30px;" id="imagess"/>
 			Activos
@@ -72,24 +72,28 @@ and open the template in the editor.
 			
 					</f:facet>
                     <p:column headerText="idLaboratorio" style="background-color:#{Laboratorio.color(lab)};color:#000000;">
+
                         <p:outputLabel value="#{lab.idlaboratorio}"/>
                     </p:column>
                     <p:column headerText="Nombre" style="background-color:#{Laboratorio.color(lab)};color:#000000;">
-                        <p:outputLabel value="#{lab.nombre}"/>
+                        <p:outputLabel value="#{lab.nombre}" style="text-transform:capitalize;"/>
                     </p:column>
                     <p:column headerText="Departamento" style="background-color:#{Laboratorio.color(lab)};color:#000000;">
-                        <p:outputLabel value="#{lab.departamento}"/>
+                        <p:outputLabel value="#{lab.departamento}" style="text-transform:capitalize;"/>
                     </p:column>
                     <p:column headerText="Equipos Asociados" style="background-color:#{Laboratorio.color(lab)};color:#000000;">
-                        <p:link  outcome="equiposLaboratorio?laboratorio=#{lab.idlaboratorio}" value="Ver equipos" style="color: #011DEB;"></p:link>
+                        <p:link  outcome="equiposLaboratorio?laboratorio=#{lab.idlaboratorio}" value="Ver Equipos" style="color: #011DEB;"></p:link>
                     </p:column>
-                     <p:column headerText="Activo" style="background-color:#{Laboratorio.color(lab)};color:#000000;">
+                     <!--p:column headerText="Activo" style="background-color:#{Laboratorio.color(lab)};color:#000000;">
                         <p:outputLabel value="#{lab.activo}"/>
+                    </p:column-->
+                    <p:column headerText="Cerrar" style="background-color:#{Laboratorio.color(lab)};color:#000000;">
+                        <p:commandLink update="tabla" class="Button" value="Cerrar Laboratorio" actionListener="#{Laboratorio.cerrarLaboratorio(lab.idlaboratorio)}">
+                            <p:confirm header="Confirmation" message="Estas seguro de cerrar este laboratorio?" icon="pi pi-exclamation-triangle" />
+                        </p:commandLink>
                     </p:column>
                     
-                    <p:column headerText="Historial de Novedades" style="background-color:#{Laboratorio.color(el)};color:#000000;">
-			<p:link style="color: #011DEB;" outcome="registrarLaboratorio?laboratorio=#{lab.idlaboratorio}&amp;i=0" value="Ver Laboratorio"></p:link>
-                    </p:column>
+                   
                     <!--<p:column headerText="IdUser">
                         <p:outputLabel value="null"/>
                     </p:column>-->
@@ -120,9 +124,6 @@ and open the template in the editor.
                     <p:column headerText="activo">
                         <p:outputLabel value="#{lab.activo}"/>
                     </p:column>
-                    
-                
-                   
 
             </p:dataTable>  
 			

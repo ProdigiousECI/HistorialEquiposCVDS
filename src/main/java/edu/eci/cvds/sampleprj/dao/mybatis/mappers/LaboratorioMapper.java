@@ -17,5 +17,6 @@ public interface LaboratorioMapper {
     public Laboratorio consultarLaboratorio(@Param("idlab") int id);
     public ArrayList<Laboratorio> consultarLaboratorios(@Param("ordenar") int e,@Param("filtrar") String s);
     public void registrarLaboratorio(@Param("lab") Laboratorio lab);
+    public void cerrarLaboratorio(@Param("idlab") int id);
     
 }

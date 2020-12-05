@@ -45,6 +45,7 @@ public interface ServiceHistorialEquipos {
     
     public ArrayList<Elemento> bajaNoElemento() throws ExcepcionServiceHistorialEquipos;
 
+    public void cerrarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos;
     /**
      * Retorna el usuario segun sus credenciales
      * @param correo String  correo del usuario
@@ -59,7 +60,7 @@ public interface ServiceHistorialEquipos {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract List<User> consultarUsuarios() throws ExcepcionServiceHistorialEquipos;
-
+    public void desasociarEquipo(int id)throws ExcepcionServiceHistorialEquipos;
 
     public abstract void registrarElemento(Elemento ele) throws ExcepcionServiceHistorialEquipos;
     public abstract ArrayList<Elemento> consultarElementos(int e,String s) throws ExcepcionServiceHistorialEquipos;
@@ -89,6 +90,8 @@ public interface ServiceHistorialEquipos {
 	public abstract void eliminarAsociacion(int n) throws ExcepcionServiceHistorialEquipos;
 
 	public abstract ArrayList<Equipo> consultarEquiposActivos(int filtro, String filtrar) throws ExcepcionServiceHistorialEquipos;
+
+	public abstract void asociarEquipoALaboratorio(int in, Integer laboratorioId) throws ExcepcionServiceHistorialEquipos;
 
 
 

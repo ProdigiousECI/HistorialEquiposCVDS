@@ -6,6 +6,7 @@
 package edu.eci.cvds.bean;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.sample.entities.Equipo;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
@@ -23,6 +24,7 @@ import edu.eci.cvds.sample.factory.ServiceFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import org.primefaces.model.chart.PieChartModel;
 /**
  *
  * @author Andres Davila
@@ -37,6 +39,17 @@ public class LaboratorioBean {
     private int filtro;
     private String filtrar="";
     public ArrayList<Laboratorio> laboratorio;
+    public int laboratorioId;
+    public int equipos2;
+    private PieChartModel model;
+
+    public int getLaboratorioId() {
+        return laboratorioId;
+    }
+
+    public void setLaboratorioId(int laboratorioId) {
+        this.laboratorioId = laboratorioId;
+    }
    
     
     public ArrayList<Laboratorio> getLaboratorios() throws ExcepcionServiceHistorialEquipos {
@@ -44,6 +57,9 @@ public class LaboratorioBean {
     }
     public Laboratorio obtenerLaboratorio(int n) throws ExcepcionServiceHistorialEquipos {
         return serviceHE.consultarLaboratorio(n);
+    }
+    public Laboratorio obtenerLaboratorio2() throws ExcepcionServiceHistorialEquipos {
+        return serviceHE.consultarLaboratorio(laboratorioId);
     }
     public void ordenarLaboratorioFiltro(int i) throws ExcepcionServiceHistorialEquipos {
     	filtro=i;
@@ -60,12 +76,19 @@ public class LaboratorioBean {
     public void start(){
         
     }
+    public int getCantidaDeEquipos()throws ExcepcionServiceHistorialEquipos{
+        equipos2=serviceHE.consultarEquiposPorLaboratorio(laboratorioId).size();
+        System.out.println(equipos2);
+        return equipos2;
+    }
     public LaboratorioBean(){
         serviceHE = ServiceFactory.getInstance().getServiceHistorialEquipos();
         try{
         	filtro=1;
                 filtrar="";
-            laboratorio = serviceHE.consultarLaboratorios(1,filtrar);
+                laboratorio = serviceHE.consultarLaboratorios(1,filtrar);
+                actualizarGrafico();
+                
              
         }catch(ExcepcionServiceHistorialEquipos e){
         }
@@ -76,6 +99,7 @@ public class LaboratorioBean {
         	departamento=departamento.trim();
         	if(departamento.length()>0) {
 	            serviceHE.registrarLaboratorio(new Laboratorio(idLaboratorio,nombre,departamento));
+
 	        
 	            showMessage("El registro del Laboratorio ha sido un exito");
         	}else {
@@ -86,6 +110,19 @@ public class LaboratorioBean {
             new ExcepcionServiceHistorialEquipos("No se pudo registrar Laboratorio");
         }       
     }
+   public void cerrarLaboratorio(int id) throws ExcepcionServiceHistorialEquipos
+   {
+       serviceHE.cerrarLaboratorio(id);
+       ArrayList<Equipo> eq = serviceHE.consultarEquipos(1,"");
+       for (int i=0; i<eq.size();i++)
+       {
+           if(eq.get(i).getIdlaboratorio()==id)
+           {
+               serviceHE.desasociarEquipo(eq.get(i).getId());
+           }
+       }
+       showMessage("Laboratorio " + id+ " cerrado");
+   }
 
    public void showMessage(String confirmacion) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     
@@ -102,6 +139,10 @@ public class LaboratorioBean {
 	    	if(numero%2==0) {
 	    		color="#D27F00";
 	    	}
+                if(numero==-2)
+                {
+                    color="#F93D3D";
+                }
    	}
    	return color;
    }
@@ -111,11 +152,34 @@ public class LaboratorioBean {
    	
    	for(Laboratorio l:getLaboratorios()) {
    		
+                if(nombre.getActivo().equals("No")) {
+   			return -2; 
+   		}
    		if(l.getIdlaboratorio()==nombre.getIdlaboratorio()) {
    			return cont; 
    		}cont++;
+                
    	}
    	return -1;
+   }
+
+    public PieChartModel getModel() {
+        return model;
+    }
+
+    public void setModel(PieChartModel model) {
+        this.model = model;
+    }
+   public void actualizarGrafico() throws ExcepcionServiceHistorialEquipos
+   {
+       model = new PieChartModel();
+                ArrayList<Laboratorio> labs=getLaboratorios();
+                for (Laboratorio lab:labs)
+                {
+                    model.set(lab.getNombre(),serviceHE.consultarEquiposPorLaboratorio(lab.getIdlaboratorio()).size());
+                }
+                model.setTitle("Equipos por laboratorio");
+                model.setLegendPosition("w");
    }
    
     

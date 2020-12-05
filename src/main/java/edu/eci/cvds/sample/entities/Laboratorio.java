@@ -18,6 +18,7 @@ public class Laboratorio implements Serializable{
     private String nombre;
     private String departamento;
     private String activo;
+
     //pendiente por implementar
     private ArrayList<Equipo> equipos;
     
