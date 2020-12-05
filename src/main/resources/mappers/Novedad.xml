@@ -14,8 +14,7 @@
 		<association property="elemento" javaType='Elemento' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper.ElementoResult" columnPrefix='elemento_'></association>
 		<association property="equipo" javaType='Equipo' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper.EquipoResult" columnPrefix='equipo_'></association>
 		<association property="user" javaType='Usuario' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult" columnPrefix='user_'></association> 
-		
-
+                 
 	</resultMap>
 	
 	<insert parameterType="map" id="registrarNovedad" >
@@ -74,6 +73,12 @@
 		
 		
 	</select>
+        
+        
+        	
+        
+        
+
 	
 	<select parameterType="map" id="consultarNovedades" resultMap="NovedadResult">
 		SELECT

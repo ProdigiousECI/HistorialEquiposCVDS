@@ -121,24 +121,27 @@ public class ElementoBean{
     public void darBajaElemento(int id) throws ExcepcionServiceHistorialEquipos {
     	String mensaje="";
         Elemento e=obtenerElemento(id);
-    
+        System.out.println("===============");
+        System.out.println(e.getBaja().equals("no"));
         if(e.getBaja().equals("no")){
+            
+                System.out.println(e.getEquipo()==null);
 
         	if(e.getEquipo()==null) {
                 serviceHE.darBajaElemento(id);
                 User user=new User();
         		user.setCorreo(ShiroBean.getUser());
         		
-                serviceHE.registrarNovedad(new Novedad(e.getNombre()+" dado de Baja","Se ha dado de baja el elemento con id "+e.getId(),user,serviceHE.consultarElemento(id)));
+                serviceHE.registrarNovedad(new Novedad(e.getNombre()+" Dado De Baja","Se ha dado de baja el elemento con id "+e.getId(),user,serviceHE.consultarElemento(id)));
  
-                mensaje+="Elemento "+ e.getNombre()+ " con id " +id+" ha sido dado de baja";
+                mensaje+="Elemento "+ e.getNombre().toUpperCase()+ " con id " +id+" ha sido dado de baja";
         	}else {
-        		mensaje+="Elemento " + e.getNombre()+ " con id " +id+" ya se encuentra ocupado ";
+        		mensaje+="Elemento " + e.getNombre().toUpperCase()+ " con id " +id+" ya se encuentra ocupado ";
         	}
               
         }else
         {
-        	mensaje+="Elemento " + e.getNombre()+ " con id " +id+" ya se encuentra dado de baja";
+        	mensaje+="Elemento " + e.getNombre().toUpperCase()+ " con id " +id+" ya se encuentra dado de baja";
         }
         showMessage(mensaje);
     }
@@ -152,16 +155,16 @@ public class ElementoBean{
                 User user=new User();
         		user.setCorreo(ShiroBean.getUser());
         		
-                serviceHE.registrarNovedad(new Novedad(e.getNombre()+" dado de Baja","Se ha dado de baja el elemento con id "+e.getId(),user,serviceHE.consultarElemento(id)));
+                serviceHE.registrarNovedad(new Novedad(e.getNombre()+" Dado De Baja","Se ha dado de baja el elemento con id "+e.getId(),user,serviceHE.consultarElemento(id)));
  
                
         	}else {
-        		mensaje+="Elemento " + e.getNombre()+ " con id " +id+",";
+        		mensaje+="Elemento " + e.getNombre().toUpperCase()+ " con id " +id+",";
         	}
               
         }else
         {
-        	mensaje+="Elemento " + e.getNombre()+ " con id " +id+",";
+        	mensaje+="Elemento " + e.getNombre().toUpperCase()+ " con id " +id+",";
         }
         return mensaje;
     }
@@ -235,7 +238,7 @@ public class ElementoBean{
 	            
 	            e=serviceHE.consultarElementoPorNombre(nombre);
 	            
-	            novedadElemento=new NovedadBeanElemento("nuevo elemento","Es una "+tipo+" ",e.getId());
+	            novedadElemento=new NovedadBeanElemento("Nuevo Elemento","El nuevo elemento es: "+tipo+" ",e.getId());
                 novedadElemento.registrarNovedad();
                 salvar.put(e.getId(), false);
               
@@ -251,7 +254,7 @@ public class ElementoBean{
 
     private boolean verificacionNombre(String nombre) {
     	for(Elemento e:elementos) {
-    		if(e.getNombre().equals(nombre)) {
+    		if(e.getNombre().toUpperCase().equals(nombre.toUpperCase())) {
     			return true;
     		}
     	}

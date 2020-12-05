@@ -22,8 +22,15 @@ public interface EquipoMapper {
     
     public ArrayList<Equipo> consultarEquiposPorLaboratorio(@Param("idlab")Integer laboratorioId);
 
-	public Equipo consultarEquipoPorNombre(@Param("nom") String nombre);
+    public Equipo consultarEquipoPorNombre(@Param("nom") String nombre);
 
-	public ArrayList<Equipo> consultarEquiposActivos(@Param("filtro")int filtro,@Param("filtrar")String filtrar);
+
+    public void darBajaEquipo(@Param("idbaja")int id);
+
+    public ArrayList<Equipo> consultarEquiposActivos(@Param("filtro")int filtro,@Param("filtrar")String filtrar);
+    
+    public void desasociarEquipo(@Param("ideq")int id);
+
+	public void asociarEquipoALaboratorio(@Param("ineq")int in,@Param("inlab") Integer laboratorioId);
     
 }

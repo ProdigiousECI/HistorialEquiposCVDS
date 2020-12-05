@@ -118,6 +118,14 @@ public class MyBATISElementoDAO implements ElementoDAO{
              throw new PersistenceException("Error al consultar el elemento", e);
         } 
 	}
+        @Override
+        public ArrayList<Elemento> consultarElementosPorEquipo(int equipoId)throws PersistenceException{
+                try{
+                    return elementoMapper.consultarElementosPorEquipo(equipoId);
+                }catch(org.apache.ibatis.exceptions.PersistenceException e){
+                    throw new PersistenceException("Error al consultar elementos por equipo");
+                }
+        }
 	@Override
 	public void asociarElementoAEquipo(String nombre, int id) throws PersistenceException {
 		try{
@@ -136,6 +144,15 @@ public class MyBATISElementoDAO implements ElementoDAO{
         } 
 		
 	}
+
+    @Override
+    public void desasociarElementoEquipo(int id) throws PersistenceException {
+        try{
+            elementoMapper.desasociarElementoEquipo(id);
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+             throw new PersistenceException("Error al desasociar equipo de elemento", e);
+        } 
+    }
 
     
 }

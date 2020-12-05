@@ -27,7 +27,10 @@ public interface ElementoDAO {
     public void darBajaElemento(int id) throws PersistenceException;
     public ArrayList<Elemento> bajaNoElemento() throws PersistenceException;
 	public Elemento consultarElementoPorNombre(String tipo) throws PersistenceException;
+        public ArrayList<Elemento> consultarElementosPorEquipo(int equipoId) throws PersistenceException;
 	public void asociarElementoAEquipo(String nombre, int id) throws PersistenceException;
 	public void eliminarAsociacion(int n) throws PersistenceException;
+        public void desasociarElementoEquipo(int id) throws PersistenceException;
+    
 
 }

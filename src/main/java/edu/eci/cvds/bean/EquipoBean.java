@@ -19,6 +19,7 @@ import edu.eci.cvds.sample.services.ExcepcionServiceHistorialEquipos;
 import edu.eci.cvds.sample.services.ServiceHistorialEquipos;
 import edu.eci.cvds.sample.entities.Elemento;
 import edu.eci.cvds.sample.entities.Equipo;
+import edu.eci.cvds.sample.entities.Laboratorio;
 import edu.eci.cvds.sample.entities.Novedad;
 import edu.eci.cvds.sample.entities.User;
 import javax.faces.bean.ViewScoped;
@@ -56,7 +57,7 @@ public class EquipoBean{
     public Integer laboratorioId;
     private ArrayList<String> images=new ArrayList<String>();
     public ArrayList<Equipo> equiposLab;
-    
+    public int equipos2;
     
     
     public int getIndice() {
@@ -90,6 +91,10 @@ public class EquipoBean{
 	public void setImages(ArrayList<String> images) {
 		this.images = images;
 	}
+        
+        public Equipo obtenerEquipo(int n) throws ExcepcionServiceHistorialEquipos {
+            return serviceHE.consultarEquipo(n);
+        }
 
 	public ArrayList<Equipo> getEquipos() throws ExcepcionServiceHistorialEquipos {
 		for(Integer i:salvar.keySet()) {
@@ -146,11 +151,43 @@ public class EquipoBean{
     private boolean verificacionNombre(String nombre) throws ExcepcionServiceHistorialEquipos {
     	equipos=getEquipos();
     	for(Equipo e:equipos) {
-    		if(e.getNombre().equals(nombre)) {
+    		if(e.getNombre().toUpperCase().equals(nombre.toUpperCase())) {
     			return true;
     		}
     	}
     	return false;
+    }
+    public void darBajaEquipo(int id,String torre,String mouse,String pantalla,String teclado) throws ExcepcionServiceHistorialEquipos {
+    	String mensaje="";
+        Equipo e=obtenerEquipo(id);
+        Elemento elemTorre = serviceHE.consultarElementoPorNombre(torre);
+        Elemento elemMouse = serviceHE.consultarElementoPorNombre(mouse);
+        Elemento elemPantalla = serviceHE.consultarElementoPorNombre(pantalla);
+        Elemento elemTeclado = serviceHE.consultarElementoPorNombre(teclado);
+        
+        System.out.println(e.getActivo().equals("si"));
+        if(e.getActivo().equals("si")){
+
+                serviceHE.darBajaEquipo(id);
+                User user=new User();
+        		user.setCorreo(ShiroBean.getUser());
+        	serviceHE.desasociarElementoEquipo(id);
+                
+                serviceHE.registrarNovedad(new Novedad(elemTorre.getNombre()+" Desasociado","Se desasociado el elemento con id "+elemTorre.getId(),user,elemTorre));
+                serviceHE.registrarNovedad(new Novedad(elemMouse.getNombre()+" Desasociado","Se desasociado el elemento con id "+elemMouse.getId(),user,elemMouse));
+                serviceHE.registrarNovedad(new Novedad(elemPantalla.getNombre()+" Desasociado","Se desasociado el elemento con id "+e.getId(),user,elemPantalla));
+                serviceHE.registrarNovedad(new Novedad(elemTeclado.getNombre()+" Desasociado","Se desasociado el elemento con id "+e.getId(),user,elemTeclado));
+                
+                mensaje+="Equipo " + e.getNombre()+ " con id " +id+",";
+                
+                showMessage("Este equipo se ha dado de baja");
+                showMessage("Ahora puedes dar los elementos de baja");
+              
+        }else
+        {
+                showMessage("Este equipo ya esta dado de baja");
+        }
+        
     }
     public void registrarEquipo(int id, String nombre, String torre, String pantalla, String mouse, String teclado){
         try {
@@ -166,16 +203,20 @@ public class EquipoBean{
                 User user=new User();
         		user.setCorreo(ShiroBean.getUser());
         		Equipo equipo=serviceHE.consultarEquipoPorNombre(nombre);
-        		serviceHE.registrarNovedad(new Novedad("nuevo equipo","registro de "+e.getNombre(),user,equipo));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(torre)));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(pantalla)));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(mouse)));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,serviceHE.consultarElementoPorNombre(teclado)));
+        		serviceHE.registrarNovedad(new Novedad("nuevo equipo","registro de "+e.getNombre().toUpperCase(),user,equipo));
+        		Elemento torreEquipo=serviceHE.consultarElementoPorNombre(torre);
+        		Elemento mouseEquipo=serviceHE.consultarElementoPorNombre(mouse);
+        		Elemento tecladoEquipo=serviceHE.consultarElementoPorNombre(teclado);
+        		Elemento pantallaEquipo=serviceHE.consultarElementoPorNombre(pantalla);
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con "+e.getNombre().toUpperCase(),user,serviceHE.consultarElementoPorNombre(torre)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con "+e.getNombre().toUpperCase(),user,serviceHE.consultarElementoPorNombre(pantalla)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con "+e.getNombre().toUpperCase(),user,serviceHE.consultarElementoPorNombre(mouse)));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con "+e.getNombre().toUpperCase(),user,serviceHE.consultarElementoPorNombre(teclado)));
 	            
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
-	            serviceHE.registrarNovedad(new Novedad("Elemento asociado","asociado con "+e.getNombre(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con la torre "+torreEquipo.getNombre().toUpperCase(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con la pantalla "+pantallaEquipo.getNombre().toUpperCase(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con el mouse "+mouseEquipo.getNombre().toUpperCase(),user,equipo));
+	            serviceHE.registrarNovedad(new Novedad("Elemento Asociado","Asociado con el teclado "+tecladoEquipo.getNombre().toUpperCase(),user,equipo));
 	            serviceHE.asociarElementoAEquipo(torre,equipo.getId());
 	            serviceHE.asociarElementoAEquipo(pantalla,equipo.getId());
 	            serviceHE.asociarElementoAEquipo(mouse,equipo.getId());
@@ -196,6 +237,12 @@ public class EquipoBean{
 
             return serviceHE.consultarEquiposPorLaboratorio(laboratorioId);
         
+    }
+    
+    public int getCantidaDeEquipos()throws ExcepcionServiceHistorialEquipos{
+        equipos2=serviceHE.consultarEquiposPorLaboratorio(laboratorioId).size();
+        System.out.println(equipos2);
+        return equipos2;
     }
     public void showMessage(String confirmacion) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", confirmacion);     
@@ -255,26 +302,23 @@ public class EquipoBean{
     	return -1;
     }
     
-    public String darBajaElementos(int id,String mensaje) throws ExcepcionServiceHistorialEquipos {
+    public String darBajaEquipos(int id,String mensaje) throws ExcepcionServiceHistorialEquipos {
         Equipo e=serviceHE.consultarEquipo(id);
         
-        if(e.getActivo().equals("no")){
+        if(e.getActivo().equals("si")){
 
-        	if(e.getActivo()==null) {
-                //serviceHE.darBajaElemento(id);
-                //User user=new User();
-        		//user.setCorreo(ShiroBean.getUser());
+        	
+                serviceHE.darBajaEquipo(id);
+                User user=new User();
+        		user.setCorreo(ShiroBean.getUser());
         		
-                //serviceHE.registrarNovedad(new Novedad(e.getNombre()+" dado de Baja","Se ha dado de baja el elemento con id "+e.getId(),user,serviceHE.consultarElemento(id)));
-        		
+                serviceHE.registrarNovedad(new Novedad(e.getNombre()+" dado de Baja","Se ha dado de baja el equipo con id "+e.getId(),user,serviceHE.consultarElemento(id)));
                
-        	}else {
-        		mensaje+="Elemento " + e.getNombre()+ " con id " +id+",";
-        	}
+        
               
         }else
         {
-        	mensaje+="Elemento " + e.getNombre()+ " con id " +id+",";
+        	mensaje+="Equipo " + e.getNombre()+ " con id " +id+",";
         }
         return mensaje;
     }
@@ -285,7 +329,7 @@ public class EquipoBean{
     		
     		if(salvar.get(in)) {
     			System.out.println(in);
-    			//mensaje=darBajaElementos(in,mensaje);
+    			mensaje=darBajaEquipos(in,mensaje);
     			salvar.put(in,false);
     		}
     		
@@ -294,10 +338,55 @@ public class EquipoBean{
     	//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
     	//context.redirect(context.getRequestContextPath() + "elemento.xhtml");
     	if(mensaje!="") {
-    		showMessage("Los elementos: "+mensaje +"no se pudieron dar de baja");
+    		showMessage("Los equipos: "+mensaje +"no se pudieron dar de baja");
     	}else {
-    		showMessage("Todos los elementos se han dado de baja exitosamente");
+    		showMessage("Todos los equipos se han dado de baja exitosamente");
     	}
+    	
+    	
+    }
+    public void asociarEquipoALaboratorio(int in) throws ExcepcionServiceHistorialEquipos {
+    	serviceHE.asociarEquipoALaboratorio(in, laboratorioId);
+    	User user=new User();
+		user.setCorreo(ShiroBean.getUser());
+		Equipo equipo=serviceHE.consultarEquipo(in);
+		Laboratorio l=serviceHE.consultarLaboratorio(laboratorioId);
+		serviceHE.registrarNovedad(new Novedad("Asociación a Laboratorio","Asociación del "+equipo.getNombre().toUpperCase() +" al laboratorio "+ l.getNombre().toUpperCase(),user,equipo));
+        
+    }
+    public void eliminarAsociacion(Integer id) throws ExcepcionServiceHistorialEquipos {
+    	serviceHE.desasociarEquipo(id);
+    	User user=new User();
+		user.setCorreo(ShiroBean.getUser());
+		Equipo equipo=serviceHE.consultarEquipo(id);
+		Laboratorio l=serviceHE.consultarLaboratorio(laboratorioId);
+		serviceHE.registrarNovedad(new Novedad("Eliminar Asociación","Eliminación de Asociación entre "+equipo.getNombre().toUpperCase() +" y "+ l.getNombre().toUpperCase(),user,equipo));
+    }
+    public void asociacionLaboratorio() throws ExcepcionServiceHistorialEquipos, IOException {
+    	boolean bandera=false;
+    	Laboratorio l=serviceHE.consultarLaboratorio(laboratorioId);
+    	if(l.getActivo().equals("si") || l.getActivo().equals("Si")) {
+	    	for(Integer in:salvar.keySet()) {
+	    		
+	    		if(salvar.get(in)) {
+	    			asociarEquipoALaboratorio(in);
+	    			bandera=true;
+	    			salvar.put(in,false);
+	    		}
+	    		
+	    	
+	    	}
+	    	//ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+	    	//context.redirect(context.getRequestContextPath() + "elemento.xhtml");
+	    	if(bandera) {
+	    		showMessage("Todos los equipos han sido Asociados exitosamente");
+	    	}else {
+	    		showMessage("No selecciono equipos a asociar");
+	    	}
+    	}else {
+    		showMessage("Este laboratorio este cerrado");
+    	}
+    	
     	
     	
     }
@@ -308,6 +397,7 @@ public class EquipoBean{
     	return confirmar;
     	
     }
+    
   
     
 }

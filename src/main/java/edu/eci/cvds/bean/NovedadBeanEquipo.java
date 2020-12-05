@@ -125,6 +125,18 @@ public class NovedadBeanEquipo extends NovedadBean{
 		}
 		return null;
 	}
+        public ArrayList<Elemento> consultarElementosPorEquipo() throws ExcepcionServiceHistorialEquipos{
+            try {
+        	
+        	return service.consultarElementosPorEquipo(equipoId);
+            
+            } catch (ExcepcionServiceHistorialEquipos ex) {
+                    showMessage("No se pudo hay elementos en este equipo");
+            } 
+            return null;
+            
+        }
+        
 
 	
 }

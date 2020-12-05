@@ -35,7 +35,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                where e.baja='no'
+                where UPPER(e.baja)=UPPER('no')
         </select>
         <select parameterType="map" id="consultarElementos" resultMap="ElementoResult">
             select
@@ -48,7 +48,7 @@
                 eq.nombre as equipo_nombre
                 FROM Elemento as e
                 left join equipo as eq on eq.id = e.idequipo
-                WHERE e.nombre LIKE #{filtrar}
+                WHERE UPPER(e.nombre) LIKE UPPER(#{filtrar})
                 <if test="ordenar == 1"> ORDER BY e.id ASC </if>
 				<if test="ordenar == 2"> ORDER BY e.nombre ASC </if>
 				<if test="ordenar == 3"> ORDER BY e.tipo ASC </if>
@@ -65,7 +65,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                WHERE e.tipo LIKE 'Torre' and e.baja LIKE 'no' and idequipo is null
+                WHERE e.tipo LIKE 'Torre' and UPPER(e.baja) LIKE UPPER('no') and idequipo is null
         </select>
         
         <select parameterType="map" id="consultarElementosPantalla" resultMap="ElementoResult">
@@ -76,7 +76,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                WHERE e.tipo LIKE 'Pantalla' and e.baja LIKE 'no' and idequipo is null
+                WHERE e.tipo LIKE 'Pantalla' and UPPER(e.baja) LIKE UPPER('no') and idequipo is null
         </select>
         
         <select parameterType="map" id="consultarElementosMouse" resultMap="ElementoResult">
@@ -87,7 +87,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                WHERE e.tipo LIKE 'Mouse' and e.baja LIKE 'no' and idequipo is null
+                WHERE e.tipo LIKE 'Mouse' and UPPER(e.baja) LIKE UPPER('no') and idequipo is null
         </select>
         
         <select parameterType="map" id="consultarElementosTeclado" resultMap="ElementoResult">
@@ -98,7 +98,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                WHERE e.tipo LIKE 'Teclado' and e.baja LIKE 'no' and idequipo is null
+                WHERE e.tipo LIKE 'Teclado' and UPPER(e.baja) LIKE UPPER('no') and idequipo is null
         </select>
         <select parameterType="map" id="consultarElementoPorNombre" resultMap="ElementoResult">
             select
@@ -108,7 +108,7 @@
                 e.activo,
                 e.baja
                 FROM Elemento as e
-                WHERE e.nombre LIKE #{ele}
+                WHERE UPPER(e.nombre) LIKE UPPER(#{ele})
         </select>
         
         <insert id="registrarElemento" parameterType="map">
@@ -135,6 +135,22 @@
 
         <update id="darBajaElemento" parameterType="map">
             UPDATE Elemento SET baja='si' WHERE id=#{idele}
+        </update>
+        
+        
+        <select parameterType="map" id="consultarElementosPorEquipo" resultMap="ElementoResult">
+            select
+                e.id,
+                e.nombre,
+                e.tipo,
+                e.activo,
+                e.baja
+                FROM Elemento as e
+                WHERE e.idequipo=#{ideq}
+        </select>
+        
+        <update id="desasociarElementoEquipo" parameterType="map">
+            UPDATE Elemento SET idequipo=NULL WHERE elemento.idequipo=#{idequi}
         </update>
 
 </mapper>
