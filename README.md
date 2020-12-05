@@ -108,6 +108,10 @@ Al frente de cada fila de elemento, se podra ver un link "Ver Elemento", que los
 ### Arquitectura y Diseño Detallado
 
   * **Modelo E-R:**
+  
+    ![](resources/diagrama.JPG)
+    
+    
   * **Diagrama de clases:**
   * **Descripción de la arquitectura y el Stack de tecnologías utilizado:**
   * **Enlace a la aplicacion en Heroku:** https://historialequipos.herokuapp.com/faces/Autenticacion.xhtml
