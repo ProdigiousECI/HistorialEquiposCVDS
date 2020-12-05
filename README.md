@@ -4,23 +4,23 @@
  
 **Integrantes:**
 
-  * Javier Esteban Lopez
+  * Javier Esteban López
   * Yarit Yajanny Villalobos 
-  * Andres Felipe Davila
-  * Miguel Angel Fuquene
+  * András Felipe Dávila
+  * Miguel Ángel Fúquene
 
 **Profesores:**
 
   * Julian Mauricio Velasco
-  * Oscar David Ospina
+  * Óscar David Ospina
 
 **Roles asignados:**
 
   * **Julian Mauricio Velasco:** Dueño de producto 
-  * **Javier Esteban Lopez:** Desarrollador
+  * **Javier Esteban López:** Desarrollador
   * **Yarit Yajanny Villalobos:** Desarrollador
-  * **Andres Felipe Davila:** Desarrollador
-  * **Miguel Angel Fuquene:** Carreado :v
+  * **Andrés Felipe Dávila:** Desarrollador
+  * **Miguel Ángel Fúquene:** Carreado :v
   
 ### Descripción del proyecto
 
@@ -28,7 +28,7 @@
     
   * **Manual de Usuario:**
     
-    El inicio de sesion, donde el usuario es el correo electronico
+    El inicio de sesión, donde el usuario es el correo electronico
     
     ![](resources/inicioSesion.JPG)
     
